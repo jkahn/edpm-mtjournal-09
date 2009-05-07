@@ -1,0 +1,58 @@
+Mark --
+
+We would like to express interest in submitting an article to the MT
+Journal special issue on MT automated metrics.
+
+The subject of the paper is:
+
+  Expected Dependency Pair Match:
+  Predicting improvements to HTER with expected syntactic structure 
+
+  Jeremy G. Kahn and Mari Ostendorf  [but see NOTE]
+
+***** PRELIMINARY ABSTRACT *****
+
+This work uses English-language syntactic structure as a tool for
+measuring similarity, by introducing a new measure, Expected
+Dependency Pair Match (EDPM), which:
+
+  * uses a probabilistic syntactic parser (the first stage of Charniak &
+    Johnson 2005) annotates both hypothesis and reference, deferring
+    to the parse-structure to identify words along with inbound and
+    outbound dependency links
+
+  * uses an expectation over parse structures to improve the
+    parse-structure's identification of these dependency tuples,
+    rather than using a single parse or an evenly-weighted list (as a
+    previous approach [Owczarzak et al. 2007] based on the LFG parser
+    did),
+
+  * takes an F-measure over these small syntactically-labeled
+    dependency tuples (as well as unigrams and bigrams), weighting
+    "syntactically-key" words more heavily (through more inbound links).
+
+In evaluation, we compare the performance of this measure to other
+popular automatic measures (BLEU and TER).  In automated evaluation,
+one major concern is to identify differences between two relatively
+good candidate translations of the same source unit; thus we evaluate
+these measures' success at predicting improvements in HTER (rather
+than correlations among absolute HTER).  This improvement is measured
+by comparing differences in HTER among the three submitted GALE 2.5
+[DARPA 2008] translations of each document.  Score-differences in each
+of the candidate measures are correlated with score-differences in
+HTER.
+
+We find that (delta) EDPM is nearly always at least as well-correlated
+to (delta) HTER as are competitor measures in all four genres and both
+source languages under consideration. In many cases, EDPM's
+correlation with HTER is the strongest, especially in the translation
+of spoken documents.
+
+******
+NOTE:
+
+If time permits, we would like to include experiments comparing EDPM to
+TERp, in which case Matthew Snover would be included as a
+co-author. Preliminary experiments suggest that the two measures,
+which represent two rather different approaches, may have
+complementary strengths and weaknesses.
