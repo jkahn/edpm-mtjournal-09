@@ -1,0 +1,9 @@
+# LaTeX tempfiles
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+
+# ignore the generated file itself
+edpm-paper.pdf
