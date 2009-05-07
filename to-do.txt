@@ -1,0 +1,21 @@
+change explanation to use mean-subtraction rather than deltas
+
+change results to use mean-subtraction rather than deltas
+
+Figure out whether TERp optimization makes sense here
+
+reread
+
+if [TERp works]
+
+  Explain TERp optimization
+
+  Explain partial matching (using component precision, recall)
+
+else [TERp doesn't]
+
+  look for other organizational ideas
+
+endif
+
+look at detect-human experiment (rebuild?)
