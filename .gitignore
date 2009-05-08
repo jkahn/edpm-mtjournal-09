@@ -5,5 +5,9 @@
 *.dvi
 *.log
 
+# emacs latex editor tempfiles
+_region_.*
+prv_edpm-paper.fmt
+
 # ignore the generated file itself
 edpm-paper.pdf
