@@ -3,15 +3,15 @@ abstract
 (1) Introduction [background]
 
   * evaluation [esp. automatic evaluation]
-  * popular current measures BLEU (NIST, TER)
+  * popular current measures BLEU, TER
 
-  * challenges - not tracking well for optimization
+  * challenges - motivate search for better measures
 
   * other extensions:
-    - METEOR - synonym tables
+    - METEOR - stemming and synonym tables; tuned but not generally tuneable
     - TERp
-      - development-set tuning
-      - synonym tables
+      - development-set tuning by user
+      - stemming and synonym tables
       - paraphrase tables
 
   * prior work with (partial) syntactic locality:
@@ -197,10 +197,13 @@ abstract
   include optionally new features
 
   Corpus: GALE 2.5 data, again
-    documents randomly split into two groups
+    documents randomly split into two groups, evenly split across
+    language and genre
 
   tuning target: weighted correlation with mean-removed segment HTER
-    (why weighted?)
+
+     [we use weighted correlation to avoid emphasis on short segments
+      (which hurts document-level and system-level utility) ]
 
   Select features from set:
 
