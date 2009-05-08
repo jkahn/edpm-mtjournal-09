@@ -1,0 +1,17 @@
+These files provide a LaTeX2e class file and
+accompanying user manual for submissions of journal
+articles to Kluwer Academic Publishers Dordrecht, the
+Netherlands.
+
+If the manual, usrman.tex, does not compile on your system, 
+please print the PostScript version, usrman.ps, or download a 
+pdf version usrman.pdf from our website (www.wkap.nl, 
+Author Services, Journal Stylefiles/Templates).
+
+klusampl.tex is an example journal submission.
+
+------------------------------------------------------------
+Siep Kroonenberg                             texhelp@wkap.nl
+Kluwer Academic Publishers                   -- Pre Press --
+Achterom 119, 3311 KB Dordrecht, The Netherlands
+------------------------------------------------------------

@@ -1,0 +1,276 @@
+%
+%
+\ifcat a\noexpand @\let\next\relax\else \def\next{%
+\documentclass{kluwer}\usepackage{doc}\MakePercentIgnore}\fi\next
+\NeedsTeXFormat{LaTeX2e}
+\def\filedate{1998/03/17}
+\def\filename{klulist.sty}
+%\DoNotIndex{\@M,\def,\c@secnumdepth,\baselineskip,\@pnumwidth,\else,\fi}
+%\DoNotIndex{\newcommand,\z@,\relax,\renewcommand,\ifnum,\csname,\endcsname}
+%\DoNotIndex{\baselineskip,\vskip,\hskip,\relax,\secdef,\refstepcounter}
+%\DoNotIndex{\normalsize,\numberline,\protect,\endinput}
+%\CodelineIndex
+%\newcommand{\Bs}{$\backslash$}      
+%\parindent=0pt
+%\parskip=3pt
+%\hfuzz=10pt
+%\MakeShortVerb{\|}
+%\addtolength{\textwidth}{4pc}
+%\begin{document}
+%\begin{opening}
+%\title{\filename}
+%\date{\filedate}
+%\author{Kluwer Academic Publishers\surname{}}
+%\institute{~}
+%\begin{abstract}
+% This internal stylefile takes care of list definitions and `general'
+% environments. There is one option: |kaplist|. 
+%\end{abstract}
+%\end{opening}
+%\tableofcontents
+%\newpage\section{Usage}
+% For the time being, all environments for which it is not so clear
+% where to put them are placed in this file. This came about because
+% most of these are |\trivlist| alike, but is quite arbitrary.
+%
+% As a result, this stylefile defines the following `common'
+% environments: \\[6pt]
+%|verse|\\
+%|quote|\\
+%|quotation|\\
+%|frontmatter|\\
+%|acknowledgements|\\
+%|notes|\\
+%|vitae|\\
+%|ao|\\
+%~
+% And, of course, |itemize|, |enumerate| and |description|.
+%\newpage\section{Implementation}
+%    \begin{macrocode}
+\ProvidesPackage{klulist}[\filedate ]
+\newif\if@kaplist
+\DeclareOption{kaplist}{\@kaplisttrue}
+\ExecuteOptions{}
+\ProcessOptions
+%    \end{macrocode}
+% The label and counter default values for |enumerate|. Reference
+% output at a level above 3 starts to look ridiculous.
+%    \begin{macrocode}
+\def\labelenumi{\arabic{enumi}.}        % 1.
+\def\theenumi{\arabic{enumi}}           % 1
+\def\labelenumii{\alph{enumii})}        % a)
+\def\theenumii{\alph{enumii}}           % a
+\def\p@enumii{\theenumi}                % 1a
+\def\labelenumiii{\it\roman{enumiii})}  % \it i)
+\def\theenumiii{\roman{enumiii}}        % i
+\def\p@enumiii{\theenumi(\theenumii)}   % 1(a)\it i) 
+\def\labelenumiv{\Alph{enumiv})}        % A)
+\def\theenumiv{\Alph{enumiv}}           % A
+\def\p@enumiv{\p@enumiii\theenumiii}    % 1(a)\it i)A
+%    \end{macrocode}
+% Itemize labels 
+%    \begin{macrocode}
+\def\labelitemi{\m@th$-$}            
+\def\labelitemii{\m@th$\bullet$}    
+\def\labelitemiii{\m@th$\ast$}      
+\def\labelitemiv{{\footnotesize +}}  
+%    \end{macrocode}
+% Description list.
+%    \begin{macrocode}
+\def\descriptionlabel#1{\hspace\labelsep \bf #1}
+\newenvironment{description}{%
+  \list{}{%
+    \labelwidth\z@
+    \itemindent -\leftmargin
+    \let\makelabel\descriptionlabel
+    }}{\endlist}
+%    \end{macrocode}
+%\newpage
+% \subsection{kaplist}
+% This changes quite a lot of things. 
+%
+% Insert different options to |\list|
+%    \begin{macrocode}
+\if@kaplist
+  \def\kapitemargs{%
+   \topsep        \z@ \@plus 1pt
+   \partopsep     \z@ \@plus 1pt
+   \itemsep       \z@ \@plus \z@
+   \parsep        \z@ \@plus 1pt
+   \leftmargini   \z@
+   \leftmarginii  1em
+   \leftmarginiii 1em
+   \leftmarginiv  1em
+   \rightmargin   \z@
+   \listparindent \z@
+   \itemindent    \z@
+  }           
+  \let\kapenumargs\kapitemargs
+%    \end{macrocode}
+% Changed |\@mklab| from |[    1]| to |[1     ]|
+%    \begin{macrocode}
+  \renewcommand{\@mklab}[1]{#1\hfil}
+\else
+\def\kapenumargs{}
+\def\kapitemargs{}
+\fi
+%    \end{macrocode}
+% \newpage \subsection{Other environments}
+% These are the environments that we {\it have\/} to define.
+%
+% This enumerate has an optional argument and uses that to implement dynamic
+% resizing of the left margin.
+%
+% This itemize has an extra optional argument that gives the default label.
+%    \begin{macrocode}
+\def\enumerate{%
+    \@ifnextchar[{\kap@enumerate}{\kap@enumerate[00]}}
+\def\kap@enumerate[#1]{%
+     \ifnum \@enumdepth >3 \@toodeep\else
+     \advance\@enumdepth \@ne
+     \edef\@enumctr{enum\romannumeral\the\@enumdepth}
+     \list{\csname label\@enumctr\endcsname}{%
+       \kapenumargs 
+       \usecounter{\@enumctr}
+       \settowidth\labelwidth{#1.}
+       \setlength{\leftmargin}{\labelwidth} 
+       \addtolength{\leftmargin}{\labelsep}
+       \def\makelabel##1{\hss \llap{##1}}}%
+     \fi
+   }
+\let\endenumerate\endlist
+\def\itemize{\@ifnextchar[{\kap@itemize}{\kap@itemize[]}}
+\def\kap@itemize[#1]{\def\klu@arg{#1}%  
+    \ifnum \@itemdepth >3 \@toodeep
+    \else
+      \advance\@itemdepth \@ne 
+      \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+      \ifx \klu@arg\empty 
+        \list {\csname\@itemitem\endcsname}%
+        {\kapitemargs
+         \def\makelabel##1{\hss ##1\hfil}}%
+      \else 
+        \list {\klu@arg }%
+        {\kapitemargs
+         \def\makelabel##1{\hss ##1\hfil}}%
+      \fi
+    \fi 
+    }
+\let\enditemize\endlist
+\def\verse{\let\\=\@centercr
+  \list{}{\itemsep\z@
+      \itemindent -1.5em
+      \listparindent \itemindent
+      \rightmargin\leftmargin
+      \advance\leftmargin 1.5em
+  }\item[]}
+\let\endverse\endlist               
+
+\def\quotation{\quoteskip
+  \list{}{%
+     \listparindent 1.5em
+     \topsep .5ex plus 2pt minus 1pt
+     \itemindent\listparindent
+     \parsep 0pt plus 1pt
+     }\item[]
+  \hskip-\listparindent}
+\def\endquotation{\endlist\quoteskip}
+
+\def\quote{\quoteskip\list{}{%
+  \leftmargin 1.5em
+  \topsep .5ex plus 2pt minus 1pt
+  }\item[]}
+\def\endquote{\endlist\quoteskip}
+\def\quoteskip{}
+
+\def\frontmatter{\begingroup\thispagestyle{empty}%
+    \renewcommand{\thepage}{\roman{page}}\setcounter{page}{1}}
+\def\endfrontmatter{\newpage\endgroup\setcounter{page}{1}}
+%    \end{macrocode}
+% \newpage\subsection{`New' environments}
+% The |notes| environment is used for incapsulation of `endnotes' that
+% are typed in.
+%    \begin{macrocode}
+\newenvironment{notes}{\sectioncmd*{\notesname}\footnotesize
+                    \begin{enumerate}}{\end{enumerate}%
+                      \par \vskip 6pt \@plus 12pt \@minus 2pt}
+\def\notesname{Notes}
+%    \end{macrocode}
+% 
+% This is the |vitae| environment. It does not use a list, but `item's
+% are specified through |\Vauthor|. The name is defined in
+% |\vitaename| and |\multiplevitaename|. 
+%
+% The choice between these two names is done by checking the value of
+% |enumiv|, which is incremented by every |\Vauthor|.
+%    \begin{macrocode}
+\newenvironment{vitae}{%
+    \begingroup 
+    \setcounter{enumiv}{0}%
+    \global\setbox0=\vbox\bgroup
+    }{%
+    \egroup
+    \ifnum \c@enumiv > 1
+      \par\section*{\multiplevitaename}%
+    \else
+      \par\section*{\vitaename}%
+    \fi
+    \unvbox0 \endgroup \par
+    \vspace{24pt}%
+  }
+\newcommand{\Vauthor}[1]{%
+    \addtocounter{enumiv}{1}%
+    \subsubsection*{#1}%
+    }
+  \def\vitaename{Author's Vitae}%      
+  \def\multiplevitaename{Authors' Vitae}%
+%    \end{macrocode}
+% |ao| will be typeset at the end of an article. 
+% I exchanged the |\if| for a permanent |\box|, because
+% the box is needed anyway. 
+%    \begin{macrocode}
+\newbox\aobox
+\newenvironment{ao}{%
+  \global\setbox\aobox
+  \vbox\bgroup
+    \footnotesize\noindent
+%    \end{macrocode}
+% Watch out for the fixed space here. 
+%    \begin{macrocode}
+    \ifx\offprintsaddress\empty 
+    \leavevmode
+    \else
+      {\it \offprintsaddress:\/}\ 
+    \fi
+  }
+  {\par\vskip18pt\egroup}
+\newcommand{\make@ao}{%
+    \@tempdima \ht\aobox 
+    \ifdim \@tempdima > 0pt
+    \par\noindent \unvbox\aobox 
+    \fi 
+    }
+%    \end{macrocode}                 
+% This is a name that is not done at |\begin{document}|, because
+% certain style may want to change this. The saveguard above is in
+% case a style defines it to be empty.
+%    \begin{macrocode}
+\newcommand{\offprintsaddress}{Address for Offprints}
+\newenvironment{thenomenclature}{\section*{Nomenclature}
+    \parbox[t]{.48\textwidth}\bgroup\parindent 0pt
+    \footnotesize \begin{tabular}{p{2pc}p{11pc}}}{%
+              \end{tabular}\egroup}
+\newcommand{\splitnomen}{\end{tabular}\egroup~\parbox[t]{.48\textwidth}%
+    \bgroup\parindent 0pt \footnotesize \begin{tabular}{p{2pc}p{11pc}}}
+\newcommand{\nmc}[1]{\parbox[t]{11pc}{\raggedright #1}}
+\def\verbatim@font{\normalsize\tt}
+\def\acknowledgementsname{Acknowledgements}%
+\def\acknowledgements{\section*{\acknowledgementsname}%
+  \message{\acknowledgementsname}}
+\def\endacknowledgements{\par \bigskip} 
+\endinput
+%    \end{macrocode}
+%\PrintIndex
+%\end{document} 
+% end of klulist.sty
+
