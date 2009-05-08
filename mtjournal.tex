@@ -24,107 +24,119 @@ Abstract to go here
 
 \end{opening}           
 
-\section{Ordinary Text}  
-                    % Produces section heading.  Lower-level
-                    % sections are begun with similar 
-                    % \subsection and \subsubsection commands.
+\section{Introduction}
 
-The ends  of words and sentences are marked 
-  by   spaces. It  doesn't matter how many 
-spaces    you type; one is as good as 100.  The
-end of   a line counts as a space.
+\begin{itemize}
+\item evaluation [esp. automatic evaluation]
+\item popular current
+  measures BLEU, TER
 
-One   or more   blank lines denote the  end 
-of  a paragraph.  
+\item challenges - motivate search for better measures
 
-Since any number of consecutive spaces are treated like a single
-one, the formatting of the input file makes no difference to
-      \TeX,         % The \TeX command generates the TeX logo.
-but it makes a difference to you.  
-When you use
-      \LaTeX,       % The \LaTeX command generates the LaTeX logo.
-making your input file as easy to read as possible
-will be a great help as you write your document and when you
-change it.  This sample file shows how you can add comments to
-your own input file.
-
-Because printing is different from typewriting, there are a 
-number of things that you have to do differently when preparing 
-an input file than if you were just typing the document directly.  
-Quotation marks like 
-       ``this'' 
-have to be handled specially, as do quotes within quotes: 
-       ``\,`this'                  % \, separates the double and single quote.
-    is what I just 
-    wrote, not  `that'\,''.  
-
-Dashes come in three sizes: an 
-       intra-word 
-dash, a medium dash for number ranges like 
-       1--2, 
-and a punctuation 
-       dash---like 
-this.
-
-A sentence-ending space should be larger than the space between words
-within a sentence.  You sometimes have to type special commands in
-conjunction with punctuation characters to get this right, as in the
-following sentence.
-       Gnats, gnus, etc.\    % `\ ' makes an inter-word space.
-       all begin with G\@.   % \@ marks end-of-sentence punctuation.
-You should check the spaces after periods when reading your output to
-make sure you haven't forgotten any special cases.
-Generating an ellipsis 
-       \ldots\    % `\ ' needed because TeX ignores spaces after 
-          % command names like \ldots made from \ + letters.
-          %
-          % Note how a `%' character causes TeX to ignore the 
-          % end of the input line, so these blank lines do not
-          % start a new paragraph.
-with the right spacing around the periods 
-requires a special  command.  
-
-\TeX\ interprets some common characters as commands, so you must type
-special commands to generate them.  These characters include the
-following: 
-       \$ \& \% \# \{ and~\}.
-
-In printing, text is emphasized by using an
-       {\em italic\/}  % The \/ command produces the tiny extra space that
-               % should be added between a slanted and a following
-               % unslanted letter.
-type style.  
-
-\begin{em}
-   A long segment of text can also be emphasized in this way.  Text within
-   such a segment given additional emphasis 
-      with\/ {\em Roman} 
-   type.  Italic type loses its ability to emphasize and become simply
-   distracting when used excessively.  
-\end{em}
-
-It is sometimes necessary to prevent \TeX\ from breaking a line where
-it might otherwise do so.  This may be at a space, as between the
-``Mr.'' and ``Jones'' in
-       ``Mr.~Jones'',        % ~ produces an unbreakable interword space.
-or within a word---especially when the word is a symbol like
-       \mbox{\em itemnum\/} 
-that makes little sense when hyphenated across 
-       lines.
+\item other extensions:
+  \begin{itemize}
+  \item METEOR 
+    \begin{itemize}
+    \item stemming and synonym tables
+    \item tuned but not generally     tuneable
+    \end{itemize}
+  \item TERp
+    \begin{itemize}
+    \item development-set tuning by user
+    \item stemming and synonym tables
+    \item paraphrase tables
+    \end{itemize}
+  \end{itemize}
+\item prior work with (partial) syntactic locality:
+  \begin{itemize}
+  \item Liu \& Gildea 
+  \item Roark et al. Sparseval
+  \item Owczarzak et al. 2007
+  \end{itemize}
 
 
+\item Evaluation of evaluation measures
+  \begin{itemize}
+  \item correlation vs. human fluency/adequacy 
+  \item correlation vs. human-in-the-loop measures (HTER)
+  \end{itemize}
+\item one challenge of metric-evaluation: underlying doc difficulty 
+  \begin{itemize}
+  \item describe mean-subtraction
+  \end{itemize}
+\end{itemize}
+
+\section{Experimental paradigm}
+
+Section explains space of measures to explore
+
+\begin{itemize}
+\item F-measure over various bags of components of parse tree
+
+  [ Figure describing Sparseval-ish variant ]
+
+\item Listing possible component valences
+  \begin{itemize}
+  \item dependent + labeled link + head 
+  \item outbound only (dependent +
+    label)
+  \item inbound only (label + head)
+  \item word-word (skipping label)
+  \end{itemize}
+  \begin{itemize}
+  \item 1-grams
+  \item 2-grams
+  \item \ldots{}
+  \end{itemize}
+  
+  Note: inbound links \& full pairs "overweight" head words; this is
+  a good thing.
+
+  [ figure demonstrating F-measure over d+l+h decomposition of toy
+  trees ]
+    
+\item Tree features may be extracted from a 1-best tree, or from an
+  n-best tree list 
+
+  \begin{itemize}
+  \item  counts are an expectation over the forest
+  \item n parameter: how many trees in the forest
+  \item gamma parameter for flattening overconfident parse hyps
+  \end{itemize}
+  note intentional similarities to Owczarzak paper
 
 
+\item Components in the basic DPM measures combined in various ways:
 
-\TeX\ is good at typesetting mathematical formulas like
-       \( x-3y = 7 \) 
-or
-       \( a_{1} > x^{2n} / y^{2n} > x' \).
-Remember that a letter like
-       $x$        % $ ... $  and  \( ... \)  are equivalent
-is a formula when it denotes a mathematical symbol, and should
-be treated as one.
+  \begin{itemize}
+  \item combination of precision, recall scores for different
+    components (on analogy with BLEU combination), naive assumption:
+    all weighted equally
 
+  \item simple F over items of all valences (naive assumption: all
+    weighted equally)
+  \end{itemize}
+\item Tuneable weights:
+  \begin{itemize}
+  \item recall that TERp has tuneable system over small number of parameters
+    \begin{itemize}
+    \item insertion weight
+    \item deletion weight
+    \item substitution weight
+    \item synonym weight (motivated with WordNet)
+    \end{itemize}
+  \item learn weights for separate precision, recall for various
+    components
+  \end{itemize}
+  
+\item Implementation
+  \begin{itemize}
+  \item Charniak parser
+  \item n=1..50
+  \item head-finding, with some modifications
+  \item label-construction
+  \end{itemize}
+\end{itemize}
 
 \section{Notes}
 Footnotes\footnote{This is an example of a footnote.}
