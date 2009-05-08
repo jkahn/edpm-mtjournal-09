@@ -138,6 +138,68 @@ Section explains space of measures to explore
   \end{itemize}
 \end{itemize}
 
+\section{Correlation with human judgments of fluency \& adequacy}
+
+Corpus: LDC Multiple Translation Chinese corpus 3\&4 treat each
+segment and each judgment as independent data point
+
+\begin{itemize}
+\item EXPT
+
+  using n=1 parse for DPM variants
+
+\begin{verbatim}
+   metric      r
+  --------   -----
+  F[dl;lh]   0.226
+  BLEU4      0.218  # +1 smoothing
+  F[dlh]     0.185
+  TER       -0.173
+\end{verbatim}
+
+  point: using partial-labeling (dl,lh) much better than full
+  link. Also, using Charniak parser as labeler seems to work, LFG not
+  necessary
+
+\item EXPT 
+
+  combining precision, recall naively vs. combining items
+
+\begin{verbatim}
+  F(1g,2g,dl,lh)        0.237
+  prmeans(1g,2g,dl,lh)  0.217
+
+  F(dl,lh)              0.226
+  prmeans(dl,lh)        0.208
+\end{verbatim}
+
+  point: combining individual items naively (before computing
+  precision and recall) seems better than naively combining precisions
+  and recalls (too many chances for zeroes?)
+
+\item EXPT
+  expanding n, gamma=0
+
+\begin{verbatim}
+  F[1g,2g,dl,lh],n=50   0.239
+    ...          n=1    0.237
+  F[dl,lh],n=50         0.234
+    ...    n=1          0.226
+\end{verbatim}
+  point: larger n $\to$ better r
+  (holds for other comparisons too, but these are good examples)
+
+\item  EXPT
+
+  setting gamma
+
+  Tuning experiments finds that gamma of 0.25 is slightly better
+  (especially when using F[dl,lh]) than gammas of other values in
+  range 0-1 (these values probably not significant)
+
+
+\end{itemize}
+
 \section{Headings}
 
 \subsection{Subsection}
