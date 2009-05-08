@@ -89,14 +89,10 @@
 
   From these results, we design a new scoring metric ``Expected
   Dependency Pair Match'' (\myEDPM), and 
-%   explore \myEDPM's quality
-%   with respect to the GALE % \cite{olive06gale}
-%   2.5 evaluations corpus.  We 
-  demonstrate that $\Delta$\myEDPM{} is superior to $\Delta$BLEU and
-  $\Delta$TER as a per-document and per-sentence predictor of
-  $\Delta$HTER.
-% , and is superior to $\Delta$TER in
-%   the written contexts (newswire and web text).
+  demonstrate that mean-subtracted \myEDPM{} is superior to
+  mean-subtracted BLEU and
+  mean-subtracted TER as a per-document and per-sentence predictor of
+  mean-subtracted HTER.
 \end{abstract}
 
 \section{Introduction}
@@ -801,29 +797,26 @@ has a corresponding human-targeted reference aligned at the sentence
 level, so we have available the HTER score of each segment
 $s_{\textsc{hter}}(t_{i,z})$ at both the sentence and document level.
 
-\subsection{Prediction of $\Delta$HTER per-document}
+\subsection{Prediction of mean-subtracted HTER per-document}
 
 We evaluate our new measure \myEDPM{} by testing its prediction of
 improvements in HTER over different translations of a document.
-We name one of the three translation systems arbitrarily as baseline
-$b$ and define
-\begin{eqnarray}
-  \label{eq:delta}
-  \Delta s(i,b,z) & = & s(t_{i,z}) - s(t_{i,b})
-\end{eqnarray}
-as a measure of change % in measure $s$
-that system $z$ provides over segment $i$ with respect to system $b$
-(by providing translation $t_{i,z}$ instead of $t_{i,b}$).
-% $\Delta_b(s,t_{i,z})$ may be either positive or negative.
+Rather than consider absolute scores $s$ per-document, we normalize for
+the underlying difficulty of the document by examining $\mu s(t)$, the difference
+of translation $t_i$ from the mean score over the $I$ translations of
+the same document, where 
+\begin{equation}
+  \label{eq:meansub}
+  \mu s(t_i) = s(t_i) - \sum_{j=1}^I\frac{s(t_j)}{I}
+\end{equation}
 
 We would like an automatic measure $s$ that provides a good
-correlation $r$ between $\Delta s$ and $\Delta \textsc{hter}$.  For
+correlation $r$ between $\mu s$ and $\mu \textsc{hter}$.  For
 each of the 516 documents\footnote{Using per-document comparison
   avoids the problems of per-sentence comparisons, e.g.\ that BLEU
   falls to zero too easily on a sentence.} in the corpus described in
 table~\ref{tab:galestats}, for each of the three pairs of systems, we
-generate the $\Delta s$ scores, ordering the systems such that
-$\Delta\textsc{hter} \geq 0$ for each document pair.
+generate the $\mu s$ scores, calculating a mean for ea.
 
 % For candidate score
 % measures $s$ (including target measure \textsc{hter}), we generate
