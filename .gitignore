@@ -11,3 +11,5 @@ prv_edpm-paper.fmt
 
 # ignore the generated file itself
 edpm-paper.pdf
+
+mtjournal.ent
