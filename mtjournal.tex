@@ -233,8 +233,78 @@ segment and each judgment as independent data point
 \end{verbatim}
 
   (Go into details of per-genre differences here? or leave out, for
-  space reasons?)
+  space reasons? -- leave out, I'd say)
 
+\section{Weight-tuning to combine syntax and other knowledge sources}
+
+TERp optimizer [Matt, a brief description here]
+
+TERp comes with a variety of features (described earlier)
+
+include optionally new features
+
+Corpus: GALE 2.5 data, again documents randomly split into two groups,
+evenly split across language and genre
+
+tuning target: weighted correlation with mean-removed segment HTER
+
+[we use weighted correlation to avoid emphasis on short segments
+(which hurts document-level and system-level utility) ]
+
+Select features from set:
+
+\begin{description}
+\item[E]: features from EDPM, specifically, P,R for inbound, outbound,
+  full-links, and unlabeled links  (8 features)
+\item[T]: features from basic TERp
+  (inserts, deletes, substitutions, shifts)  (7 features)
+\item[P]: features from TERp paraphraser
+  (4 features)
+\item[N]: precision and recall for 1-grams, 2-grams
+\item[B]: brevity/prolixity (2 features: one for longer-than-ref, one for
+  shorter-than-ref)
+\end{description}
+
+tune weights on one set, test on the other (and vice versa).
+reporting average r between the two.
+
+\begin{verbatim}
+   == Tuned For Weighted Mean Removed Pearson
+     - Examining WGT_MEAN_RM_SEG_PEAR ==
+            Average
+      Cond   Test  
+     ---------------
+      ETPB   0.4096
+      ETP    0.4038
+      TPB    0.4010
+      TP     0.3946
+      TPNB   0.3940
+      TPN    0.3891
+      ETB    0.3871
+      ET     0.3827
+      TB     0.3815
+      ETNB   0.3814
+      ETN    0.3804
+      T      0.3758
+      TNB    0.3708
+      TN     0.3680
+      E      0.3287
+      EB     0.3267
+      ENB    0.3149
+      NB     0.3058
+      EN     0.2973
+      N      0.2636
+      B      0.1638
+\end{verbatim}
+(maybe don't report all these numbers!)
+  
+point: E+T $>$ T, E+TB $>$ TB, E+TP $>$ TP; information is available in
+syntax that is not captured in the other measures.
+
+point: syntax is *not* just an expensive way to get at n-grams;
+N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
+
+      
 
 \section{References in the THEBIBLIOGRAPHY Environment}
 The first reference in the list below has the key \{BrownAndBurton\}.
