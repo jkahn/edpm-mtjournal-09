@@ -304,7 +304,25 @@ syntax that is not captured in the other measures.
 point: syntax is *not* just an expensive way to get at n-grams;
 N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
 
-      
+\section{Conclusion}
+
+expected dependency pair matching gets at something new
+
+troubling area: speed of analysis -- current implementation requires
+running a complete n-best parser
+
+possible use: as a late-pass evaluation, to identify how systems
+perform overall
+
+future work:  explore ways to get at syntactic information without
+the expense of a full parser:
+\begin{itemize}
+\item this work moves from an LFG parser (Owczarzak) to the
+  substantially simpler and more robust Charniak system - keep going
+  and look at simpler partial-parsing approaches (forests?)
+\item conversely: how important is it that the parses be of
+  high-quality?
+\end{itemize}
 
 \section{References in the THEBIBLIOGRAPHY Environment}
 The first reference in the list below has the key \{BrownAndBurton\}.
