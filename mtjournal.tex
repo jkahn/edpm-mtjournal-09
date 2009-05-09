@@ -2,7 +2,10 @@
 
 \newdisplay{guess}{Conjecture}
 
-\begin{document}                                                                                   
+% package provides \sout{} strikeout macro -- remove this before submission
+\usepackage{ulem}
+
+\begin{document}
 \begin{article}
 \begin{opening}         
 \title{Expected Dependency Pair Match:\\
@@ -24,6 +27,8 @@ Abstract to go here
 
 \end{opening}           
 
+% override ulem 's default change of \emph{} -- remove before ship
+\normalem
 \section{Introduction}
 
 \begin{itemize}
