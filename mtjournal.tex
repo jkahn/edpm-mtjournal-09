@@ -32,26 +32,64 @@ Abstract to go here
 \section{Introduction}
 
 \begin{itemize}
-\item evaluation [esp. automatic evaluation]
-\item popular current
-  measures BLEU \cite{papineni02bleu}, TER
+\item \sout{ evaluation [esp. automatic evaluation]}
+\item \sout{popular current
+  measures BLEU \cite{papineni02bleu}, TER}
+\end{itemize}
+Machine translation (MT) evaluation is a challenge for research
+because the space of good translations is large, and two equally good
+translations may appear to be quite different at first glance. 
+%
+The challenges of choosing among translations are compounded when this
+evaluation is done automatically.
+%
+Human evaluation, however, is both time-consuming and difficult, so
+research has turned increasingly towards automatic measures of
+translation quality, usually by comparing the system translation to
+one or more reference (human) translations.
+%
+Automatic measures of this kind (e.g.\ BLEU \cite{papineni02bleu}) not
+only provide a well-defined evaluation standard but are also required
+for training on error criteria, e.g.\ with minimum error rate training
+\cite{och03mert}.
 
-\item challenges - motivate search for better measures
+The most popular evaluation measures are currently BLEU (based on
+$n$-gram precision) and the edit-distance measure Translation Edit
+Rate (TER) \cite{snover06ter}.  Recent research has found that these
+measures may not accurately track translation quality both empirically
+\cite{charniak03syntaxlmmt} and theoretically
+\cite{callisonburch06bleuproblems}.
 
-\item other extensions:
+\begin{itemize}
+\item \sout{challenges - motivate search for better measures}
+\item \sout{other extensions:}
   \begin{itemize}
-  \item METEOR 
+  \item \sout{METEOR }
     \begin{itemize}
-    \item stemming and synonym tables
-    \item tuned but not generally     tuneable
+    \item \sout{stemming and synonym tables}
+    \item \sout{tuned but not generally     tuneable}
     \end{itemize}
-  \item TERp
+  \item \sout{TERp}
     \begin{itemize}
-    \item development-set tuning by user
-    \item stemming and synonym tables
-    \item paraphrase tables
+    \item \sout{development-set tuning by user}
+    \item \sout{stemming and synonym tables}
+    \item \sout{paraphrase tables}
     \end{itemize}
   \end{itemize}
+\end{itemize}
+
+These challenges have motivated a search for better measures that
+incorporate additional language knowledge sources.  METEOR
+\cite{banerjee05meteor}, for example, uses synonym tables and
+morphological stemming to do progressively more-forgiving matching.
+It can be tuned towards recall or precision, but is generally not
+tuned by users.  TERp \cite{snover09terp} is an extension of the
+previously-mentioned TER that also incorporates synonym sets, along
+with automatically-derived paraphrase tables.  TERp is explicitly
+intended to be tuned to a development set by users.
+
+
+\begin{itemize}
 \item prior work with (partial) syntactic locality:
   \begin{itemize}
   \item Liu \& Gildea 
