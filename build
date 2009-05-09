@@ -1,0 +1,4 @@
+#!/bin/sh
+export BSTINPUTS=${BSTINPUTS}:kluwer
+export TEXINPUTS=${TEXINPUTS}:kluwer
+$@
