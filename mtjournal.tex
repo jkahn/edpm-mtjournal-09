@@ -90,13 +90,29 @@ intended to be tuned to a development set by users.
 
 
 \begin{itemize}
-\item prior work with (partial) syntactic locality:
+\item \sout{prior work with (partial) syntactic locality:}
   \begin{itemize}
-  \item Liu \& Gildea 
-  \item Roark et al. Sparseval
-  \item Owczarzak et al. 2007
+  \item \sout{Liu \& Gildea }
+  \item \sout{Roark et al. Sparseval}
+  \item \sout{Owczarzak et al. 2007}
   \end{itemize}
+\end{itemize}
 
+As an alternative to these synonym- and paraphrase-based approaches,
+other metrics model syntactically-local (rather than string-local)
+word-sequences. \cite{liu05syntaxformteval} compared tree-local
+$n$-gram precision in various configurations of constituency and
+dependency trees.  The dependent-based SParseval measure
+\cite{roark06:sparseval}, originally designed as a parse-quality
+metric for speech, is a similar approach, in that it is an F-measure
+over a decomposition of reference and hypothesis trees.
+\cite{owczarzak07labelleddepseval}'s \textbf{d} and \textbf{d\_var}
+measures compare LFG-derived relational tuples from reference and
+hypothesis translations and report substantial improvement in
+correlation with human judgment relative to BLEU and TER.
+
+
+\begin{itemize}
 
 \item Evaluation of evaluation measures
   \begin{itemize}
