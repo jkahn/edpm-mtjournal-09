@@ -197,10 +197,43 @@ segment and each judgment as independent data point
   (especially when using F[dl,lh]) than gammas of other values in
   range 0-1 (these values probably not significant)
 
-
 \end{itemize}
 
+\section{Correlations with HTER}
 
+  Corpus
+    Gale translation corpus 2.5; 3 sites, 2 source languages, 4 genres each
+
+  prediction:
+    Mean-subtracted HTER per-document
+
+  base measure EDPM: F[1g,2g,dl,lh],n=50,gamma=0.25
+
+  [EXPT]
+\begin{verbatim}
+            Ar     Zh    All
+   TER     0.51   0.32  0.44
+   BLEU_4 -0.42  -0.33 -0.37
+   EDPM   -0.60* -0.39 -0.50*
+\end{verbatim}
+  point: base EDPM does better on all docs, and on Arabic. difference
+  is not quite significant at the p=0.05 on the Chinese documents
+
+  Note 1: also tried pairwise deltas per-document, with similar
+  results, as presented in the MetricsMATR competition submission.
+
+  Note 2: when using per-segment mean-subtracted, r values are smaller
+  and *Arabic* was the language where EDPM did not perform best.
+
+\begin{verbatim}
+               Ar     Zh     All
+      TER     0.38*  0.04   0.19
+      BLEU_4 -0.10  -0.16  -0.14
+      EDPM   -0.31  -0.19* -0.24*
+\end{verbatim}
+
+  (Go into details of per-genre differences here? or leave out, for
+  space reasons?)
 
 
 \section{References in the THEBIBLIOGRAPHY Environment}
