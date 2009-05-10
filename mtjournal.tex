@@ -528,8 +528,47 @@ parameter-settings in the experiments exploring document-level correlations with
 
 \section{Per-document correlations with HTER}
 \label{sec:hter1}
-  Corpus
-    Gale translation corpus 2.5; 3 sites, 2 source languages, 4 genres each
+TO DO: INTRODUCE THIS SECTION
+
+The GALE 2.5 translation corpus is made up of system translations into
+English from three sites.
+% MO added:
+The three sites all use system combination to integrate results from
+multiple systems, some of which are phrase-based and some which may
+use syntax on either the source or target side. No system provided
+system-generated parses.
+%
+The corpus being translated comes from
+Arabic and Chinese in four genres: \texttt{bc} (broadcast
+conversation), \texttt{bn} (broadcast news), \texttt{nw} (newswire),
+and \texttt{wb} (web text), with corpus sizes shown in
+table~\ref{tab:galestats}.
+\begin{table}
+%  \centering
+  \begin{tabular}{r|rr|rr|rr}
+     & \multicolumn{2}{c|}{Arabic} & \multicolumn{2}{c|}{Chinese}
+     & \multicolumn{2}{c}{Total}\\
+     & doc & sent & doc & sent & doc   & sent\\
+     \hline
+     \texttt{bc}    & 59  & 750 & 56 & 1061 & 115 & 1811\\
+     \texttt{bn}    & 63  & 666 & 63 & 620  & 126 & 1286\\
+     \texttt{nw}    & 68  & 494 & 70 & 440  & 138 & 934 \\
+     \texttt{wb}    & 69  & 683 & 68 & 588  & 137 & 1271\\
+     \hline
+     Total & 259 & 2593& 257& 2709 & 516 & 5302\\
+  \end{tabular}
+  \caption{Corpus statistics for the GALE 2.5 translation
+    corpus.}
+  \label{tab:galestats}
+\end{table}
+The corpus includes one English reference translation $r_i$
+\cite{gale08phase2_5references} for each sentence $i$ and a system
+translation $t_{i,z}$ for each of the three systems
+$z$. Additionally, each of the system translations of each segment $i$
+has a corresponding human-targeted reference aligned at the sentence
+level, so we have available the HTER score of each segment
+$s_{\textsc{hter}}(t_{i,z})$ at both the sentence and document level.
+
 
   prediction:
     Mean-subtracted HTER per-document
@@ -559,8 +598,8 @@ parameter-settings in the experiments exploring document-level correlations with
       EDPM   -0.31  -0.19* -0.24*
 \end{verbatim}
 
-  (Go into details of per-genre differences here? or leave out, for
-  space reasons? -- leave out, I'd say)
+
+  include genre tables here as well -- cut out again if no story.
 
 \section{Weight-tuning to combine syntax and other knowledge sources}
 \label{sec:hter2}
