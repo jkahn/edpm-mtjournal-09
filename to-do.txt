@@ -1,5 +1,3 @@
-clean up citations (use \inlinecite{} appropriately)
-
 write body sections for HTER per-doc
 
 write body sections for HTER per-segment
