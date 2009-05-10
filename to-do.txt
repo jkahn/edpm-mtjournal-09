@@ -1,3 +1,13 @@
+paste in text into outline
+
+set up git repo
+
+send to Matt
+
+clean up citations (use \cite*{} to get year only)
+
+==========
+
 change explanation to use mean-subtraction rather than deltas
 
 change results to use mean-subtraction rather than deltas
