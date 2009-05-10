@@ -447,21 +447,29 @@ correlations\footnote{The independence of each of these segments is
 scores and the arithmetic mean of the fluency and adequacy measures.
 
 
-\begin{itemize}
-\item EXPT  using n=1 parse for DPM variants
-\label{tab:facorr:subgraphs}
-\begin{verbatim}
-   metric      r
-  --------   -----
-  F[dl;lh]   0.226
-  BLEU4      0.218  # +1 smoothing
-  F[dlh]     0.185
-  TER       -0.173
-\end{verbatim}
+  \begin{table}
+    % \centering
+    \caption{$dl,lh$ decompositions are
+      more correlated with the fluency-adequacy average than BLEU$_4$
+      or $dlh$ decompositions.}
+    \begin{tabular}{lr}
+      metric  &    $r$ \\
+      \hline
+      $F[dl,lh]$ &   0.226 \\
+       % # +1 smoothing
+      BLEU$_4$ &   0.218 \\
+      $F[dlh]$ &     0.185 \\
+      TER &      -0.173 \\
+    \end{tabular}
+    \label{tab:facorr:subgraphs}
+\end{table}
+      
+Table~\ref{tab:facorr:subgraphs} indicates that: using
+partial-labeling (dl,lh) much better than full link. Also, using
+Charniak parser as labeler seems to work, LFG not necessary
+Here, $n=1$ and only the $F[\cdot]$ score combination is shown.
 
-  point: using partial-labeling (dl,lh) much better than full
-  link. Also, using Charniak parser as labeler seems to work, LFG not
-  necessary
+\begin{itemize}
 
 \item EXPT 
   combining precision, recall naively vs. combining items
