@@ -30,6 +30,7 @@ Abstract to go here
 % override ulem 's default change of \emph{} -- remove before ship
 \normalem
 \section{Introduction}
+\label{sec:intro}
 
 \begin{itemize}
 \item \sout{ evaluation [esp. automatic evaluation]}
@@ -144,24 +145,10 @@ evaluation.
 
 OVERVIEW OF THE REST OF THE PAPER
 
-\textbf{JGK: I think the next paragraph belongs elsewhere}
-\begin{itemize}
-\item \sout{one challenge of metric-evaluation: underlying doc difficulty }
-  \begin{itemize}
-  \item \sout{describe mean-subtraction}
-  \end{itemize}
-\end{itemize}
-When considering a candidate measure $m$, reporting correlations of
-$m$ with absolute HTER scores can conflate $m$'s power in identifying
-which of two candidate translations is better with $m$'s (and HTER)'s
-ability to distinguish which of two source documents is more difficult
-to translate. To avoid this conflation, we consider the mean-removed
-$m$ and HTER scores; this lowers the correlations but ensures that the
-reported correlations are among differences in the translations rather
-than among differences in the underlying document.
 
 
 \section{Approach}
+\label{sec:approach}
 
 Outline of big idea here.
 
@@ -186,6 +173,7 @@ Outline of big idea here.
 
 \end{itemize}
 \section{Experimental paradigm}
+\label{sec:paradigm}
 
 Section explains space of measures to explore, mean-normalization
 
@@ -246,10 +234,26 @@ Section explains space of measures to explore, mean-normalization
   \item head-finding, with some modifications
   \item label-construction
   \end{itemize}
+
+\begin{itemize}
+\item \sout{one challenge of metric-evaluation: underlying doc difficulty }
+  \begin{itemize}
+  \item \sout{describe mean-subtraction}
+  \end{itemize}
+\end{itemize}
+When considering a candidate measure $m$, reporting correlations of
+$m$ with absolute HTER scores can conflate $m$'s power in identifying
+which of two candidate translations is better with $m$'s (and HTER)'s
+ability to distinguish which of two source documents is more difficult
+to translate. To avoid this conflation, we consider the mean-removed
+$m$ and HTER scores; this lowers the correlations but ensures that the
+reported correlations are among differences in the translations rather
+than among differences in the underlying document.
+
 \end{itemize}
 
 \section{Correlation with human judgments of fluency \& adequacy}
-
+\label{sec:faexpts}
 Corpus: LDC Multiple Translation Chinese corpus 3\&4 treat each
 segment and each judgment as independent data point
 
@@ -310,7 +314,7 @@ segment and each judgment as independent data point
 \end{itemize}
 
 \section{Correlations with HTER}
-
+\label{sec:hter1}
   Corpus
     Gale translation corpus 2.5; 3 sites, 2 source languages, 4 genres each
 
@@ -346,6 +350,7 @@ segment and each judgment as independent data point
   space reasons? -- leave out, I'd say)
 
 \section{Weight-tuning to combine syntax and other knowledge sources}
+\label{sec:hter2}
 
 TERp optimizer [Matt, a brief description here]
 
@@ -415,7 +420,7 @@ point: syntax is *not* just an expensive way to get at n-grams;
 N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
 
 \section{Conclusion}
-
+\label{sec:conclusion}
 expected dependency pair matching gets at something new
 
 troubling area: speed of analysis -- current implementation requires
