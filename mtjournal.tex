@@ -349,28 +349,28 @@ space of metrics outlined above along multiple dimensions:
       labeling at all.  They are thus simple measures of unigram
       (bigram) precision and recall.
   \end{description}
-\item[Forest size]
-Although the parser can generate considerably more, we consider forests of size 1 and of size 50.
-\item[Forest confidence] An expectation requires a probability distribution over the $n$-best
-list, and we consider three options: uniform, the parser
-probabilities, and a flattened version of the parser probabilities
-such that $\tilde{p}(x) = \frac{p(x)^\gamma}{\sum_ip(i)^\gamma}$
-(where $\gamma$ is a free parameter) to account for the fact that the
-parser tends to be over-confident.  In all cases, the probabilities
-are normalized to sum to one over the the $n$-best list, where the
-maximum $n$ in this work is 50.  The uniform distribution ($\gamma =
-0$) is intended to be equivalent to the
-\cite{owczarzak07labelleddepseval} \textbf{d\_50} and
-\textbf{d\_50\_var} measures.\footnote{Since
-  \cite{owczarzak07labelleddepseval} report no use of parse
-  weights, \textbf{d\_50} and \textbf{d\_50\_var} may be using a sum
-  of counts over the 50-best list rather than expected-counts over a
-  uniform distribution. These two approaches are equivalent --- so
-  long as the $n$-best list is always the same length for hypothesis
-  and reference.  In our implementation, the $n$-best list does not
-  always reach 50 candidate parses on short sentences, so the
-  expectation matches our intent better than a sum of counts over the
-  $n$-best.}
+\item[Forest size] Although the parser can generate considerably more,
+  we consider forests of size 1 and of size 50.
+\item[Forest confidence] An expectation requires a probability
+  distribution over the $n$-best list, and we consider three options:
+  uniform, the parser probabilities, and a flattened version of the
+  parser probabilities such that $\tilde{p}(x) =
+  \frac{p(x)^\gamma}{\sum_ip(i)^\gamma}$ (where $\gamma$ is a free
+  parameter) to account for the fact that the parser tends to be
+  over-confident.  In all cases, the probabilities are normalized to
+  sum to one over the the $n$-best list, where the maximum $n$ in this
+  work is 50.  The uniform distribution ($\gamma = 0$) is intended to
+  be equivalent to the \cite{owczarzak07labelleddepseval}
+  \textbf{d\_50} and \textbf{d\_50\_var} measures.\footnote{Since
+    \cite{owczarzak07labelleddepseval} report no use of parse weights,
+    \textbf{d\_50} and \textbf{d\_50\_var} may be using a sum of
+    counts over the 50-best list rather than expected-counts over a
+    uniform distribution. These two approaches are equivalent --- so
+    long as the $n$-best list is always the same length for hypothesis
+    and reference.  In our implementation, the $n$-best list does not
+    always reach 50 candidate parses on short sentences, so the
+    expectation matches our intent better than a sum of counts over
+    the $n$-best.}
 \item[score combination]: We consider three possible methods for
   combining scores across decompositions, as suggested in
   section~\ref{sec:approach}:
