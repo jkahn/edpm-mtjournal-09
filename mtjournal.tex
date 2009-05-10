@@ -35,7 +35,23 @@ Predicting {HTER} improvements with expected syntactic structure}
 %s\date{May 10, 2009}
 
 \begin{abstract}
-Abstract to go here
+  Recent efforts aimed at improving over standard machine translation
+  evaluation methods (BLEU, TER) have investigated mechanisms for
+  accounting for allowable wording differences either in terms of
+  syntactic structure or synonyms/paraphrases. This paper explores an
+  approach for combining scores from partial syntactic dependency
+  matches with standard local n-gram matches using a statistical
+  parser, and taking advantage of parse probabilities in deriving
+  expected scores based on the N-best parses for the hypothesized
+  sentence translation.  The new scoring metric, Expected Dependency
+  Pair Match (EDPM), is shown to be superior to BLEU and TER in terms
+  of correlation to human judgements and as a per-document and
+  per-sentence predictor of HTER, using mean subtraction to account
+  for document difficulty. Further, we explore the potential benefit
+  of combining the n-gram and syntactic features of EDPM with the
+  alternative wording features of TERp, with experiments showing that
+  there is a benefit to accounting for syntactic structure on top of
+  the semantic equivalency features.
 \end{abstract}
 \keywords{machine translation evaluation, syntax, dependency trees}
 
@@ -577,6 +593,8 @@ document-level correlations with HTER (section~\ref{sec:hter1}).
 \section{Per-document correlations with HTER}
 \label{sec:hter1}
 TO DO: INTRODUCE THIS SECTION
+
+\subsection{HTER corpus}
 
 The GALE 2.5 translation corpus is made up of system translations into
 English from three sites.

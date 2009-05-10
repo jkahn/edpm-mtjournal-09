@@ -4,8 +4,6 @@ write body sections for HTER per-doc
 
 write body sections for HTER per-segment
 
-incorporate Mari's revised abstract
-
 answer Mari's question about N-grams vs parse features
 
 tableify the genre numbers
