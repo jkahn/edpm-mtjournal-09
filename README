@@ -1,0 +1,14 @@
+actual working file is mtjournal.tex
+
+build is a script that sets environments so that the kluwer subdir
+(which has the Kluwer templates) can be read by latex and bibtex. use
+cases:
+
+build latex mtjournal
+build bibtex mtjournal
+build latex mtjournal
+
+etc...
+
+edpm-paper.tex is still live because I've been copying stuff from it
+and moving it over to the new paper, but don't use it.
