@@ -135,19 +135,28 @@ We may evaluate automatic MT measures in a variety of ways. Some
 \cite{banerjee05meteor,liu05syntaxformteval,owczarzak07labelleddepseval}
 have evaluated their success by comparing the measure to human
 judgments of fluency and adequacy.  In other work,
-e.g. \newcite{snover06ter}, measures are evaluated by comparison to
+e.g. \cite{snover06ter}, measures are evaluated by comparison to
 human-targeted TER (HTER), a distance to a human-revised reference
 that uses wording closer to the MT system choices (keeping the
 original meaning) that is intended to measure the post-editing work
-required after translation.  In this paper, we pursue both kinds of
+required after translation.  In this paper, we explore both kinds of
 evaluation.
 
+\textbf{JGK: I think the next paragraph belongs elsewhere}
 \begin{itemize}
-\item one challenge of metric-evaluation: underlying doc difficulty 
+\item \sout{one challenge of metric-evaluation: underlying doc difficulty }
   \begin{itemize}
-  \item describe mean-subtraction
+  \item \sout{describe mean-subtraction}
   \end{itemize}
 \end{itemize}
+When considering a candidate measure $m$, reporting correlations of
+$m$ with absolute HTER scores can conflate $m$'s power in identifying
+which of two candidate translations is better with $m$'s (and HTER)'s
+ability to distinguish which of two source documents is more difficult
+to translate. To avoid this conflation, we consider the mean-removed
+$m$ and HTER scores; this lowers the correlations but ensures that the
+reported correlations are among differences in the translations rather
+than among differences in the underlying document.
 
 \section{Experimental paradigm}
 
