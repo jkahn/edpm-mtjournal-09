@@ -490,56 +490,72 @@ with human judgments than full-dependency links.
 
 In table~\ref{tab:facorr:combinations}, we compare among several other
 members of the DPM family. 
-\begin{table}
+ \begin{table}
   \begin{tabular*}{2.5in}{lr}
     \hline
     metric  &    \multicolumn{1}{c}{$r$} \\
     \hline
     $F[1g,2g,dl,lh]$      &  0.237 \\
     $\mu_{PR}[1g,2g,dl,lh]$ &  0.217 \\
-%
+    \\
+    $F[1g,2g]$            & 0.227 \\
+    $F[1g,dl,dlh]$        & 0.227 \\
+    \\
     $F[dl,lh]$            &  0.226 \\
     $\mu_{PR}[dl,lh]$      &  0.208 \\
     \hline
   \end{tabular*}
   \caption{Comparing combination methods $F[\cdot]$ and
     $\mu_{PR}[\cdot]$, and comparing the $1g,2g,dl,lh$ decomposition
-    with the $dl,lh$ decomposition.}
+    with the $dl,lh$ decomposition and other decompositions.}
   \label{tab:facorr:combinations}
 \end{table}
 Here, we find that combining the decompositions naively in $F[\cdot]$
 (before computing precision and recall) has a better $r$ than the
 harmonic mean of precision and recall subscores in $\mu_{PR}[\cdot]$.
-We also see that including some simple surface-matching features (the
-$1g,2g$ n-gram decompositions) improves correlations further beyond
-the simple $dl,lh$ features.
+We also see that we can combine the benefits of string-local $n$-grams
+($F[1g,2g]$) with the benefits of dependency information ($F[dl,lh]$)
+for a further improved correlation with human judgment, with the best
+correlation in $F[1g,2g,dl,lh]$. Including progressively larger chunks
+of the dependency graph (as in $F[1g,dl,dlh]$, which is inspired by
+the BLEU$_k$ idea of progressively larger $n$-grams) does not seem to
+be an improvement over $F[dl,lh]$.
 
 % (too many chances for zeroes?)
 
 \subsection{Exploring parse expectations}
 
-\begin{itemize}
-
-\item EXPT
+To explore the effect of extracting parse feature-counts from a forest
+instead of a single tree, we present in
+table~\ref{tab:facorr:multiparse} several variants, with $n=1$ and
+with $n=50$.  
+ \begin{table}
+  \begin{tabular*}{2.5in}{lrr}
+    \hline
+    metric  & \multicolumn{1}{c}{$n$} &  \multicolumn{1}{c}{$r$} \\
+    \hline
+    $F[1g,2g,dl,lh]$      & 50 &  0.239 \\
+    $F[1g,2g,dl,lh]$      &  1 &  0.237 \\
+    \\
+    $F[1g,dl,lh]$            &  50 & 0.237 \\
+    $F[1g, dl,lh]$            &  1 & 0.234 \\
+    \\
+    $F[dl,lh]$            &  50 & 0.234 \\
+    $F[dl,lh]$            &  1 & 0.226 \\
+    \hline
+  \end{tabular*}
+  \caption{Comparing $n=1$ to $n=50$ for several variants of the DPM measure.}
   \label{tab:facorr:multiparse}
-  expanding n, gamma=0
-
-\begin{verbatim}
-  F[1g,2g,dl,lh],n=50   0.239
-    ...          n=1    0.237
-  F[dl,lh],n=50         0.234
-    ...    n=1          0.226
-\end{verbatim}
-  point: larger n $\to$ better r
-  (holds for other comparisons too, but these are good examples)
-
-\item  EXPT
-\label{tab:facorr:parseweight}
-  setting gamma
-
-  Tuning experiments finds that gamma of 0.25 is slightly better
-  (especially when using F[dl,lh]) than gammas of other values in
-  range 0-1 (these values probably not significant)
+\end{table}
+For the $n=50$ cases, we set $\gamma=0$ to assign
+uniform probabilities to the parse forest, to compare as closely as
+possible to \inlinecite{owczarzak07labelleddepseval}, which includes a
+\textbf{d\_var\_50} measure with 50-best parses, with ranks but no
+weights.  While not all of these differences are significant, the
+trend is universally that the correlation $r$ improves as the number
+of parses ($n$) is increased.
+Tuning experiments find that increasing $\gamma$ to 0.25 can increase
+the $r$ reported here for $F[1g,2g,dl,lh]$ marginally (but insignificantly).
 
 \subsection{Summary}
 
@@ -552,13 +568,11 @@ best-case variant, where we set:
 in which we choose a $1g,2g,dl,lh$ sub-graph decomposition based on
 the improvements from better sub-graphs
 (table~\ref{tab:facorr:subgraphs}), multiple parses ($n=50$) based on
-table~\ref{tab:facorr:multiparse}, and $\gamma=0.25$, hinted at by
-table~\ref{tab:facorr:parseweight}.  We use these EDPM
-parameter-settings in the experiments exploring document-level correlations with HTER
-(section~\ref{sec:hter1}).
+table~\ref{tab:facorr:multiparse}, and $\gamma=0.25$.
+%, hinted at by table~\ref{tab:facorr:parseweight}.  
+We use these EDPM parameter-settings in the experiments exploring
+document-level correlations with HTER (section~\ref{sec:hter1}).
 
-
-\end{itemize}
 
 \section{Per-document correlations with HTER}
 \label{sec:hter1}
