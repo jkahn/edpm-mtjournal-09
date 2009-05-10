@@ -449,7 +449,7 @@ scores and the arithmetic mean of the fluency and adequacy measures.
 
 \begin{itemize}
 \item EXPT  using n=1 parse for DPM variants
-
+\label{tab:facorr:subgraphs}
 \begin{verbatim}
    metric      r
   --------   -----
@@ -479,6 +479,7 @@ scores and the arithmetic mean of the fluency and adequacy measures.
   and recalls (too many chances for zeroes?)
 
 \item EXPT
+  \label{tab:facorr:multiparse}
   expanding n, gamma=0
 
 \begin{verbatim}
@@ -491,15 +492,33 @@ scores and the arithmetic mean of the fluency and adequacy measures.
   (holds for other comparisons too, but these are good examples)
 
 \item  EXPT
+\label{tab:facorr:parseweight}
   setting gamma
 
   Tuning experiments finds that gamma of 0.25 is slightly better
   (especially when using F[dl,lh]) than gammas of other values in
   range 0-1 (these values probably not significant)
 
+\subsection{Summary}
+
+In this section, we have presented experiments exploring a number of
+variants of the DPM metric against an average fluency/adequacy judgment. The experiments suggest a
+best-case variant, where we set:
+\begin{displaymath}
+  EDPM = F[1g,2g,dl,lh], n=50, \gamma=0.25
+\end{displaymath}
+in which we choose a $1g,2g,dl,lh$ sub-graph decomposition based on
+the improvements from better sub-graphs
+(table~\ref{tab:facorr:subgraphs}), multiple parses ($n=50$) based on
+table~\ref{tab:facorr:multiparse}, and $\gamma=0.25$, hinted at by
+table~\ref{tab:facorr:parseweight}.  We use these EDPM
+parameter-settings in the experiments exploring document-level correlations with HTER
+(section~\ref{sec:hter1}).
+
+
 \end{itemize}
 
-\section{Correlations with HTER}
+\section{Per-document correlations with HTER}
 \label{sec:hter1}
   Corpus
     Gale translation corpus 2.5; 3 sites, 2 source languages, 4 genres each
