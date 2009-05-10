@@ -6,9 +6,16 @@
 % before submission
 \usepackage{ulem}
 
+%\usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{qtree}
 
+%\newcommand{\headlabel}[2]{\ensuremath{\underset{\textrm{#2}}{\textrm{#1}}}}
+\newcommand{\headlabel}[2]{
+  \begin{tabular}{c} #1\\
+    {\small #2} \end{tabular}}
 \newcommand{\arclabel}[1]{\ensuremath{\stackrel{#1}{\to}}}
+
 \newcommand{\precision}[1]{\ensuremath{\textrm{Prec}\left(#1\right)}}
 \newcommand{\recall}[1]{\ensuremath{\textrm{Recall}\left(#1\right)}}
 
