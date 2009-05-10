@@ -39,11 +39,6 @@ Abstract to go here
 \section{Introduction}
 \label{sec:intro}
 
-\begin{itemize}
-\item \sout{ evaluation [esp. automatic evaluation]}
-\item \sout{popular current
-  measures BLEU \cite{papineni02bleu}, TER}
-\end{itemize}
 Machine translation (MT) evaluation is a challenge for research
 because the space of good translations is large, and two equally good
 translations may appear to be quite different at first glance. 
@@ -68,24 +63,6 @@ measures may not accurately track translation quality both empirically
 \cite{charniak03syntaxlmmt} and theoretically
 \cite{callisonburch06bleuproblems}.
 
-\begin{itemize}
-\item \sout{challenges - motivate search for better measures}
-\item \sout{other extensions:}
-  \begin{itemize}
-  \item \sout{METEOR }
-    \begin{itemize}
-    \item \sout{stemming and synonym tables}
-    \item \sout{tuned but not generally     tuneable}
-    \end{itemize}
-  \item \sout{TERp}
-    \begin{itemize}
-    \item \sout{development-set tuning by user}
-    \item \sout{stemming and synonym tables}
-    \item \sout{paraphrase tables}
-    \end{itemize}
-  \end{itemize}
-\end{itemize}
-
 These challenges have motivated a search for better measures that
 incorporate additional language knowledge sources.  METEOR
 \cite{banerjee05meteor}, for example, uses synonym tables and
@@ -97,16 +74,6 @@ with automatically-derived paraphrase tables.  TERp is explicitly
 intended to be tuned to a development set by users.
 
 TO DO: DISCUSS TUNING'S VIRTUES, FLAWS
-
-
-\begin{itemize}
-\item \sout{prior work with (partial) syntactic locality:}
-  \begin{itemize}
-  \item \sout{Liu \& Gildea }
-  \item \sout{Roark et al. Sparseval}
-  \item \sout{Owczarzak et al. 2007}
-  \end{itemize}
-\end{itemize}
 
 As an alternative to these synonym- and paraphrase-based approaches,
 other metrics model syntactically-local (rather than string-local)
@@ -133,14 +100,6 @@ This work extends the dependency-scoring strategies of
 widely-used and publically available PCFG parser and deterministic
 head-finding rules.
  
-\begin{itemize}
-\item \sout{Evaluation of evaluation measures}
-  \begin{itemize}
-  \item \sout{correlation vs. human fluency/adequacy }
-  \item \sout{correlation vs. human-in-the-loop measures (HTER)}
-  \end{itemize}
-\end{itemize}
-
 We may evaluate automatic MT measures in a variety of ways. Some
 \cite{banerjee05meteor,liu05syntaxformteval,owczarzak07labelleddepseval}
 have evaluated their success by comparing the measure to human
@@ -263,28 +222,6 @@ next section, we make explicit the range of these parameters that we
 explore in this article.
 
 
-Outline of big idea here.
-
-\begin{itemize}
-\item comparison of various bags of components of parse tree
-  [ Figure describing Sparseval-ish variant ]
-
-  Like sparseval: basic unit is labeled dependency pair
-
-  Note: inbound links \& full pairs "overweight" head words; this is
-  a good thing.
-
-  [ figure demonstrating F-measure over d+l+h decomposition of toy
-  trees ]
-    
-\item Tree features may be extracted from a 1-best tree, or from an
-  n-best tree list 
-
-\item elements may be combined in various ways: single-bag F, combination of p,r
-  measures (evenly, on analogy with BLEU)... or we might weight
-  different combinations
-
-\end{itemize}
 \section{Experimental paradigm}
 \label{sec:paradigm}
 
