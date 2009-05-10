@@ -289,7 +289,6 @@ for each word, pointing to its head-word). Prior work
 measures has used an LFG parser \cite{cahill04lfg} or
 an unlabelled dependency tree \cite{liu05syntaxformteval}. 
 
-%
 In this work, we use a state-of-the-art PCFG (the first stage of
 \inlinecite{charniak-johnson:2005:ACL}) and context-free head-finding rules
 \cite{magerman95headfinding} to generate a 50-best list of dependency
@@ -307,7 +306,6 @@ $d$ and its head $h$ is composed of $A$ (the lowest constituent-label
 headed by $h$ and dominating $d$) and $B$ (the highest constituent
 label headed by $d$). 
 \begin{figure}
-  % \centering
   \Tree
   [.\headlabel{S}{stumbled}
     [.\headlabel{NP}{cat}
@@ -577,8 +575,8 @@ the $r$ reported here for $F[1g,2g,dl,lh]$ marginally (but insignificantly).
 \subsection{Summary}
 
 In this section, we have presented experiments exploring a number of
-variants of the DPM metric against an average fluency/adequacy judgment. The experiments suggest a
-best-case variant, where we set:
+variants of the DPM metric against an average fluency/adequacy
+judgment. The experiments suggest a best-case variant, where we set:
 \begin{displaymath}
   EDPM = F[1g,2g,dl,lh], n=50, \gamma=0.25
 \end{displaymath}
@@ -611,7 +609,6 @@ conversation), \texttt{bn} (broadcast news), \texttt{nw} (newswire),
 and \texttt{wb} (web text), with corpus sizes shown in
 table~\ref{tab:galestats}.
 \begin{table}
-%  \centering
   \begin{tabular}{r|rr|rr|rr}
      & \multicolumn{2}{c|}{Arabic} & \multicolumn{2}{c|}{Chinese}
      & \multicolumn{2}{c}{Total}\\
@@ -630,10 +627,10 @@ table~\ref{tab:galestats}.
 \end{table}
 The corpus includes one English reference translation $r_i$
 \cite{gale08phase2_5references} for each sentence $i$ and a system
-translation $t_{i,z}$ for each of the three systems
-$z$. Additionally, each of the system translations of each segment $i$
-has a corresponding human-targeted reference aligned at the sentence
-level, so we have available the HTER score of each segment
+translation $t_{i,z}$ for each of the three systems $z$. Additionally,
+each of the system translations of each segment $i$ has a
+corresponding human-targeted reference aligned at the sentence level,
+so we have available the HTER score of each segment
 $s_{\textsc{hter}}(t_{i,z})$ at both the sentence and document level.
 
 
