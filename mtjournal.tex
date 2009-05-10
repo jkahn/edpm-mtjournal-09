@@ -142,6 +142,8 @@ original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
+OVERVIEW OF THE REST OF THE PAPER
+
 \textbf{JGK: I think the next paragraph belongs elsewhere}
 \begin{itemize}
 \item \sout{one challenge of metric-evaluation: underlying doc difficulty }
@@ -158,15 +160,36 @@ $m$ and HTER scores; this lowers the correlations but ensures that the
 reported correlations are among differences in the translations rather
 than among differences in the underlying document.
 
-\section{Experimental paradigm}
 
-Section explains space of measures to explore
+\section{Approach}
+
+Outline of big idea here.
 
 \begin{itemize}
-\item F-measure over various bags of components of parse tree
-
+\item comparison of various bags of components of parse tree
   [ Figure describing Sparseval-ish variant ]
 
+  Like sparseval: basic unit is labeled dependency pair
+
+  Note: inbound links \& full pairs "overweight" head words; this is
+  a good thing.
+
+  [ figure demonstrating F-measure over d+l+h decomposition of toy
+  trees ]
+    
+\item Tree features may be extracted from a 1-best tree, or from an
+  n-best tree list 
+
+\item elements may be combined in various ways: single-bag F, combination of p,r
+  measures (evenly, on analogy with BLEU)... or we might weight
+  different combinations
+
+\end{itemize}
+\section{Experimental paradigm}
+
+Section explains space of measures to explore, mean-normalization
+
+\begin{itemize}
 \item Listing possible component valences
   \begin{itemize}
   \item dependent + labeled link + head 
@@ -181,11 +204,6 @@ Section explains space of measures to explore
   \item \ldots{}
   \end{itemize}
   
-  Note: inbound links \& full pairs "overweight" head words; this is
-  a good thing.
-
-  [ figure demonstrating F-measure over d+l+h decomposition of toy
-  trees ]
     
 \item Tree features may be extracted from a 1-best tree, or from an
   n-best tree list 
