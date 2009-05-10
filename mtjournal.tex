@@ -261,7 +261,10 @@ explore in this article.
 
 \section{Experimental paradigm}
 \label{sec:paradigm}
+In this section, we outline the details of the implementation and
+experimental variables explored in the experiments presented here.
 
+\subsection{Parse tree implementation}
 In principle, the family of DPM measures may be implemented with
 any parser that generates a dependency graph (a single labelled arc
 for each word, pointing to its head-word). Prior work
@@ -323,7 +326,7 @@ The $A/B$ labels are not as descriptive as the LFG semantics, but they
 have a similar resolution, e.g.\ the $\stackrel{S/NP}{\to}$ arc label
 usually represents a subject dependent of a sentential verb.
 
-
+\subsection{Dimensions of metric family}
 In the experiments presented later in this article, we explore the
 space of metrics outlined above along multiple dimensions:
 \begin{description}
