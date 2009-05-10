@@ -111,9 +111,20 @@ measures compare LFG-derived relational tuples from reference and
 hypothesis translations and report substantial improvement in
 correlation with human judgment relative to BLEU and TER.
 
+These syntactically-oriented measures require a system for proposing
+dependency structure over the reference and hypothesis
+translations. Some \cite{liu05syntaxformteval,roark06:sparseval} use
+PCFG parsers with deterministic head-finding, while others
+\cite{owczarzak07labelleddepseval}extract the semantic dependency
+relations from an LFG parser \cite{cahill04lfg}.
+%
+This work extends the dependency-scoring strategies of
+\cite{roark06:sparseval,owczarzak07labelleddepseval} using a
+widely-used and publically available PCFG parser and deterministic
+head-finding rules.
+ 
 
 \begin{itemize}
-
 \item Evaluation of evaluation measures
   \begin{itemize}
   \item correlation vs. human fluency/adequacy 
