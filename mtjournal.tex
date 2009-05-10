@@ -416,13 +416,39 @@ TO DO: MENTION DELTAS IN A FOOTNOTE, AND CITE MetricsMATR SYSTEM PAPER
 
 \section{Correlation with human judgments of fluency \& adequacy}
 \label{sec:faexpts}
-Corpus: LDC Multiple Translation Chinese corpus 3\&4 treat each
-segment and each judgment as independent data point
+
+TO DO: INTRODUCE THIS SECTION
+
+\subsection{Corpus}
+
+For these experiments, we use LDC Multiple Translation Chinese corpus
+parts 2~\cite{LDC03MTC2} and 4~\cite{LDC06MTC4}.  These corpora
+include multiple human judgments of fluency and adequacy for each
+sentence, with each judgment using a different human judge and a
+different reference translation.  For a rough\footnote{Our segment
+  count differs from \cite{owczarzak07labelleddepseval}, who report
+  16,800 segments over the same corpus. We find baseline correlations
+  (BLEU$_4$ and TER) lower than those reported there as well, so the
+  results presented here are not directly comparable with that paper,
+  though we demonstrate similar gains over those baselines in
+  essentially the same corpus. % (section~\ref{sec:facorr:newdeps}).}
+}
+comparison with \cite{owczarzak07labelleddepseval}, we treat each
+judgment as a separate segment.
+%
+This treatment of this corpus yields 16,815 tuples of
+$\langle$hypothesis, reference, fluency, adequacy$\rangle$.  In these
+experiments, we extend this tuple with automatic scores derived from
+$\langle$hypothesis, reference$\rangle$ and examine the
+correlations\footnote{The independence of each of these segments is
+  questionable, since the same hypothesis translations are used in
+  multiple items, but for the sake of methodological comparison with
+  prior work, this strategy is preserved.}  between those automatic
+scores and the arithmetic mean of the fluency and adequacy measures.
+
 
 \begin{itemize}
-\item EXPT
-
-  using n=1 parse for DPM variants
+\item EXPT  using n=1 parse for DPM variants
 
 \begin{verbatim}
    metric      r
@@ -438,7 +464,6 @@ segment and each judgment as independent data point
   necessary
 
 \item EXPT 
-
   combining precision, recall naively vs. combining items
 
 \begin{verbatim}
@@ -466,7 +491,6 @@ segment and each judgment as independent data point
   (holds for other comparisons too, but these are good examples)
 
 \item  EXPT
-
   setting gamma
 
   Tuning experiments finds that gamma of 0.25 is slightly better
