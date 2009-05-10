@@ -123,13 +123,26 @@ This work extends the dependency-scoring strategies of
 widely-used and publically available PCFG parser and deterministic
 head-finding rules.
  
+\begin{itemize}
+\item \sout{Evaluation of evaluation measures}
+  \begin{itemize}
+  \item \sout{correlation vs. human fluency/adequacy }
+  \item \sout{correlation vs. human-in-the-loop measures (HTER)}
+  \end{itemize}
+\end{itemize}
+
+We may evaluate automatic MT measures in a variety of ways. Some
+\cite{banerjee05meteor,liu05syntaxformteval,owczarzak07labelleddepseval}
+have evaluated their success by comparing the measure to human
+judgments of fluency and adequacy.  In other work,
+e.g. \newcite{snover06ter}, measures are evaluated by comparison to
+human-targeted TER (HTER), a distance to a human-revised reference
+that uses wording closer to the MT system choices (keeping the
+original meaning) that is intended to measure the post-editing work
+required after translation.  In this paper, we pursue both kinds of
+evaluation.
 
 \begin{itemize}
-\item Evaluation of evaluation measures
-  \begin{itemize}
-  \item correlation vs. human fluency/adequacy 
-  \item correlation vs. human-in-the-loop measures (HTER)
-  \end{itemize}
 \item one challenge of metric-evaluation: underlying doc difficulty 
   \begin{itemize}
   \item describe mean-subtraction
