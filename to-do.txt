@@ -1,31 +1,23 @@
-paste in text into outline
+clean up citations (use \inlinecite{} appropriately)
 
-set up git repo
+write body sections for human-correlations
 
-send to Matt
+write body sections for HTER per-doc
 
-clean up citations (use \cite*{} to get year only)
+write body sections for HTER per-segment
+
+incorporate Mari's revised abstract
+
+answer Mari's question about N-grams vs parse features
+
+tableify the genre numbers
+
+Issues around tuning
+
+fix up tables.
+
+grant numbers for Jeremy, Mari
 
 ==========
-
-change explanation to use mean-subtraction rather than deltas
-
-change results to use mean-subtraction rather than deltas
-
-Figure out whether TERp optimization makes sense here
-
-reread
-
-if [TERp works]
-
-  Explain TERp optimization
-
-  Explain partial matching (using component precision, recall)
-
-else [TERp doesn't]
-
-  look for other organizational ideas
-
-endif
 
 look at detect-human experiment (rebuild?)
