@@ -5,6 +5,13 @@
 % package provides \sout{} strikeout macro -- remove this before submission
 \usepackage{ulem}
 
+\usepackage{graphicx}
+
+\newcommand{\arclabel}[1]{\ensuremath{\stackrel{#1}{\to}}}
+\newcommand{\precision}[1]{\ensuremath{\textrm{Prec}\left(#1\right)}}
+\newcommand{\recall}[1]{\ensuremath{\textrm{Recall}\left(#1\right)}}
+
+
 \begin{document}
 \begin{article}
 \begin{opening}         
@@ -89,6 +96,8 @@ previously-mentioned TER that also incorporates synonym sets, along
 with automatically-derived paraphrase tables.  TERp is explicitly
 intended to be tuned to a development set by users.
 
+TO DO: DISCUSS TUNING'S VIRTUES, FLAWS
+
 
 \begin{itemize}
 \item \sout{prior work with (partial) syntactic locality:}
@@ -143,12 +152,107 @@ original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
-OVERVIEW OF THE REST OF THE PAPER
+TO DO: OVERVIEW OF THE REST OF THE PAPER
 
 
 
 \section{Approach}
 \label{sec:approach}
+
+This work explores a family of dependency pair match (DPM) measures
+that are composed of precision and recall combinations over various
+decompositions of a syntactic dependency tree. These measures are
+extensions of the dependency-pair F measures found in
+\cite{roark06:sparseval,owczarzak07labelleddepseval}.  Rather than
+comparing string sequences, as BLEU does with its $n$-gram precision,
+this approach defers to a parser for an indication of the relevant
+words that indicate more about its meaning --- in these
+implementations, the head on which that word depends.  Each sentence
+(both reference and hypothesis) is converted to a labeled syntactic
+dependency tree and then relations from each tree are extracted and
+compared.
+
+A member of this family is defined by several parameters.  The first
+of these parameters is the nature of the decomposition of the
+dependency tree structure.  A \emph{decomposition list} is the list of
+ways in which the tree is reduced to a bag of tree-local
+tuples. Figure~\ref{fig:decompexample}
+\begin{figure}
+  \centering
+  \begin{tabular}{rcc}
+    & \textbf{Reference} & \textbf{Hypothesis} \\
+    \textbf{dependency tree}
+    & \includegraphics[scale=0.6]{dpm-example-ref.eps} & 
+    \includegraphics[scale=0.6]{dpm-example-hyp.eps}\\
+    \textbf{$dlh$ list} &
+    \begin{tabular}{@{$\langle$}c@{,~}c@{,~}c@{$\rangle$}}
+      the & \arclabel{\texttt{det}}  &  cat \\
+      red & \arclabel{\texttt{mod}}  &  cat \\
+      cat & \arclabel{\texttt{subj}} &  ate \\
+      ate & \arclabel{\texttt{root}} &  $<$root$>$ \\
+    \end{tabular} & 
+    \begin{tabular}{@{$\langle$}c@{,~}c@{,~}c@{$\rangle$}}
+      the &      \arclabel{\texttt{det}}  &  cat \\
+      cat &      \arclabel{\texttt{subj}} &  stumbled \\
+      stumbled & \arclabel{\texttt{root}} &  $<$root$>$ \\
+    \end{tabular}\\
+  \end{tabular}\\
+  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
+  $\frac{1}{4}$, so $F[dlh] = \frac{2}{7}$
+  \caption{Example hypothesis and reference dependency trees and the $dlh$ decomposition of each.}
+  \label{fig:decompexample}
+\end{figure}
+illustrates the \emph{dependency-link-head} decomposition of the
+dependency tree into a list of $\langle d, l, h \rangle$ tuples.  Some
+members of the DPM family may apply more than one decomposition; other
+good examples are the $dl$ decomposition, which generates a bag of
+dependent word with outbound links, and the $lh$ decomposition, which
+generates a bag of inbound link labels, with the head word for each
+included.
+
+It is worth noting here that the $dlh$ and $lh$ decompositions (but
+not the $dl$ decomposition) ``overweight'' the headwords, in that
+there are $n$ elements in the resulting bag, but if a word has no
+dependents it is found in the resulting bag exactly one time (in the
+$dlh$ case) or not at all (in the $lh$ case).  Conversely,
+syntactically ``key'' words, that are directly modified by many other
+words in the tree, are included multiple times in the decomposition
+(once for each inbound link).  We argue that this overcounting is a
+virtue; the syntactic structure indicates which words are more
+important to translate correctly.
+
+We may not completely trust the parser's best parse.  The parser
+itself, if we use a probabilistic parser, can provide an $n$-best
+parse list forest for the translation reference and translation
+hypothesis. We use the probability statistics of the forest to compute
+expected counts for each decomposition. Though this approach yields
+partial counts, standard comparisons like precision and recall are
+still valid.
+
+When multiple decomposition types used together, we may combine these
+subscores in a variety of ways.  We may compute precision and recall
+subscores for each decomposition separately, or, since the results of
+each decomposition are of different types entirely, we may compute
+them as members of one large bag for an even simpler F score.  These
+two approaches are equivalent when only one decomposition type is
+included.  For simplicity in presentation, we use the following
+notation, where $dl$ and $lh$ represent the two kinds of
+decompositions described above and $\mu_h$ represents a harmonic mean:
+\begin{eqnarray}
+  \label{eq:fprmeans}
+  F[dl,lh] & = &
+  \mu_h \left( \precision{dl \cup lh},
+    \recall{dl \cup lh} \right) \\
+  \mu_{PR}[dl,lh]  & = & \mu_h \left( \precision{dl},
+    \recall{dl}, \precision{lh}, \recall{lh} \right)    
+\end{eqnarray}
+Dependency-based SParseval and Owczarzak \textit{et al.}'s
+\cite*{owczarzak07labelleddepseval} \textbf{d} approach, then, may
+each be understood as $F[dlh]$, while the latter's \textbf{d\_var}
+method may be understood as something close to $F[dl,lh]$.
+
+
+
 
 Outline of big idea here.
 
