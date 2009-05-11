@@ -1,0 +1,12 @@
+Weighted Mean Removed Pearson Correlations
+TER
+                Split-1                   Split-2              Average
+Type    Pearson    95%-Interval    Pearson    95%-Interval     Pearson
+SEG     0.34113  ( 0.318  0.364)   0.36506  ( 0.342  0.387)    0.353
+DOC     0.41863  ( 0.346  0.486)   0.57434  ( 0.515  0.628)    0.496
+
+BLEU-4
+                Split-1                   Split-2              Average
+Type    Pearson      95%-Interval   Pearson    95%-Interval    Pearson
+SEG     -0.24370  ( 0.219  0.268)   -0.24489  ( 0.220  0.269)  0.244
+DOC     -0.35860  ( 0.283  0.430)   -0.20960  ( 0.128  0.288)  0.284
