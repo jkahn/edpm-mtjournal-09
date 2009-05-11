@@ -10,8 +10,6 @@ fix up tables.
 
 grant numbers for Jeremy, Mari
 
-write deltas footnote
-
 write conclusion
 
 confidence intervals for tuning section

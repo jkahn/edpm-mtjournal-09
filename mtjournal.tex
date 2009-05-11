@@ -444,16 +444,19 @@ $\bar{\mu}$ represents mean-removal:
 Mean-removal lowers the correlation $r$ values reported but ensures
 that the reported correlations are among differences in the
 translations rather than among differences in the underlying segments.
+\footnote{ Previous work \cite{kahn08metricsmatr} reported HTER
+  correlations against pairwise differences among translation segments
+  derived from the same source segment. Those results are similar to
+  those reported here. However, we believe that pairwise differences
+  introduce problems with the independence assumptions in
+  the Pearson's $r$ tests, and we use mean-removal
+  throughout this work instead.}
 
-Section~\ref{sec:hter2} reports HTER correlations per-sentence. There,
-we use length-weighted correlation, since unweighted correlations
-effectively puts too much emphasis on short sentences.  We do not
-weight for length in section~\ref{sec:hter1}, which reports document
-correlations, because documents are assumed to be equally important
-(regardless of length).
-
-TO DO: MENTION DELTAS IN A FOOTNOTE, AND CITE MetricsMATR SYSTEM PAPER
-
+When reporting HTER correlations per-sentence, we use length-weighted
+correlation, since unweighted correlations effectively puts too much
+emphasis on short sentences.  We do not weight for length for the
+per-document correlations in section~\ref{sec:hter1}, because we
+assume documents to be equally important (regardless of length).
 
 \section{Correlation with human judgments of fluency \& adequacy}
 \label{sec:faexpts}
