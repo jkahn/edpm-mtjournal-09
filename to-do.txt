@@ -1,3 +1,5 @@
+./ship script to assemble content for submission
+
 write body sections for HTER tuning
 
 answer Mari's question about N-grams vs parse features
