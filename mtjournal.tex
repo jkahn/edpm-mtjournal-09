@@ -684,7 +684,37 @@ subcorpora created by dividing by genre or by source language, as well
 as the corpus as a whole.  Not every difference is above 95\%
 confidence, but the trend is the same across all of the
 subcorpora. EDPM's strengths are particularly clear in the
-unstructured domains (\texttt{wb} and \texttt{bc}).
+unstructured domains (\texttt{wb} and \texttt{bc}).  
+
+In table~\ref{tab:hterpersent}, we see a similar story.
+\begin{table}
+  \begin{tabular}{r|rrrr|rr|r}
+    \hline
+    $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
+    & \multicolumn{1}{c}{\texttt{bn}} &
+    \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
+    & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
+    & \multicolumn{1}{c}{all} \\
+    \hline
+    $\bar{\mu}$TER
+    &  \textbf{0.44} &  \textbf{0.29} &  \textbf{0.33}&  0.25
+    & \textbf{0.44} & 0.25  &  \textbf{0.36}\\
+    $\bar{\mu}$BLEU
+    & -0.31 & -0.24  & -0.29 &  -0.25
+    & -0.31  &  -0.24  & -0.28 \\
+    $\bar{\mu}$EDPM
+    & \textbf{-0.46} & \textbf{-0.31} & \textbf{-0.34} &
+    \textbf{-0.30}
+    & \textbf{-0.44} & \textbf{-0.30} & \textbf{-0.37} \\
+    \hline
+  \end{tabular}
+  \caption{Per-sentence, length-weighted correlations of
+    $\bar{\mu}$EDPM and others to $\bar{\mu}$HTER, by genre and by
+    source language. Bold numbers are within 95\% significance of the
+    best per column.}
+  \label{tab:hterpersent}
+\end{table}
+
 
 TO DO: NOTE RE: DELTAS
 
