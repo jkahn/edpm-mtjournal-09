@@ -595,12 +595,12 @@ We use these EDPM parameter-settings in the experiments exploring
 document-level correlations with HTER (section~\ref{sec:hter1}).
 
 
-\section{Per-document correlations with HTER}
+\section{Correlating EDPM with HTER}
 \label{sec:hter1}
 In this section, we move from an exploration of the space of possible
 DPM metrics to a single chosen DPM-derived metric (EDPM).  Here, we
-compare EDPM to other metrics in correlation with document-level HTER
-performance. 
+compare EDPM to other metrics in correlation with document-level and
+segment-level HTER performance.
 
 \subsection{HTER corpus}
 
@@ -642,7 +642,7 @@ translation $t_{i,z}$ for each of the three systems $z$. Additionally,
 each of the system translations of each segment $i$ has a
 corresponding human-targeted reference aligned at the sentence level,
 so we have available the HTER score of each segment
-$s_{\textrm{HTER}}(t_{i,z})$ at both the sentence and document level.
+HTER$(t_{i,z})$ at both the sentence and document level.
 
 As discussed in section~\ref{sec:paradigm}, we report correlations
 here between $\bar{\mu}(m)$ and $\bar{\mu}(\textrm{HTER})$, rather than
@@ -652,86 +652,89 @@ underlying documents.
 In table~\ref{tab:hterperdoc}, we show per-document Pearson's $r$
 between $\bar{\mu}$EDPM and $\bar{\mu}$HTER, as well as two other
 baselines: $\bar{\mu}$TER and $\bar{\mu}$BLEU$_4$.  
-\begin{table}
-  \begin{tabular}{r|rrrr|rr|r}
-    \hline
-    $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
-    & \multicolumn{1}{c}{\texttt{bn}} &
-    \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
-    & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
-    & \multicolumn{1}{c}{all} \\
-    \hline
-    $\bar{\mu}$TER
-    &  0.59 &  \textbf{0.35} &  \textbf{0.47}&  \textit{0.17}
-    & \textbf{0.54} & \textbf{0.32} &  0.44\\
-    $\bar{\mu}$BLEU
-    & -0.42 & \textbf{-0.32} & \textbf{-0.46}&  \textbf{-0.27}
-    & -0.42  &  \textbf{-0.33} & -0.37 \\
-    $\bar{\mu}$EDPM
-    & \textbf{-0.69} & \textbf{-0.39} & \textbf{-0.47} &
-    \textbf{-0.27}
-    & \textbf{-0.60} & \textbf{-0.39} & \textbf{-0.50} \\
-    \hline
-  \end{tabular}
-  \caption{Per-document correlations of $\bar{\mu}$EDPM and others to
-    $\bar{\mu}$HTER, by genre and by source language. Bold numbers are
-  within 95\% significance of the best per column; italics indicate
-  that the sign of the $r$ value has less than 95\% confidence.}
-  \label{tab:hterperdoc}
-\end{table}
+\begin{subtable}
+  \begin{table}
+    \begin{tabular}{r|rrrr|rr|r}
+      \hline
+      $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
+      & \multicolumn{1}{c}{\texttt{bn}} &
+      \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
+      & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
+      & \multicolumn{1}{c}{all} \\
+      \hline
+      $\bar{\mu}$TER
+      &  0.59 &  \textbf{0.35} &  \textbf{0.47}&  \textit{0.17}
+      & \textbf{0.54} & \textbf{0.32} &  0.44\\
+      $\bar{\mu}$BLEU
+      & -0.42 & \textbf{-0.32} & \textbf{-0.46}&  \textbf{-0.27}
+      & -0.42  &  \textbf{-0.33} & -0.37 \\
+      $\bar{\mu}$EDPM
+      & \textbf{-0.69} & \textbf{-0.39} & \textbf{-0.47} &
+      \textbf{-0.27}
+      & \textbf{-0.60} & \textbf{-0.39} & \textbf{-0.50} \\
+      \hline
+    \end{tabular}
+    \caption{Per-document correlations of $\bar{\mu}$EDPM and others to
+      $\bar{\mu}$HTER, by genre and by source language. Bold numbers are
+      within 95\% significance of the best per column; italics indicate
+      that the sign of the $r$ value has less than 95\% confidence.}
+    \label{tab:hterperdoc}
+  \end{table}
+  \begin{table}
+    \begin{tabular}{r|rrrr|rr|r}
+      \hline
+      $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
+      & \multicolumn{1}{c}{\texttt{bn}} &
+      \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
+      & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
+      & \multicolumn{1}{c}{all} \\
+      \hline
+      $\bar{\mu}$TER
+      &  \textbf{0.44} &  \textbf{0.29} &  \textbf{0.33}&  0.25
+      & \textbf{0.44} & 0.25  &  \textbf{0.36}\\
+      $\bar{\mu}$BLEU
+      & -0.31 & -0.24  & -0.29 &  -0.25
+      & -0.31  &  -0.24  & -0.28 \\
+      $\bar{\mu}$EDPM
+      & \textbf{-0.46} & \textbf{-0.31} & \textbf{-0.34} &
+      \textbf{-0.30}
+      & \textbf{-0.44} & \textbf{-0.30} & \textbf{-0.37} \\
+      \hline
+    \end{tabular}
+    \caption{Per-sentence, length-weighted correlations of
+      $\bar{\mu}$EDPM and others to $\bar{\mu}$HTER, by genre and by
+      source language.}
+    \label{tab:hterpersent}
+  \end{table}
+\end{subtable}
 We see that the EDPM has the highest correlation in each of the
 subcorpora created by dividing by genre or by source language, as well
 as the corpus as a whole.  Not every difference is above 95\%
 confidence, but the trend is the same across all of the
-subcorpora. EDPM's strengths are particularly clear in the
-unstructured domains (\texttt{wb} and \texttt{bc}).  
+subcorpora. EDPM's strengths, relative to the other measures, are
+particularly clear in the unstructured domains (\texttt{wb} and
+\texttt{bc}).
 
-In table~\ref{tab:hterpersent}, we see a similar story.
-\begin{table}
-  \begin{tabular}{r|rrrr|rr|r}
-    \hline
-    $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
-    & \multicolumn{1}{c}{\texttt{bn}} &
-    \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
-    & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
-    & \multicolumn{1}{c}{all} \\
-    \hline
-    $\bar{\mu}$TER
-    &  \textbf{0.44} &  \textbf{0.29} &  \textbf{0.33}&  0.25
-    & \textbf{0.44} & 0.25  &  \textbf{0.36}\\
-    $\bar{\mu}$BLEU
-    & -0.31 & -0.24  & -0.29 &  -0.25
-    & -0.31  &  -0.24  & -0.28 \\
-    $\bar{\mu}$EDPM
-    & \textbf{-0.46} & \textbf{-0.31} & \textbf{-0.34} &
-    \textbf{-0.30}
-    & \textbf{-0.44} & \textbf{-0.30} & \textbf{-0.37} \\
-    \hline
-  \end{tabular}
-  \caption{Per-sentence, length-weighted correlations of
-    $\bar{\mu}$EDPM and others to $\bar{\mu}$HTER, by genre and by
-    source language. Bold numbers are within 95\% significance of the
-    best per column.}
-  \label{tab:hterpersent}
-\end{table}
+Table~\ref{tab:hterpersent} presents correlations weighted by sentence
+length.  Though many of the $r$ values are smaller magnitude in this
+correlation, EDPM again has the largest correlation in each category.
+TER, however, does quite well with length-weighted sentence
+correlation, with $r$ values within 95\% confidence of EDPM scores on
+nearly every breakdown.
 
 
 TO DO: NOTE RE: DELTAS
 
-TO DO: NOTE RE: SEGMENT-LEVEL CORRS
-
-
-%   Note 2: when using per-segment mean-subtracted, r values are smaller
-%   and *Arabic* was the language where EDPM did not perform best.
-% \begin{verbatim}
-%                Ar     Zh     All
-%       TER     0.38*  0.04   0.19
-%       BLEU_4 -0.10  -0.16  -0.14
-%       EDPM   -0.31  -0.19* -0.24*
-% \end{verbatim}
-
 \section{Weight-tuning to combine syntax and other knowledge sources}
 \label{sec:hter2}
+
+In the previous section, we observed that TER and EDPM each perform
+better than BLEU when considering mean-removed length-weighted
+correlations with HTER.  We observe that TER's basic operations
+(insertions, deletions, shifts and substitutions) are fundamentally
+different from those of EDPM, which is an $F$-style overlap measure
+and is seeking to make explicit comparison based on an inferred
+syntactic structure.
 
 TERp optimizer [Matt, a brief description here]
 
