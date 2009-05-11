@@ -8,8 +8,6 @@ Issues around tuning
 
 fix up tables.
 
-grant numbers for Jeremy, Mari
-
 write conclusion
 
 confidence intervals for tuning section
