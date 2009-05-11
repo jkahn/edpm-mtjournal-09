@@ -4,8 +4,32 @@ build is a script that sets environments so that the kluwer subdir
 (which has the Kluwer templates) can be read by latex and bibtex. use
 cases:
 
-./build latex mtjournal
-./build bibtex mtjournal
-./build latex mtjournal
+  ./build latex mtjournal
+  ./build bibtex mtjournal
+  ./build latex mtjournal
+  ./build latex mtjournal
 
 etc...
+
+To construct the actual tarball to send to the publisher, use the ship
+script:
+
+  ./ship
+
+will construct a tarball named mtjournal-2009-05-12.tgz (assuming it's
+May 11, 2009!) with the following contents:
+
+  # the Kluwer classes
+   mtjournal-2009-05-11/klu*.{cls,clo,sty}
+
+  # source for this paper:
+   mtjournal-2009-05-11/mtjournal.{tex,bbl}
+
+  # .eps figures
+   mtjournal-2009-05-11/dpm-*.eps
+
+  # a pre-built PDF and PS for double-checking
+   mtjournal-2009-05-11/mtjournal.{pdf,ps}
+
+
+
