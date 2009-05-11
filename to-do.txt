@@ -1,10 +1,6 @@
-write body sections for HTER per-doc
-
-write body sections for HTER per-segment
+write body sections for HTER tuning
 
 answer Mari's question about N-grams vs parse features
-
-tableify the genre numbers
 
 Issues around tuning
 
@@ -17,6 +13,8 @@ add overview paragraph at end of intro
 write deltas footnote
 
 write conclusion
+
+confidence intervals for tuning section
 
 ==========
 
