@@ -10,8 +10,6 @@ fix up tables.
 
 grant numbers for Jeremy, Mari
 
-add overview paragraph at end of intro
-
 write deltas footnote
 
 write conclusion

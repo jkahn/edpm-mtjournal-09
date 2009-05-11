@@ -130,9 +130,23 @@ original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
-TO DO: OVERVIEW OF THE REST OF THE PAPER
-
-
+In the following section (section~\ref{sec:approach}), we outline our
+approach to including syntactic information in MT evaluation, by
+describing a family of metrics. In section~\ref{sec:paradigm}, we
+describe the implementation details and make explicit which dimensions
+of this family of metrics we explore in this paper.
+Section~\ref{sec:faexpts} examines the correlation of several members
+of this family with human judgments of fluency and adequacy over a
+corpus of sentence translations and selects a favorable member of the
+family (EDPM) based on this comparison. Section~\ref{sec:hter1} compares
+the correlation of EDPM with HTER over a corpus of document- and
+sentence-level comparisons, and demonstrates that its correlation is
+favorable to that of competitor measures BLEU and TER at both sentence
+and document levels, regardless of source-language or genre.
+Section~\ref{sec:hter2} uses the tuning components of the TERp tools
+to explore the combination of these syntactic measures with other
+TERp-based word-based measures. Finally, section~\ref{sec:conclusion}
+concludes with some remarks on challenges and future work.
 
 \section{Approach}
 \label{sec:approach}
@@ -273,7 +287,7 @@ explore in this article.
 
 \section{Experimental paradigm}
 \label{sec:paradigm}
-In this section, we outline the details of the implementation and
+In this section, we describe the details of the implementation and
 experimental variables explored in the experiments presented here.
 
 \subsection{Parse tree implementation}
