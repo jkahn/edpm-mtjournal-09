@@ -9,6 +9,3 @@ build bibtex mtjournal
 build latex mtjournal
 
 etc...
-
-edpm-paper.tex is still live because I've been copying stuff from it
-and moving it over to the new paper, but don't use it.
