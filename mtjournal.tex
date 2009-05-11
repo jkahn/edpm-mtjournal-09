@@ -842,29 +842,45 @@ syntax that is not captured in the other measures.
 point: syntax is *not* just an expensive way to get at n-grams;
 N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
 
+question: this is kind of like the $\mu_{PR}[\cdot]$ --- seems like it
+also doesn't work so well. compare to EDPM as-is
+
+talk about why EN is < EDPM (is it?)
+
 \section{Conclusion}
 \label{sec:conclusion}
-expected dependency pair matching gets at something new
-
-troubling area: speed of analysis -- current implementation requires
-running a complete n-best parser
-
-possible use: as a late-pass evaluation, to identify how systems
-perform overall
-
-future work:  explore ways to get at syntactic information without
-the expense of a full parser:
-\begin{itemize}
-\item this work moves from an LFG parser (Owczarzak) to the
-  substantially simpler and more robust Charniak system - keep going
-  and look at simpler partial-parsing approaches (forests?)
-\item conversely: how important is it that the parses be of
-  high-quality?
-\end{itemize}
+In this research, we explore dependency pair match (DPM) a family of
+syntactically-oriented measures.  Through a corpus of human judgments,
+we settle on EDPM, a member of that family with promising predictive
+power.  When tested against correlations with HTER, we find that EDPM
+is as good a predictor of HTER as current measures BLEU$_4$ and TER,
+and --- depending on the language and genre --- often better.
 
 
+Several areas of future work are open to us. Using these syntactic
+techniques may be possible as a late-pass evaluation, to identify how
+candidate translation systems are performing overall.  Alternatively,
+the various tree-decompositions of the DPM family could be used as
+system diagnostics, by looking at relative quality of these component
+scores compared to those of an alternative candidate system.
 
+Another interesting research area is in the quality of the parser.  In
+this work, we demonstrated that the
+\inlinecite{charniak-johnson:2005:ACL} PCFG parser could serve in
+place of the LFG parser used in
+\inlinecite{owczarzak07labelleddepseval}. PCFG parsers, however, are
+fairly easily adaptable to another domain. One interesting research
+direction explores the intersection of genre (and genre-mismatch),
+parser quality, and prediction of human performance. Another
+consideration is the speed of the parser: parse time currently takes
+much, much longer than BLEU, TER, or other word-based measures. We are
+interested in the trade-offs --- if any --- among parse quality,
+speed, and predictive power as a translation metric.  One possibility,
+for example, is to store packed forests \cite{huang08packedforests}
+rather than generating an $n$-best list only to sum across it again in
+calculating the expectation.
 
+TO DO: parting words
 
 % \appendix
 
