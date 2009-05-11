@@ -1,0 +1,16 @@
+#!/bin/bash
+./build latex mtjournal
+./build bibtex mtjournal
+./build latex mtjournal
+./build latex mtjournal
+dvips mtjournal -o mtjournal.ps
+ps2pdf mtjournal.ps
+
+dir=mtjournal-`date +%F`
+mkdir $dir
+for f in mtjournal.{tex,bbl,ps,pdf} *.eps kluwer/*.{sty,clo,cls}; do
+    echo cp $f $dir/
+    cp $f $dir/
+done
+tar zcf $dir.tgz $dir
+rm -r $dir
