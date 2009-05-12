@@ -69,13 +69,13 @@ research has turned increasingly towards automatic measures of
 translation quality, usually by comparing the system translation to
 one or more reference (human) translations.
 %
-Automatic measures of this kind (e.g.\ BLEU \cite{papineni02bleu}) not
+Automatic measures of this kind not
 only provide a well-defined evaluation standard but are also required
 for training on error criteria, e.g.\ with minimum error rate training
 \cite{och03mert}.
 
-The most popular evaluation measures are currently BLEU (based on
-$n$-gram precision) and the edit-distance measure Translation Edit
+Currently, the most popular evaluation measures include a measure
+based on $n$-gram precision known as BLEU \cite{papineni02bleu}) and the edit-distance measure Translation Edit
 Rate (TER) \cite{snover06ter}.  Recent research has found that these
 measures may not accurately track translation quality both empirically
 \cite{charniak03syntaxlmmt} and theoretically
@@ -101,7 +101,7 @@ other metrics model syntactically-local (rather than string-local)
 word-sequences. \inlinecite{liu05syntaxformteval} compared tree-local
 $n$-gram precision in various configurations of constituency and
 dependency trees.  The dependent-based SParseval measure
-\cite{roark06:sparseval}, originally designed as a parse-quality
+\cite{roark06:sparseval}, designed as a parse-quality
 metric for speech, is a similar approach, in that it is an F-measure
 over a decomposition of reference and hypothesis trees.
 \inlinecite{owczarzak07labelleddepseval} proposed \textbf{d} and
@@ -118,7 +118,7 @@ PCFG parsers with deterministic head-finding, while others
 relations from an LFG parser \cite{cahill04lfg}.
 %
 This work extends the dependency-scoring strategies of
-\inlinecite{roark06:sparseval,owczarzak07labelleddepseval} using a
+\inlinecite{roark06:sparseval} and \inlinecite{owczarzak07labelleddepseval} using a
 widely-used and publically available PCFG parser and deterministic
 head-finding rules.
  
