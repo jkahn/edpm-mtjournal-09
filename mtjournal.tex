@@ -90,8 +90,11 @@ tuned by users.  TERp \cite{snover09terp} is an extension of the
 previously-mentioned TER that also incorporates synonym sets, along
 with automatically-derived paraphrase tables.  TERp is explicitly
 intended to be tuned to a development set by users.
-
-TO DO: DISCUSS TUNING'S VIRTUES, FLAWS
+%
+Tuning has the advantage that the weight of different types of errors
+can be adjusted to match the needs of the task, though it makes it
+more difficult to compare results across tasks, particularly when
+there is little data for tuning.
 
 As an alternative to these synonym- and paraphrase-based approaches,
 other metrics model syntactically-local (rather than string-local)
