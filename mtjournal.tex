@@ -879,12 +879,16 @@ talk about why EN is < EDPM (is it?)
 In this research, we explore dependency pair match (DPM) a family of
 syntactically-oriented measures.  Through a corpus of human judgments,
 we settle on EDPM, a member of that family with promising predictive
-power.  When tested against correlations with HTER, we find that EDPM
-is as good a predictor of HTER as current measures BLEU$_4$ and TER,
-and --- depending on the language and genre --- often better.
+power.  We find that EDPM is superior to BLEU and TER in terms of
+correlation with human judgments and as a per-document and
+per-sentence predictor of HTER (using mean-subtraction to account for
+underlying document- and segment-level difficulty).
+% TO DO:  add something here regarding summary of tuning?
 
-
-Several areas of future work are open to us. Using these syntactic
+Several areas of future work are open to us. One obstacle to using
+this method widely is the computational expense of the system. Parsing
+is many times more computationally costly than word-based measures
+such as BLEU or TER.  Using these syntactic
 techniques may be possible as a late-pass evaluation, to identify how
 candidate translation systems are performing overall.  Alternatively,
 the various tree-decompositions of the DPM family could be used as
@@ -898,9 +902,11 @@ place of the LFG parser used in
 \inlinecite{owczarzak07labelleddepseval}. PCFG parsers, however, are
 fairly easily adaptable to another domain. One interesting research
 direction explores the intersection of genre (and genre-mismatch),
-parser quality, and prediction of human performance. Another
-consideration is the speed of the parser: parse time currently takes
-much, much longer than BLEU, TER, or other word-based measures. We are
+parser quality, and prediction of human performance. 
+% Another
+% consideration is the speed of the parser: parse time currently takes
+% much, much longer than BLEU, TER, or other word-based measures. 
+We are
 interested in the trade-offs --- if any --- among parse quality,
 speed, and predictive power as a translation metric.  One possibility,
 for example, is to store packed forests \cite{huang08packedforests}
