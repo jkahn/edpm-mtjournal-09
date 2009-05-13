@@ -357,31 +357,31 @@ usually represents a subject dependent of a sentential verb.
 In the experiments presented later in this article, we explore the
 space of metrics outlined above along multiple dimensions:
 \begin{description}
-\item[Decompositions]: we consider syntactic decompositions of the
-  following types.
+\item[Decompositions.] We consider syntactic decompositions of the
+  following types:
   \begin{description}
   \item[dlh] $\left\langle \textrm{Dependent}, \textrm{arc Label},
-      \textrm{Head}\right\rangle$ here, every tuple includes two words
+      \textrm{Head}\right\rangle$ Here, every tuple includes two words
     and the dependency-label between them.
   \item[dl] $\left\langle \textrm{Dependent}, \textrm{arc Label}
-      \right\rangle$ the tuple is the word plus the label of the arc
+      \right\rangle$ The tuple is the word plus the label of the arc
       linking it to its head; this decomposition marks how the word
       fits into its syntactic context (what it modifies).
     \item[lh] $\left\langle \textrm{arc Label}, \textrm{Head}
-      \right\rangle$ each tuple here is the dependency relation plus
+      \right\rangle$ Each tuple here is the dependency relation plus
       the word being modified; this decomposition implicitly marks how
       key the word is to the sentence.
     \item[dh] $\left\langle \textrm{Dependent}, \textrm{Head}
-      \right\rangle$ here, drops the arc-label. This decomposition
+      \right\rangle$ Here, drops the arc-label. This decomposition
       ignores the syntactic-role information implied in the arc labels.
-    \item[1g,2g] these decompositions are syntactically-null.  They
+    \item[1g,2g] These decompositions are syntactically-null.  They
       simply include each 1-gram (or 2-gram) without any syntactic
       labeling at all.  They are thus simple measures of unigram
       (bigram) precision and recall.
   \end{description}
-\item[Forest size] Although the parser can generate considerably more,
-  we consider forests of size 1 and of size 50.
-\item[Forest confidence] An expectation requires a probability
+\item[Size of $n$-best list.] Although the parser can generate considerably more,
+  we consider $n$-best lists  of size 1 and of size 50.
+\item[Confidence of $n$-best list.] An expectation requires a probability
   distribution over the $n$-best list, and we consider three options:
   uniform, the parser probabilities, and a flattened version of the
   parser probabilities such that $\tilde{p}(x) =
@@ -401,13 +401,13 @@ space of metrics outlined above along multiple dimensions:
     always reach 50 candidate parses on short sentences, so the
     expectation matches our intent better than a sum of counts over
     the $n$-best.}
-\item[score combination]: We consider three possible methods for
+\item[Score combination.]: We consider three possible methods for
   combining scores across decompositions, as suggested in
   section~\ref{sec:approach}:
   \begin{description}
   \item[$F\lbrack\cdot\rbrack$] treats each decomposition as
     contributing $n$ more items to the bag of tokens extracted from
-    the tree, ad then computes a global $F$ score.
+    the tree, and then computes a global $F$ score.
   \item[$\mu_{PR}\lbrack\cdot\rbrack$] constructs a precision and
     recall score from each decomposition, and then does an
     evenly-weighted harmonic mean of all the component precision and
@@ -449,12 +449,13 @@ that the reported correlations are among differences in the
 translations rather than among differences in the underlying segments.
 \footnote{ Previous work \cite{kahn08metricsmatr} reported HTER
   correlations against pairwise differences among translation segments
-  derived from the same source segment. Those results are similar to
+  derived from the same source segment. The results are similar to
   those reported here. However, we believe that pairwise differences
   introduce problems with the independence assumptions in
   the Pearson's $r$ tests, and we use mean-removal
   throughout this work instead.}
 
+%% MO: Okay, but a little hard to figure out.
 When reporting HTER correlations per-sentence, we use length-weighted
 correlation, since unweighted correlations effectively puts too much
 emphasis on short sentences.  We do not weight for length for the
