@@ -1,14 +1,8 @@
-write body sections for HTER tuning
-
 answer Mari's question about N-grams vs parse features
 
 Issues around tuning
 
-fix up tables.
-
-write conclusion
-
-confidence intervals for tuning section
+finalize conclusion
 
 ==========
 
