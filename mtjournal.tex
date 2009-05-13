@@ -75,9 +75,10 @@ for training on error criteria, e.g.\ with minimum error rate training
 \cite{och03mert}.
 
 Currently, the most popular evaluation measures include a measure
-based on $n$-gram precision known as BLEU \cite{papineni02bleu}) and the edit-distance measure Translation Edit
-Rate (TER) \cite{snover06ter}.  Recent research has found that these
-measures may not accurately track translation quality both empirically
+based on $n$-gram precision known as BLEU \cite{papineni02bleu}) and
+the edit-distance measure Translation Edit Rate (TER)
+\cite{snover06ter}.  Recent research has found that these measures may
+not accurately track translation quality both empirically
 \cite{charniak03syntaxlmmt} and theoretically
 \cite{callisonburch06bleuproblems}.
 
@@ -101,9 +102,9 @@ other metrics model syntactically-local (rather than string-local)
 word-sequences. \inlinecite{liu05syntaxformteval} compared tree-local
 $n$-gram precision in various configurations of constituency and
 dependency trees.  The dependent-based SParseval measure
-\cite{roark06:sparseval}, designed as a parse-quality
-metric for speech, is a similar approach, in that it is an F-measure
-over a decomposition of reference and hypothesis trees.
+\cite{roark06:sparseval}, designed as a parse-quality metric for
+speech, is a similar approach, in that it is an F-measure over a
+decomposition of reference and hypothesis trees.
 \inlinecite{owczarzak07labelleddepseval} proposed \textbf{d} and
 \textbf{d\_var} measures that compare LFG-derived relational tuples
 from reference and hypothesis translations and reported substantial
@@ -118,38 +119,38 @@ PCFG parsers with deterministic head-finding, while others
 relations from an LFG parser \cite{cahill04lfg}.
 %
 This work extends the dependency-scoring strategies of
-\inlinecite{roark06:sparseval} and \inlinecite{owczarzak07labelleddepseval} using a
-widely-used and publically available PCFG parser and deterministic
-head-finding rules.
+\inlinecite{roark06:sparseval} and
+\inlinecite{owczarzak07labelleddepseval} using a widely-used and
+publically available PCFG parser and deterministic head-finding rules.
  
 We may evaluate automatic MT measures in a variety of ways. Some
 \cite{banerjee05meteor,liu05syntaxformteval,owczarzak07labelleddepseval}
 have evaluated their success by comparing the measure to human
-judgments of fluency and adequacy.  In other work,
-e.g. \inlinecite{snover06ter}, measures are evaluated by comparison to
+judgments of fluency and adequacy.  In other work, e.g.\
+\inlinecite{snover06ter}, measures are evaluated by comparison to
 human-targeted TER (HTER), a distance to a human-revised reference
 that uses wording closer to the MT system choices (keeping the
 original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
-In section~\ref{sec:approach}), we outline our
-approach to including syntactic information in MT evaluation, by
-describing a family of metrics. In section~\ref{sec:paradigm}, we
-describe the implementation details and make explicit which dimensions
-of this family of metrics we explore in this paper.
-Section~\ref{sec:faexpts} examines the correlation of several members
-of this family with human judgments of fluency and adequacy over a
-corpus of sentence translations and selects a favorable member of the
-family, Expected Dependency Pair Match (EDPM), based on this comparison. Section~\ref{sec:hter1} compares
-the correlation of EDPM with HTER over a corpus of document- and
-sentence-level comparisons, and demonstrates that its correlation is
-favorable to that of competitor measures BLEU and TER at both sentence
-and document levels, regardless of source-language or genre.
+In section~\ref{sec:approach}), we outline our approach to including
+syntactic information in MT evaluation, by describing a family of
+metrics. In section~\ref{sec:paradigm}, we describe the implementation
+details and make explicit which dimensions of this family of metrics
+we explore in this paper.  Section~\ref{sec:faexpts} examines the
+correlation of several members of this family with human judgments of
+fluency and adequacy over a corpus of sentence translations and
+selects a favorable member of the family, Expected Dependency Pair
+Match (EDPM), based on this comparison. Section~\ref{sec:hter1}
+compares the correlation of EDPM with HTER over a corpus of document-
+and sentence-level comparisons, and demonstrates that its correlation
+is favorable to that of competitor measures BLEU and TER at both
+sentence and document levels, regardless of source-language or genre.
 Section~\ref{sec:hter2} uses the tuning components of the TERp tools
-to explore the combination of these syntactic measures with other
-TERp word-based measures. Finally, section~\ref{sec:conclusion}
-concludes with some remarks on challenges and future work.
+to explore the combination of these syntactic measures with other TERp
+word-based measures. Finally, section~\ref{sec:conclusion} concludes
+with some remarks on challenges and future work.
 
 \section{Approach}
 \label{sec:approach}
@@ -158,14 +159,14 @@ This work explores a family of dependency pair match (DPM) measures
 that are composed of precision and recall combinations over various
 decompositions of a syntactic dependency tree. These measures are
 extensions of the dependency-pair F measures found in
-\inlinecite{roark06:sparseval} and \inlinecite{owczarzak07labelleddepseval}.  Rather than
-comparing string sequences, as BLEU does with its $n$-gram precision,
-this approach defers to a parser for an indication of the relevant
-word tuples associated with meaning --- in these
-implementations, the head on which that word depends.  Each sentence
-(both reference and hypothesis) is converted to a labeled syntactic
-dependency tree and then relations from each tree are extracted and
-compared.
+\inlinecite{roark06:sparseval} and
+\inlinecite{owczarzak07labelleddepseval}.  Rather than comparing
+string sequences, as BLEU does with its $n$-gram precision, this
+approach defers to a parser for an indication of the relevant word
+tuples associated with meaning --- in these implementations, the head
+on which that word depends.  Each sentence (both reference and
+hypothesis) is converted to a labeled syntactic dependency tree and
+then relations from each tree are extracted and compared.
 
 A member of this family is defined by several parameters.  The first
 of these parameters is the nature of the decomposition of the
@@ -194,7 +195,8 @@ tuples. Figure~\ref{fig:decompexample}
   \end{tabular}\\
   Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
   $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
-  \caption{Example hypothesis and reference dependency trees and the $dlh$ decomposition of each.}
+  \caption{Example hypothesis and reference dependency trees and the
+    $dlh$ decomposition of each.}
   \label{fig:decompexample}
 \end{figure}
 illustrates the \emph{dependency-link-head} decomposition of a toy
@@ -254,13 +256,13 @@ still valid, and using the expectations can help cope with both error
 in the parser and ambiguity in the translations (reference and
 hypothesis).
 
-When multiple decomposition types are used together, we may combine these
-subscores in a variety of ways.  We may compute precision and recall
-subscores for each decomposition separately, or, since the results of
-each decomposition are of different types entirely, we may compute
-them as members of one large bag for an even simpler F score.  These
-two approaches are equivalent when only one decomposition type is
-included.  For simplicity in presentation, we use the following
+When multiple decomposition types are used together, we may combine
+these subscores in a variety of ways.  We may compute precision and
+recall subscores for each decomposition separately, or, since the
+results of each decomposition are of different types entirely, we may
+compute them as members of one large bag for an even simpler F score.
+These two approaches are equivalent when only one decomposition type
+is included.  For simplicity in presentation, we use the following
 notation, where $dl$ and $lh$ represent the two kinds of
 decompositions described above and $\mu_h$ represents a harmonic mean:
 \begin{eqnarray}
@@ -272,16 +274,15 @@ decompositions described above and $\mu_h$ represents a harmonic mean:
     \recall{dl}, \precision{lh}, \recall{lh} \right)    
 \end{eqnarray}
 Dependency-based SParseval and the \textbf{d} approach from
-\inlinecite{owczarzak07labelleddepseval} may
-each be understood as $F[dlh]$, while the latter's \textbf{d\_var}
-method may be understood as something close to $F[dl,lh]$.
+\inlinecite{owczarzak07labelleddepseval} may each be understood as
+$F[dlh]$, while the latter's \textbf{d\_var} method may be understood
+as something close to $F[dl,lh]$.
 
 Both of the combination methods above ($F[\cdot]$ and
-$\mu_{PR}[\cdot]$) are ``naive'' in that they treat each
-component score as equivalent to the next.  One further direction to
-explore involves tuning (presumably on held-out data) the precision
-and recall weights for each decomposition type for a later linear
-combination.
+$\mu_{PR}[\cdot]$) are ``naive'' in that they treat each component
+score as equivalent to the next.  One further direction to explore
+involves tuning (presumably on held-out data) the precision and recall
+weights for each decomposition type for a later linear combination.
 
 The possible family of metrics outlined above is quite large. In the
 next section, we make explicit the range of these parameters that we
@@ -302,21 +303,21 @@ measures has used an LFG parser \cite{cahill04lfg} or
 an unlabelled dependency tree \cite{liu05syntaxformteval}. 
 
 In this work, we use a state-of-the-art PCFG (the first stage of
-\inlinecite{charniak-johnson:2005:ACL}) and context-free head-finding rules
-\cite{magerman95headfinding} to generate a 50-best list of dependency
-trees for each hypothesis and reference translation.  We use the
-parser's default (English-language) Wall Street Journal training
-parameters.  Head-finding uses the Charniak parser's rules, with three
-modifications: prepositional and complementizer phrases choose nominal
-and verbal heads respectively (rather than functional heads) and
-auxiliary verbs are modifiers of main verbs (rather than the
-converse).
+\inlinecite{charniak-johnson:2005:ACL}) and context-free head-finding
+rules \cite{magerman95headfinding} to generate a 50-best list of
+dependency trees for each hypothesis and reference translation.  We
+use the parser's default (English-language) Wall Street Journal
+training parameters.  Head-finding uses the Charniak parser's rules,
+with three modifications: prepositional and complementizer phrases
+choose nominal and verbal heads respectively (rather than functional
+heads) and auxiliary verbs are modifiers of main verbs (rather than
+the converse).
 
 Having constructed the dependency tree, we label the arcs as $d
 \stackrel{A/B}{\to} h$, where the arc label $A/B$ between dependent
 $d$ and its head $h$ is composed of $A$ (the lowest constituent-label
 headed by $h$ and dominating $d$) and $B$ (the highest constituent
-label headed by $d$). 
+label headed by $d$).
 \begin{figure}
   \Tree
   [.\headlabel{S}{stumbled}
@@ -338,10 +339,10 @@ label headed by $d$).
     section~\ref{sec:paradigm}.}
   \label{fig:depextract}
 \end{figure}
-For example, in figure~\ref{fig:depextract}, the S node is the
-lowest node headed by \emph{stumbled} that dominates \emph{cat}, and
-the NP node is the highest constituent label headed by \emph{cat}, so
-the arc between \emph{cat} and \emph{stumbled} is labelled \arclabel{S/NP}.
+For example, in figure~\ref{fig:depextract}, the S node is the lowest
+node headed by \emph{stumbled} that dominates \emph{cat}, and the NP
+node is the highest constituent label headed by \emph{cat}, so the arc
+between \emph{cat} and \emph{stumbled} is labelled \arclabel{S/NP}.
 %
 This strategy is very similar to one adopted in the reference
 implementation of labelled-dependency \textsc{SParseval}, and may be
@@ -379,12 +380,13 @@ space of metrics outlined above along multiple dimensions:
       labeling at all.  They are thus simple measures of unigram
       (bigram) precision and recall.
   \end{description}
-\item[Size of $n$-best list.] Although the parser can generate considerably more,
-  we consider $n$-best lists  of size 1 and of size 50.
-\item[Confidence of $n$-best list.] An expectation requires a probability
-  distribution over the $n$-best list, and we consider three options:
-  uniform, the parser probabilities, and a flattened version of the
-  parser probabilities such that $\tilde{p}(x) =
+\item[Size of $n$-best list.] Although the parser can generate
+  considerably more, we consider $n$-best lists of size 1 and of size
+  50.
+\item[Confidence of $n$-best list.] An expectation requires a
+  probability distribution over the $n$-best list, and we consider
+  three options: uniform, the parser probabilities, and a flattened
+  version of the parser probabilities such that $\tilde{p}(x) =
   \frac{p(x)^\gamma}{\sum_ip(i)^\gamma}$ (where $\gamma$ is a free
   parameter) to account for the fact that the parser tends to be
   over-confident.  In all cases, the probabilities are normalized to
@@ -392,9 +394,9 @@ space of metrics outlined above along multiple dimensions:
   work is 50.  The uniform distribution ($\gamma = 0$) is intended to
   be equivalent to the \cite{owczarzak07labelleddepseval}
   \textbf{d\_50} and \textbf{d\_50\_var} measures.\footnote{Since
-    \inlinecite{owczarzak07labelleddepseval} report no use of parse weights,
-    \textbf{d\_50} and \textbf{d\_50\_var} may be using a sum of
-    counts over the 50-best list rather than expected-counts over a
+    \inlinecite{owczarzak07labelleddepseval} report no use of parse
+    weights, \textbf{d\_50} and \textbf{d\_50\_var} may be using a sum
+    of counts over the 50-best list rather than expected-counts over a
     uniform distribution. These two approaches are equivalent --- so
     long as the $n$-best list is always the same length for hypothesis
     and reference.  In our implementation, the $n$-best list does not
@@ -433,13 +435,12 @@ segment, each from a different translation engine and each with its
 own HTER score.  For these translations, reporting correlations of
 metric $m$ with absolute HTER scores can conflate $m$'s power in
 identifying which of two candidate translations is better with $m$'s
-(and HTER's) ability to distinguish which source segments are
-more difficult to translate. 
+(and HTER's) ability to distinguish which source segments are more
+difficult to translate.
 
 To avoid this conflation, on the HTER corpora we report correlations
-on $\bar{\mu}(m)$
-and $\bar{\mu}(\textrm{HTER})$ (rather than measure $m$ and HTER), where
-$\bar{\mu}$ represents mean-removal:
+on $\bar{\mu}(m)$ and $\bar{\mu}(\textrm{HTER})$ (rather than measure
+$m$ and HTER), where $\bar{\mu}$ represents mean-removal:
 \begin{equation}
   \label{eq:meansub}
   \bar{\mu}(m(t_i)) = m(t_i) - \sum_{j=1}^I\frac{m(t_j)}{I}
@@ -451,9 +452,9 @@ translations rather than among differences in the underlying segments.
   correlations against pairwise differences among translation segments
   derived from the same source segment. The results are similar to
   those reported here. However, we believe that pairwise differences
-  introduce problems with the independence assumptions in
-  the Pearson's $r$ tests, and we use mean-removal
-  throughout this work instead.}
+  introduce problems with the independence assumptions in the
+  Pearson's $r$ tests, and we use mean-removal throughout this work
+  instead.}
 
 %% MO: Okay, but a little hard to figure out.
 When reporting HTER correlations per-sentence, we use length-weighted
@@ -478,15 +479,15 @@ parts 2~\cite{LDC03MTC2} and 4~\cite{LDC06MTC4}.  These corpora
 include multiple human judgments of fluency and adequacy for each
 sentence, with each judgment using a different human judge and a
 different reference translation.  For a rough\footnote{Our segment
-  count differs from \inlinecite{owczarzak07labelleddepseval}, who report
-  16,800 segments over the same corpus. We find baseline correlations
-  (BLEU$_4$ and TER) lower than those reported there as well, so the
-  results presented here are not directly comparable with that paper,
-  though we demonstrate similar gains over those baselines in
-  essentially the same corpus. % (section~\ref{sec:facorr:newdeps}).}
-}
-comparison with \inlinecite{owczarzak07labelleddepseval}, we treat each
-judgment as a separate segment.
+  count differs from \inlinecite{owczarzak07labelleddepseval}, who
+  report 16,800 segments over the same corpus. We find baseline
+  correlations (BLEU$_4$ and TER) lower than those reported there as
+  well, so the results presented here are not directly comparable with
+  that paper, though we demonstrate similar gains over those baselines
+  in essentially the same
+  corpus. % (section~\ref{sec:facorr:newdeps}).}
+} comparison with \inlinecite{owczarzak07labelleddepseval}, we treat
+each judgment as a separate segment.
 %
 This treatment of this corpus yields 16,815 tuples of
 $\langle$hypothesis, reference, fluency, adequacy$\rangle$.  In these
@@ -565,7 +566,7 @@ be an improvement over $F[dl,lh]$.
 To explore the effect of extracting parse feature-counts from a forest
 instead of a single tree, we present in
 table~\ref{tab:facorr:multiparse} several variants, with $n=1$ and
-with $n=50$.  
+with $n=50$.
  \begin{table}
   \begin{tabular*}{2.5in}{lrr}
     \hline
@@ -584,15 +585,15 @@ with $n=50$.
   \caption{Comparing $n=1$ to $n=50$ for several variants of the DPM measure.}
   \label{tab:facorr:multiparse}
 \end{table}
-For the $n=50$ cases, we set $\gamma=0$ to assign
-uniform probabilities to the parse forest, to compare as closely as
-possible to \inlinecite{owczarzak07labelleddepseval}, which includes a
+For the $n=50$ cases, we set $\gamma=0$ to assign uniform
+probabilities to the parse forest, to compare as closely as possible
+to \inlinecite{owczarzak07labelleddepseval}, which includes a
 \textbf{d\_var\_50} measure with 50-best parses, with ranks but no
 weights.  While not all of these differences are significant, the
 trend is universally that the correlation $r$ improves as the number
-of parses ($n$) is increased.
-Tuning experiments find that increasing $\gamma$ to 0.25 can increase
-the $r$ reported here for $F[1g,2g,dl,lh]$ marginally (but insignificantly).
+of parses ($n$) is increased.  Tuning experiments find that increasing
+$\gamma$ to 0.25 can increase the $r$ reported here for
+$F[1g,2g,dl,lh]$ marginally (but insignificantly).
 
 \subsection{Summary}
 
@@ -628,11 +629,10 @@ multiple systems, some of which are phrase-based and some which may
 use syntax on either the source or target side. No system provided
 system-generated parses.
 %
-The corpus being translated comes from
-Arabic and Chinese in four genres: \texttt{bc} (broadcast
-conversation), \texttt{bn} (broadcast news), \texttt{nw} (newswire),
-and \texttt{wb} (web text), with corpus sizes shown in
-table~\ref{tab:galestats}.
+The corpus being translated comes from Arabic and Chinese in four
+genres: \texttt{bc} (broadcast conversation), \texttt{bn} (broadcast
+news), \texttt{nw} (newswire), and \texttt{wb} (web text), with corpus
+sizes shown in table~\ref{tab:galestats}.
 \begin{table}
   \begin{tabular}{r|rr|rr|rr}
     \hline
@@ -657,17 +657,17 @@ The corpus includes one English reference translation $r_i$
 translation $t_{i,z}$ for each of the three systems $z$. Additionally,
 each of the system translations of each segment $i$ has a
 corresponding human-targeted reference aligned at the sentence level,
-so we have available the HTER score of each segment
-HTER$(t_{i,z})$ at both the sentence and document level.
+so we have available the HTER score of each segment HTER$(t_{i,z})$ at
+both the sentence and document level.
 
 As discussed in section~\ref{sec:paradigm}, we report correlations
-here between $\bar{\mu}(m)$ and $\bar{\mu}(\textrm{HTER})$, rather than
-$m$ and HTER directly, to abstract away from variations in the
-underlying documents. 
+here between $\bar{\mu}(m)$ and $\bar{\mu}(\textrm{HTER})$, rather
+than $m$ and HTER directly, to abstract away from variations in the
+underlying documents.
 
 In table~\ref{tab:hterperdoc}, we show per-document Pearson's $r$
 between $\bar{\mu}$EDPM and $\bar{\mu}$HTER, as well as two other
-baselines: $\bar{\mu}$TER and $\bar{\mu}$BLEU$_4$.  
+baselines: $\bar{\mu}$TER and $\bar{\mu}$BLEU$_4$.
 \begin{subtable}
   \begin{table}
     \begin{tabular}{r|rrrr|rr|r}
@@ -778,15 +778,15 @@ sets:
   structure, using $n=50$ and $\gamma=0.25$.  The \textbf{E} set
   includes 8 features.
 \item[N]: the non-syntactic features from the DPM family;
-  specifically, precision and recall for $1g$ and $2g$
-  decompositions.  The \textbf{N} set includes 4 features.
+  specifically, precision and recall for $1g$ and $2g$ decompositions.
+  The \textbf{N} set includes 4 features.
 \item[T]: the features from basic TERp, which include a separate cost
   for each of insertions, deletions, substitutions, shifts, and
   synonym-alignment. The \textbf{T} set includes 7 features.
   % MO  (to Matt): is this basic TER or basic TERp?
   % TO DO: what are the other two?
-\item[P]: features from the automatically-derived TERp paraphrase table
-  (4 features)  % TO DO: Matt, what are these
+\item[P]: features from the automatically-derived TERp paraphrase
+  table (4 features) % TO DO: Matt, what are these
 \item[B]: two ``length penalties'' one is assigned the count of
   hypothesis words beyond the count of reference words, and one
   assigned the count of reference words beyond the count of hypothesis
@@ -806,9 +806,9 @@ group has the same document distribution across source-language and
 genre.
 %
 These two corpus halves are used in two-fold cross-validation, testing
-on one and training on the other.  We tune on (and report correlation with)
-length-weighted per-sentence correlation with HTER, using mean-removed
-scores as before.
+on one and training on the other.  We tune on (and report correlation
+with) length-weighted per-sentence correlation with HTER, using
+mean-removed scores as before.
 
 % tuning target: weighted correlation with mean-removed segment HTER
 
@@ -863,8 +863,8 @@ trained on one and tested on the other).
 
 TO DO: discuss this as a trend, despite lack of significance? plot charts?
   
-point: E+T $>$ T, E+TB $>$ TB, E+TP $>$ TP; information is available in
-syntax that is not captured in the other measures.
+point: E+T $>$ T, E+TB $>$ TB, E+TP $>$ TP; information is available
+in syntax that is not captured in the other measures.
 
 point: syntax is *not* just an expensive way to get at n-grams;
 N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
@@ -872,7 +872,7 @@ N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
 question: this is kind of like the $\mu_{PR}[\cdot]$ --- seems like it
 also doesn't work so well. compare to EDPM as-is
 
-talk about why EN is < EDPM (is it?)
+talk about why EN is $<$ EDPM (is it?)
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -888,12 +888,12 @@ underlying document- and segment-level difficulty).
 Several areas of future work are open to us. One obstacle to using
 this method widely is the computational expense of the system. Parsing
 is many times more computationally costly than word-based measures
-such as BLEU or TER.  Using these syntactic
-techniques may be possible as a late-pass evaluation, to identify how
-candidate translation systems are performing overall.  Alternatively,
-the various tree-decompositions of the DPM family could be used as
-system diagnostics, by looking at relative quality of these component
-scores compared to those of an alternative candidate system.
+such as BLEU or TER.  Using these syntactic techniques may be possible
+as a late-pass evaluation, to identify how candidate translation
+systems are performing overall.  Alternatively, the various
+tree-decompositions of the DPM family could be used as system
+diagnostics, by looking at relative quality of these component scores
+compared to those of an alternative candidate system.
 
 Another interesting research area is in the quality of the parser.  In
 this work, we demonstrated that the
@@ -902,16 +902,15 @@ place of the LFG parser used in
 \inlinecite{owczarzak07labelleddepseval}. PCFG parsers, however, are
 fairly easily adaptable to another domain. One interesting research
 direction explores the intersection of genre (and genre-mismatch),
-parser quality, and prediction of human performance. 
+parser quality, and prediction of human performance.
 % Another
 % consideration is the speed of the parser: parse time currently takes
 % much, much longer than BLEU, TER, or other word-based measures. 
-We are
-interested in the trade-offs --- if any --- among parse quality,
-speed, and predictive power as a translation metric.  One possibility,
-for example, is to store packed forests \cite{huang08packedforests}
-rather than generating an $n$-best list only to sum across it again in
-calculating the expectation.
+We are interested in the trade-offs --- if any --- among parse
+quality, speed, and predictive power as a translation metric.  One
+possibility, for example, is to store packed forests
+\cite{huang08packedforests} rather than generating an $n$-best list
+only to sum across it again in calculating the expectation.
 
 TO DO: parting words
 
@@ -920,20 +919,19 @@ TO DO: parting words
 
 \acknowledgements
 
-{\small
-This material is based upon work supported by the National Science
-Foundation under Grant No. 0741585 and the Defense Advanced Research
-Projects Agency under Contract Nos. HR0011-06-C-0022 and HR0011-06-C-0023.
+{\small This material is based upon work supported by the National
+  Science Foundation under Grant No. 0741585 and the Defense Advanced
+  Research Projects Agency under Contract Nos. HR0011-06-C-0022 and
+  HR0011-06-C-0023.
 
 % Re: DARPA contract numbers
 % -0022 is Matt's [Agile] grant.
 % -0023 is Mari & Jeremy's [Nightingale] grant
 
-Any opinions, findings, and conclusions or recommendations expressed
-in this material are those of the author(s) and do not necessarily
-reflect the views of the National Science Foundation or the Defense
-Advanced Research Projects Agency.
-}
+  Any opinions, findings, and conclusions or recommendations expressed
+  in this material are those of the author(s) and do not necessarily
+  reflect the views of the National Science Foundation or the Defense
+  Advanced Research Projects Agency.  }
 
 % The endnotes section will be placed here.  But I don't think we have any
 
