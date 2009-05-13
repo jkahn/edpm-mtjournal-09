@@ -133,7 +133,7 @@ original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
-In the following section (section~\ref{sec:approach}), we outline our
+In section~\ref{sec:approach}), we outline our
 approach to including syntactic information in MT evaluation, by
 describing a family of metrics. In section~\ref{sec:paradigm}, we
 describe the implementation details and make explicit which dimensions
@@ -141,14 +141,14 @@ of this family of metrics we explore in this paper.
 Section~\ref{sec:faexpts} examines the correlation of several members
 of this family with human judgments of fluency and adequacy over a
 corpus of sentence translations and selects a favorable member of the
-family (EDPM) based on this comparison. Section~\ref{sec:hter1} compares
+family, Expected Dependency Pair Match (EDPM), based on this comparison. Section~\ref{sec:hter1} compares
 the correlation of EDPM with HTER over a corpus of document- and
 sentence-level comparisons, and demonstrates that its correlation is
 favorable to that of competitor measures BLEU and TER at both sentence
 and document levels, regardless of source-language or genre.
 Section~\ref{sec:hter2} uses the tuning components of the TERp tools
 to explore the combination of these syntactic measures with other
-TERp-based word-based measures. Finally, section~\ref{sec:conclusion}
+TERp word-based measures. Finally, section~\ref{sec:conclusion}
 concludes with some remarks on challenges and future work.
 
 \section{Approach}
@@ -158,10 +158,10 @@ This work explores a family of dependency pair match (DPM) measures
 that are composed of precision and recall combinations over various
 decompositions of a syntactic dependency tree. These measures are
 extensions of the dependency-pair F measures found in
-\inlinecite{roark06:sparseval,owczarzak07labelleddepseval}.  Rather than
+\inlinecite{roark06:sparseval} and \inlinecite{owczarzak07labelleddepseval}.  Rather than
 comparing string sequences, as BLEU does with its $n$-gram precision,
 this approach defers to a parser for an indication of the relevant
-words that indicate more about its meaning --- in these
+word tuples associated with meaning --- in these
 implementations, the head on which that word depends.  Each sentence
 (both reference and hypothesis) is converted to a labeled syntactic
 dependency tree and then relations from each tree are extracted and
@@ -246,15 +246,15 @@ important to translate correctly.
 
 We may not completely trust the parser's best parse.  The parser
 itself, if we use a probabilistic parser, can provide an $n$-best
-parse list forest for the translation reference and translation
-hypothesis. We use the probability statistics of the forest to compute
+parse list for the translation reference and translation
+hypothesis. We use the probability statistics of the list to compute
 expected counts for each decomposition. Though this approach yields
 partial counts, standard comparisons like precision and recall are
 still valid, and using the expectations can help cope with both error
 in the parser and ambiguity in the translations (reference and
 hypothesis).
 
-When multiple decomposition types used together, we may combine these
+When multiple decomposition types are used together, we may combine these
 subscores in a variety of ways.  We may compute precision and recall
 subscores for each decomposition separately, or, since the results of
 each decomposition are of different types entirely, we may compute
@@ -272,13 +272,13 @@ decompositions described above and $\mu_h$ represents a harmonic mean:
     \recall{dl}, \precision{lh}, \recall{lh} \right)    
 \end{eqnarray}
 Dependency-based SParseval and the \textbf{d} approach from
-\inlinecite{owczarzak07labelleddepseval}, then, may
+\inlinecite{owczarzak07labelleddepseval} may
 each be understood as $F[dlh]$, while the latter's \textbf{d\_var}
 method may be understood as something close to $F[dl,lh]$.
 
 Both of the combination methods above ($F[\cdot]$ and
-$\mu_{PR}[\cdot]$) are ``naive'' combinations, in that they treat each
-decomposition as equivalent to the next.  One further direction to
+$\mu_{PR}[\cdot]$) are ``naive'' in that they treat each
+component score as equivalent to the next.  One further direction to
 explore involves tuning (presumably on held-out data) the precision
 and recall weights for each decomposition type for a later linear
 combination.
@@ -290,8 +290,8 @@ explore in this article.
 
 \section{Experimental paradigm}
 \label{sec:paradigm}
-In this section, we describe the details of the implementation and
-experimental variables explored in the experiments presented here.
+% In this section, we describe the details of the implementation and
+% experimental variables explored in the experiments presented here.
 
 \subsection{Parse tree implementation}
 In principle, the family of DPM measures may be implemented with
