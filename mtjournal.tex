@@ -731,6 +731,9 @@ subcorpora. EDPM's strengths, relative to the other measures, are
 particularly clear in the unstructured domains (\texttt{wb} and
 \texttt{bc}).
 
+%% MO: I still think this is a bit weird given that what you are
+%% adding is structure. If time, you might want to look at some
+%% example sentences
 Table~\ref{tab:hterpersent} presents per-sentence correlations,
 weighted by sentence length.  Though many of the $r$ values are
 smaller magnitude in this correlation, EDPM again has the largest
@@ -757,6 +760,7 @@ simple subscores, including selecting weights for the TER basic
 operations. TERp's feature list extends TER to additionally include
 synonym tables and an empirically-derived paraphrase table.
 
+%% MO: important to describe basic model before listing features.
 TO DO: TERp optimizer [Matt, a brief description here]
 
 In the experiments presented in this section, we extend this feature
@@ -779,6 +783,7 @@ sets:
 \item[T]: the features from basic TERp, which include a separate cost
   for each of insertions, deletions, substitutions, shifts, and
   synonym-alignment. The \textbf{T} set includes 7 features.
+  % MO  (to Matt): is this basic TER or basic TERp?
   % TO DO: what are the other two?
 \item[P]: features from the automatically-derived TERp paraphrase table
   (4 features)  % TO DO: Matt, what are these
@@ -786,7 +791,10 @@ sets:
   hypothesis words beyond the count of reference words, and one
   assigned the count of reference words beyond the count of hypothesis
   wordsbrevity/prolixity (2 features: one for longer-than-ref, one for
-  shorter-than-ref)
+  shorter-than-ref).
+  % MO: out of curiosity, why do you need 2 features?
+  We assign two features here to let the system separately penalize
+  ``too short'' translations and ``too long''.
 \end{description}
 
 \subsection{Corpus}
@@ -814,7 +822,13 @@ trained on one and tested on the other).
   \caption{Figure with two tune-set plots will go here.}
   \label{fig:tuneresults}
 \end{figure}
-   
+
+
+% MO suggestions:
+
+%% do n-fold with >2 N -- better robustness to variation?
+
+%% look at variation in weights on 2-fold case   
 \begin{verbatim}
    == Tuned For Weighted Mean Removed Pearson
      - Examining WGT_MEAN_RM_SEG_PEAR ==
