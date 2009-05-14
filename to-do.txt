@@ -7,28 +7,6 @@ finalize conclusion
 MARI's comments:
 
 
-- I still don't like the title.  Maybe rather than "Predicting HTER
-  improvements" you could say "Predicting translation quality".  One
-  problem is that you are no longer looking at correlation with delta
-  HTER (using mean-normalized is not the same as predicting
-  "improvements").  The other is that you work is relevant to other
-  human assessments than simply HTER.  Since a large fraction of MT
-  researchers are not interested in HTER, I think you should not be so
-  explicitly tied to that
-
-- p. 2 line 2, extra )
-
-- p. 7 middle: "Confidence of n-best list" --> "Confidence of n-best
-  hypotheses" (since the confidence scores correspond to individual
-  sentences, not the list as a whole
-
-- p. 7: omit extra : after "Score combination"
-
-- p. 8 bottom: "unweighted correlations effectively puts" -->
-  "unweighted correlations effectively put"
-
-- p. 14 sec 6.1, "E" description: "featureset" --> "feature set"
-
 - p. 14: shouldn't T be the features from basic TER rather than basic
   TERp?  Which of these features are not in TER?
 

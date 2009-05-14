@@ -20,7 +20,7 @@
 \begin{article}
 \begin{opening}         
 \title{Expected Dependency Pair Match:\\
-Predicting {HTER} improvements with expected syntactic structure} 
+Predicting translation quality with expected syntactic structure} 
 \author{Jeremy G. \surname{Kahn}\email{jgk@u.washington.edu}}  
 \institute{University of Washington}
 \author{Matthew \surname{Snover}\email{snover@cs.umd.edu}}
@@ -75,7 +75,7 @@ for training on error criteria, e.g.\ with minimum error rate training
 \cite{och03mert}.
 
 Currently, the most popular evaluation measures include a measure
-based on $n$-gram precision known as BLEU \cite{papineni02bleu}) and
+based on $n$-gram precision known as BLEU \cite{papineni02bleu} and
 the edit-distance measure Translation Edit Rate (TER)
 \cite{snover06ter}.  Recent research has found that these measures may
 not accurately track translation quality both empirically
@@ -383,7 +383,7 @@ space of metrics outlined above along multiple dimensions:
 \item[Size of $n$-best list.] Although the parser can generate
   considerably more, we consider $n$-best lists of size 1 and of size
   50.
-\item[Confidence of $n$-best list.] An expectation requires a
+\item[Confidence of $n$-best hypotheses.] An expectation requires a
   probability distribution over the $n$-best list, and we consider
   three options: uniform, the parser probabilities, and a flattened
   version of the parser probabilities such that $\tilde{p}(x) =
@@ -403,7 +403,7 @@ space of metrics outlined above along multiple dimensions:
     always reach 50 candidate parses on short sentences, so the
     expectation matches our intent better than a sum of counts over
     the $n$-best.}
-\item[Score combination.]: We consider three possible methods for
+\item[Score combination.] We consider three possible methods for
   combining scores across decompositions, as suggested in
   section~\ref{sec:approach}:
   \begin{description}
@@ -458,7 +458,7 @@ translations rather than among differences in the underlying segments.
 
 %% MO: Okay, but a little hard to figure out.
 When reporting HTER correlations per-sentence, we use length-weighted
-correlation, since unweighted correlations effectively puts too much
+correlation, since unweighted correlations effectively put too much
 emphasis on short sentences.  We do not weight for length for the
 per-document correlations in section~\ref{sec:hter1}, because we
 assume documents to be equally important (regardless of length).
@@ -773,7 +773,7 @@ We train a model using features from one or more of the following
 sets:
 \begin{description}
 \item[E]: the fully syntactic features from the DPM family.
-  Specifically, this featureset includes precision and recall scores
+  Specifically, this feature set includes precision and recall scores
   for the $dl$, $lh$, $dlh$, and $dh$ decompositions of the syntactic
   structure, using $n=50$ and $\gamma=0.25$.  The \textbf{E} set
   includes 8 features.
