@@ -758,10 +758,23 @@ As discussed in section~\ref{sec:intro}, the TER Plus (TERp) research
 tools \cite{snover09terp} provide an optimizer for weighting multiple
 simple subscores, including selecting weights for the TER basic
 operations. TERp's feature list extends TER to additionally include
-synonym tables and an empirically-derived paraphrase table.
+synonymy, stemming, and automatically-derived paraphrases.
 
 %% MO: important to describe basic model before listing features.
-TO DO: TERp optimizer [Matt, a brief description here]
+The TERp optimizer performs a hill-climbing search, with randomized
+restarts, to maximize the correlation of a linear combination of the
+features with a set of human judgments.  Within the TERp framework the
+features are the count of the various edit types normalized for the
+length of the reference so that the dot product of the features with a
+vector of edit costs will give the TERp score for a given segment.  In
+these experiments, we follow~\inlinecite{snover09terp} by first
+aligning the MT outputs with the reference, using TERp with a set of
+default edit costs, to find the counts of the various edit types.
+These alignments and edit costs are then held constant to optimize the
+edit costs. In the case of comparing TERp without the paraphrasing
+feature, a separate alignment was performed without that feature
+enabled.  Additional features can be added to the TERp optimization
+framework and optimized in the same manner as the edit costs.
 
 In the experiments presented in this section, we extend this feature
 list by including the syntactic overlap features, and we use the TERp
@@ -780,13 +793,13 @@ sets:
 \item[N]: the non-syntactic features from the DPM family;
   specifically, precision and recall for $1g$ and $2g$ decompositions.
   The \textbf{N} set includes 4 features.
-\item[T]: the features from basic TERp, which include a separate cost
-  for each of insertions, deletions, substitutions, shifts, and
-  synonym-alignment. The \textbf{T} set includes 7 features.
-  % MO  (to Matt): is this basic TER or basic TERp?
-  % TO DO: what are the other two?
+\item[T]: the features from basic TERp, excluding paraphrases, which include a separate cost
+  for each of matches, insertions, deletions, substitutions, shifts, and
+  synonym matches and stem matches. The \textbf{T} set includes 7 features.
 \item[P]: features from the automatically-derived TERp paraphrase
-  table (4 features) % TO DO: Matt, what are these
+  table. These are four features which are a function of of the edit
+  distance between the two phrases in each paraphrase and the
+  probability of the paraphrase.
 \item[B]: two ``length penalties'' one is assigned the count of
   hypothesis words beyond the count of reference words, and one
   assigned the count of reference words beyond the count of hypothesis
