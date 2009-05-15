@@ -842,8 +842,8 @@ trained on one and tested on the other).
 For each set of features, we plot the $r$ (and confidence) on both
 halves of the corpus (for each half, tuned on the other half). In the
 leftmost group of the figure, we include baselines: EDPM and BLEU and
-TER.  Next, the tuned E feature, which (by itself) does not perform as
-well as TER or EDPM.  
+TER (which are not tuned).  Next, the tuned E feature, which (by
+itself) does not perform as well as TER or EDPM.
 %
 The remaining groups of three show that for each set of features, as E
 (and EB) are included with others, correlation improves (though not
@@ -864,42 +864,45 @@ that the EN features --- though tuned --- do not outperform EDPM.
 \section{Conclusion}
 \label{sec:conclusion}
 In this research, we explore dependency pair match (DPM) a family of
-syntactically-oriented measures.  Through a corpus of human judgments,
+syntactically-oriented measures.  Through a corpus of human fluency
+and adequacy judgments,
 we settle on EDPM, a member of that family with promising predictive
 power.  We find that EDPM is superior to BLEU and TER in terms of
 correlation with human judgments and as a per-document and
 per-sentence predictor of HTER (using mean-subtraction to account for
 underlying document- and segment-level difficulty).
-% TO DO:  add something here regarding summary of tuning?
+We experiment with including syntactic features in TERp-style tuning,
+with linear weight combination, and find that including these features
+improves correlation with mean-subtracted HTER, although these
+improvements do not reach significance.
 
 Several areas of future work are open to us. One obstacle to using
-this method widely is the computational expense of the system. Parsing
-is many times more computationally costly than word-based measures
+this method widely is the computational cost of parsing compared to
+word-based measures
 such as BLEU or TER.  Using these syntactic techniques may be possible
 as a late-pass evaluation, to identify how candidate translation
 systems are performing overall.  Alternatively, the various
 tree-decompositions of the DPM family could be used as system
 diagnostics, by looking at relative quality of these component scores
 compared to those of an alternative candidate system.
+%
+Another possible approach is to store packed forests
+\cite{huang08packedforests} rather than generating an $n$-best list
+only to sum across it again in calculating the expectation.
 
-Another interesting research area is in the quality of the parser.  In
+Another research area relates to the quality of the parser.  In
 this work, we demonstrated that the
 \inlinecite{charniak-johnson:2005:ACL} PCFG parser could serve in
 place of the LFG parser used in
 \inlinecite{owczarzak07labelleddepseval}. PCFG parsers, however, are
-fairly easily adaptable to another domain. One interesting research
+fairly easily adaptable to another domain. One research
 direction explores the intersection of genre (and genre-mismatch),
 parser quality, and prediction of human performance.
 % Another
 % consideration is the speed of the parser: parse time currently takes
 % much, much longer than BLEU, TER, or other word-based measures. 
 We are interested in the trade-offs --- if any --- among parse
-quality, speed, and predictive power as a translation metric.  One
-possibility, for example, is to store packed forests
-\cite{huang08packedforests} rather than generating an $n$-best list
-only to sum across it again in calculating the expectation.
-
-TO DO: parting words
+quality, genre adaptation, and predictive power as a translation metric.  
 
 % \appendix
 % [don't think we want an appendix]
