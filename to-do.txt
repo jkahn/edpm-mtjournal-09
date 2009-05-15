@@ -1,19 +1,1 @@
-revisit endnotes and make sure they make more sense out-of-context
-
-
-answer Mari's question about N-grams vs parse features
-
-Issues around tuning
-
-finalize conclusion
-
-MARI's comments:
-
-
-- p. 14: shouldn't T be the features from basic TER rather than basic
-  TERp?  Which of these features are not in TER?
-
-
-==========
-
 look at detect-human experiment (rebuild?)

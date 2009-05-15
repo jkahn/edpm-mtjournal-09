@@ -355,6 +355,7 @@ have a similar resolution, e.g.\ the $\stackrel{S/NP}{\to}$ arc label
 usually represents a subject dependent of a sentential verb.
 
 \subsection{Dimensions of metric family}
+\label{sec:metricdimensions}
 In the experiments presented later in this article, we explore the
 space of metrics outlined above along multiple dimensions:
 \begin{description}
@@ -394,16 +395,17 @@ space of metrics outlined above along multiple dimensions:
   sum to one over the the $n$-best list, where the maximum $n$ in this
   work is 50.  The uniform distribution ($\gamma = 0$) is intended to
   be equivalent to the \cite{owczarzak07labelleddepseval}
-  \textbf{d\_50} and \textbf{d\_50\_var} measures.\endnote{Since
+  \textbf{d\_50} and \textbf{d\_50\_var} measures.\endnote{
     \inlinecite{owczarzak07labelleddepseval} report no use of parse
-    weights, \textbf{d\_50} and \textbf{d\_50\_var} may be using a sum
-    of counts over the 50-best list rather than expected-counts over a
-    uniform distribution. These two approaches are equivalent --- so
-    long as the $n$-best list is always the same length for hypothesis
-    and reference.  In our implementation, the $n$-best list does not
-    always reach 50 candidate parses on short sentences, so the
-    expectation matches our intent better than a sum of counts over
-    the $n$-best.}
+    confidence weights, thus \textbf{d\_50} and \textbf{d\_50\_var}
+    may be using a sum of counts over the 50-best list rather than
+    expected-counts over a uniform distribution, as we suggest in
+    section~\ref{sec:metricdimensions}. These two approaches are
+    equivalent --- so long as the $n$-best list is always the same
+    length for hypothesis and reference.  In our implementation, the
+    $n$-best list does not always reach 50 candidate parses on short
+    sentences, so the expectation matches our intent better than a sum
+    of counts over the $n$-best.}
 \item[Score combination.] We consider three possible methods for
   combining scores across decompositions, as suggested in
   section~\ref{sec:approach}:
@@ -429,7 +431,7 @@ space of metrics outlined above along multiple dimensions:
 \end{description}
 
 \subsection{Reference evaluation measures over parallel translations}
-
+\label{sec:metricsreference}
 For some of the experiments presented here (sections~\ref{sec:hter1}
 and~\ref{sec:hter2}), we have multiple translations of the same source
 segment, each from a different translation engine and each with its
@@ -449,10 +451,11 @@ $m$ and HTER), where $\bar{\mu}$ represents mean-removal:
 Mean-removal lowers the correlation $r$ values reported but ensures
 that the reported correlations are among differences in the
 translations rather than among differences in the underlying segments.
-\endnote{ Previous work \cite{kahn08metricsmatr} reported HTER
+\endnote{Previous work \cite{kahn08metricsmatr} reported HTER
   correlations against pairwise differences among translation segments
-  derived from the same source segment. The results are similar to
-  those reported here. However, we believe that pairwise differences
+  derived from the same source segment, unlike the mean-removal
+  suggested in section~\ref{sec:metricsreference}. Those results are similar to
+  those reported in section~\ref{sec:hter1}. However, we believe that pairwise differences
   introduce problems with the independence assumptions in the
   Pearson's $r$ tests, and we use mean-removal throughout this work
   instead.}
@@ -472,19 +475,19 @@ correlations of various configurations against a corpus of human
 judgments of fluency and adequacy.
 
 \subsection{Corpus}
-
+\label{sec:facorpus}
 For these experiments, we use LDC Multiple Translation Chinese corpus
 parts 2~\cite{LDC03MTC2} and 4~\cite{LDC06MTC4}.  These corpora
 include multiple human judgments of fluency and adequacy for each
 sentence, with each judgment using a different human judge and a
 different reference translation.  For a rough\endnote{Our segment
-  count differs from \inlinecite{owczarzak07labelleddepseval}, who
-  report 16,800 segments over the same corpus. We find baseline
-  correlations (BLEU$_4$ and TER) lower than those reported there as
-  well, so the results presented here are not directly comparable with
-  that paper, though we demonstrate similar gains over those baselines
-  in essentially the same
-  corpus. % (section~\ref{sec:facorr:newdeps}).}
+  count reported in section~\ref{sec:facorpus} differs from
+  \inlinecite{owczarzak07labelleddepseval}, who report 16,800 segments
+  over the same corpus. We find baseline correlations (BLEU$_4$ and
+  TER) lower than those reported there as well, so the results
+  presented here are not directly comparable with that paper, though
+  we demonstrate similar gains over those baselines in essentially the
+  same corpus.
 } comparison with \inlinecite{owczarzak07labelleddepseval}, we treat
 each judgment as a separate segment.
 %
@@ -492,11 +495,13 @@ This treatment of this corpus yields 16,815 tuples of
 $\langle$hypothesis, reference, fluency, adequacy$\rangle$.  In these
 experiments, we extend this tuple with automatic scores derived from
 $\langle$hypothesis, reference$\rangle$ and examine the
-correlations\endnote{The independence of each of these segments is
-  questionable, since the same hypothesis translations are used in
-  multiple items, but for the sake of methodological comparison with
-  prior work, this strategy is preserved.}  between those automatic
-scores and the arithmetic mean of the fluency and adequacy measures.
+correlations\endnote{The independence of the translation segments in
+  the Multiple Translation Corpus described in
+  section~\ref{sec:facorpus} is questionable, since the same
+  hypothesis translations are used in multiple items, but for the sake
+  of methodological comparison with prior work, this strategy is
+  preserved.}  between those automatic scores and the arithmetic mean
+of the fluency and adequacy measures.
 
 \subsection{Exploring decompositions}
 We begin by comparing some of the simplest DPM measures to baseline
