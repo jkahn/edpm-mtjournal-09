@@ -1,3 +1,6 @@
+revisit endnotes and make sure they make more sense out-of-context
+
+
 answer Mari's question about N-grams vs parse features
 
 Issues around tuning

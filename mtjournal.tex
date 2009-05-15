@@ -393,7 +393,7 @@ space of metrics outlined above along multiple dimensions:
   sum to one over the the $n$-best list, where the maximum $n$ in this
   work is 50.  The uniform distribution ($\gamma = 0$) is intended to
   be equivalent to the \cite{owczarzak07labelleddepseval}
-  \textbf{d\_50} and \textbf{d\_50\_var} measures.\footnote{Since
+  \textbf{d\_50} and \textbf{d\_50\_var} measures.\endnote{Since
     \inlinecite{owczarzak07labelleddepseval} report no use of parse
     weights, \textbf{d\_50} and \textbf{d\_50\_var} may be using a sum
     of counts over the 50-best list rather than expected-counts over a
@@ -448,7 +448,7 @@ $m$ and HTER), where $\bar{\mu}$ represents mean-removal:
 Mean-removal lowers the correlation $r$ values reported but ensures
 that the reported correlations are among differences in the
 translations rather than among differences in the underlying segments.
-\footnote{ Previous work \cite{kahn08metricsmatr} reported HTER
+\endnote{ Previous work \cite{kahn08metricsmatr} reported HTER
   correlations against pairwise differences among translation segments
   derived from the same source segment. The results are similar to
   those reported here. However, we believe that pairwise differences
@@ -470,15 +470,13 @@ To explore members of the DPM metric family, we explore the
 correlations of various configurations against a corpus of human
 judgments of fluency and adequacy.
 
-% TO DO: more to say here?
-
 \subsection{Corpus}
 
 For these experiments, we use LDC Multiple Translation Chinese corpus
 parts 2~\cite{LDC03MTC2} and 4~\cite{LDC06MTC4}.  These corpora
 include multiple human judgments of fluency and adequacy for each
 sentence, with each judgment using a different human judge and a
-different reference translation.  For a rough\footnote{Our segment
+different reference translation.  For a rough\endnote{Our segment
   count differs from \inlinecite{owczarzak07labelleddepseval}, who
   report 16,800 segments over the same corpus. We find baseline
   correlations (BLEU$_4$ and TER) lower than those reported there as
@@ -493,7 +491,7 @@ This treatment of this corpus yields 16,815 tuples of
 $\langle$hypothesis, reference, fluency, adequacy$\rangle$.  In these
 experiments, we extend this tuple with automatic scores derived from
 $\langle$hypothesis, reference$\rangle$ and examine the
-correlations\footnote{The independence of each of these segments is
+correlations\endnote{The independence of each of these segments is
   questionable, since the same hypothesis translations are used in
   multiple items, but for the sake of methodological comparison with
   prior work, this strategy is preserved.}  between those automatic
@@ -924,7 +922,7 @@ TO DO: parting words
 
 % The endnotes section will be placed here.  But I don't think we have any
 
-% \theendnotes
+\theendnotes
 
 \bibliographystyle{klunamed}
 \bibliography{mtjournal}
