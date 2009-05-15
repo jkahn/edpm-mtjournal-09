@@ -786,12 +786,14 @@ We train a model using features from one or more of the following
 sets:
 \begin{description}
 \item[E]: the fully syntactic features from the DPM family.
-  Specifically, this feature set includes precision and recall scores
+  Specifically, this feature set includes error-counts
+  ($\frac{|\textrm{hyp}| - |\textrm{correct}|}{|\textrm{ref}|}$ and
+  $\frac{|\textrm{ref}| - |\textrm{correct}|}{|\textrm{ref}|}$) 
   for the $dl$, $lh$, $dlh$, and $dh$ decompositions of the syntactic
   structure, using $n=50$ and $\gamma=0.25$.  The \textbf{E} set
   includes 8 features.
 \item[N]: the non-syntactic features from the DPM family;
-  specifically, precision and recall for $1g$ and $2g$ decompositions.
+  specifically, error-counts for the $1g$ and $2g$ decompositions.
   The \textbf{N} set includes 4 features.
 \item[T]: the features from basic TERp, excluding paraphrases, which include a separate cost
   for each of matches, insertions, deletions, substitutions, shifts, and
@@ -824,68 +826,42 @@ with) length-weighted per-sentence correlation with HTER, using
 mean-removed scores as before.
 
 % tuning target: weighted correlation with mean-removed segment HTER
-
+\subsection{Effects of features on tuning}
 % [we use weighted correlation to avoid emphasis on short segments
 % (which hurts document-level and system-level utility) ]
 In figure~\ref{fig:tuneresults}, we plot the Pearson's $r$ (with 95\%
 confidence interval) for the results on the two test sets (each
 trained on one and tested on the other).
 \begin{figure}
-  \centerline{{one figure}\qquad{}{two figure}}
-  \caption{Figure with two tune-set plots will go here.}
+  \begin{center}
+    \includegraphics[scale=0.45]{tuning.eps}
+  \end{center}
+  \caption{Pearson's $r$ values for the two halves of the training
+    set, with 95\% confidence intervals. }
   \label{fig:tuneresults}
 \end{figure}
-
-
+%
+For each set of features, we plot the $r$ (and confidence) on both
+halves of the corpus (for each half, tuned on the other half). In the
+leftmost group of the figure, we include baselines: EDPM and BLEU and
+TER.  Next, the tuned E feature, which (by itself) does not perform as
+well as TER or EDPM.  
+%
+The remaining groups of three show that for each set of features, as E
+(and EB) are included with others, correlation improves (though not
+significantly).  These all move in the same direction. By the same
+measurement, P features help beyond T -- as reported elsewhere -- but
+N features do not seem to find a better correlation than TP features.
 % MO suggestions:
 
+Overall, we find that this approach for combining the underlying idea
+of EDPM with the underlying ideas of TERp is promising, in that the E
+features offer small (though non-significant) improvements to the
+features already within TERp. However, this combination approach still
+has more in common with the $\mu_{PR}$ combination method (explored in
+section~\ref{sec:faexpts}) than with EDPM, which suggests a reason
+that the EN features --- though tuned --- do not outperform EDPM.
 %% do n-fold with >2 N -- better robustness to variation?
-
-%% look at variation in weights on 2-fold case   
-\begin{verbatim}
-   == Tuned For Weighted Mean Removed Pearson
-     - Examining WGT_MEAN_RM_SEG_PEAR ==
-            Average
-      Cond   Test  
-     ---------------
-      ETPB   0.4096
-      ETP    0.4038
-      TPB    0.4010
-      TP     0.3946  > 0.416
-      TPNB   0.3940
-      TPN    0.3891
-      ETB    0.3871
-      ET     0.3827  > 0.404
-      TB     0.3815  > 0.403
-      ETNB   0.3814
-      ETN    0.3804
-      T      0.3758  > 0.398
-      TNB    0.3708
-      TN     0.3680  > 0.390
-      TER    0.353   > 0.375
-      E      0.3287  > 0.352
-      EB     0.3267
-      ENB    0.3149
-      NB     0.3058  > 0.329
-      EN     0.2973
-      N      0.2636
-      BLEU   0.244
-      B      0.1638
-\end{verbatim}
-(maybe don't report all these numbers!)
-
-TO DO: discuss this as a trend, despite lack of significance? plot charts?
-  
-point: E+T $>$ T, E+TB $>$ TB, E+TP $>$ TP; information is available
-in syntax that is not captured in the other measures.
-
-point: syntax is *not* just an expensive way to get at n-grams;
-N-grams are not the same -- TP $>$ TP+N, but TP $<$ TP+E
-
-question: this is kind of like the $\mu_{PR}[\cdot]$ --- seems like it
-also doesn't work so well. compare to EDPM as-is
-
-talk about why EN is $<$ EDPM (is it?)
 
 \section{Conclusion}
 \label{sec:conclusion}
