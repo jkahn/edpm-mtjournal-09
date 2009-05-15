@@ -439,11 +439,11 @@ identifying which of two candidate translations is better with $m$'s
 difficult to translate.
 
 To avoid this conflation, on the HTER corpora we report correlations
-on $\bar{\mu}(m)$ and $\bar{\mu}(\textrm{HTER})$ (rather than measure
+on $\bar{\mu}m$ and $\bar{\mu}\textrm{HTER}$ (rather than measure
 $m$ and HTER), where $\bar{\mu}$ represents mean-removal:
 \begin{equation}
   \label{eq:meansub}
-  \bar{\mu}(m(t_i)) = m(t_i) - \sum_{j=1}^I\frac{m(t_j)}{I}
+  \bar{\mu}m(t_i) = m(t_i) - \sum_{j=1}^I\frac{m(t_j)}{I}
 \end{equation}
 Mean-removal lowers the correlation $r$ values reported but ensures
 that the reported correlations are among differences in the
@@ -659,7 +659,7 @@ so we have available the HTER score of each segment HTER$(t_{i,z})$ at
 both the sentence and document level.
 
 As discussed in section~\ref{sec:paradigm}, we report correlations
-here between $\bar{\mu}(m)$ and $\bar{\mu}(\textrm{HTER})$, rather
+here between $\bar{\mu}m$ and $\bar{\mu}\textrm{HTER}$, rather
 than $m$ and HTER directly, to abstract away from variations in the
 underlying documents.
 
