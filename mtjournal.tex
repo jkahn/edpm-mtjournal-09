@@ -101,7 +101,7 @@ As an alternative to these synonym- and paraphrase-based approaches,
 other metrics model syntactically-local (rather than string-local)
 word-sequences. \inlinecite{liu05syntaxformteval} compared tree-local
 $n$-gram precision in various configurations of constituency and
-dependency trees.  The dependent-based SParseval measure
+dependency trees.  The dependency-based SParseval measure
 \cite{roark06:sparseval}, designed as a parse-quality metric for
 speech, is a similar approach, in that it is an F-measure over a
 decomposition of reference and hypothesis trees.
@@ -373,8 +373,9 @@ space of metrics outlined above along multiple dimensions:
       the word being modified; this decomposition implicitly marks how
       key the word is to the sentence.
     \item[dh] $\left\langle \textrm{Dependent}, \textrm{Head}
-      \right\rangle$ Here, drops the arc-label. This decomposition
-      ignores the syntactic-role information implied in the arc labels.
+      \right\rangle$ This decomposition drops the arc from the
+      dependency-pair tuple, ignoring the syntactic-role information
+      implied in the arc labels.
     \item[1g,2g] These decompositions are syntactically-null.  They
       simply include each 1-gram (or 2-gram) without any syntactic
       labeling at all.  They are thus simple measures of unigram
@@ -507,13 +508,13 @@ TER.  For these first experiments, we consider only the 1-best parse
   \label{tab:facorr:subgraphs}
   \begin{tabular*}{2.5in}{lr}
     \hline
-    metric  &    \multicolumn{1}{c}{$r$} \\
+    metric  &    \multicolumn{1}{c}{$|r|$} \\
     \hline
     $F[dl,lh]$ &   0.226 \\
     % # +1 smoothing
     BLEU$_4$ &   0.218 \\
     $F[dlh]$ &     0.185 \\
-    TER &      -0.173 \\
+    TER &      0.173 \\
     \hline
   \end{tabular*}
 \end{table}
@@ -535,7 +536,8 @@ members of the DPM family.
     $\mu_{PR}[1g,2g,dl,lh]$ &  0.217 \\
     \rlcline{1-1} \rlcline{2-2}
     $F[1g,2g]$            & 0.227 \\
-    $F[1g,dl,dlh]$        & 0.227 \\
+    $\mu_{PR}[1g,2g]$            & 0.215 \\
+%    $F[1g,dl,dlh]$        & 0.227 \\
     \rlcline{1-1} \rlcline{2-2}
     $F[dl,lh]$            &  0.226 \\
     $\mu_{PR}[dl,lh]$      &  0.208 \\
@@ -553,7 +555,7 @@ We also see that we can combine the benefits of string-local $n$-grams
 ($F[1g,2g]$) with the benefits of dependency information ($F[dl,lh]$)
 for a further improved correlation with human judgment, with the best
 correlation in $F[1g,2g,dl,lh]$. Including progressively larger chunks
-of the dependency graph (as in $F[1g,dl,dlh]$, which is inspired by
+of the dependency graph with $F[1g,dl,dlh]$ (not shown in table, but inspired by
 the BLEU$_k$ idea of progressively larger $n$-grams) does not seem to
 be an improvement over $F[dl,lh]$.
 
