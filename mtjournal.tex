@@ -66,7 +66,7 @@ evaluation is done automatically.
 %
 Human evaluation, however, is both time-consuming and difficult, so
 research has turned increasingly towards automatic measures of
-translation quality, usually by comparing the system translation to
+translation quality, usually by comparing the system (hypothesis) translation to
 one or more reference (human) translations.
 %
 Automatic measures of this kind not
@@ -88,7 +88,7 @@ incorporate additional language knowledge sources.  METEOR
 morphological stemming to do progressively more-forgiving matching.
 It can be tuned towards recall or precision, but is generally not
 tuned by users.  TERp \cite{snover09terp} is an extension of the
-previously-mentioned TER that also incorporates synonym sets, along
+previously-mentioned TER that also incorporates synonym sets and stemming, along
 with automatically-derived paraphrase tables.  TERp is explicitly
 intended to be tuned to a development set by users.
 %
@@ -134,7 +134,7 @@ original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
-In section~\ref{sec:approach}), we outline our approach to including
+In section~\ref{sec:approach}, we outline our approach to including
 syntactic information in MT evaluation, by describing a family of
 metrics. In section~\ref{sec:paradigm}, we describe the implementation
 details and make explicit which dimensions of this family of metrics
@@ -147,8 +147,8 @@ compares the correlation of EDPM with HTER over a corpus of document-
 and sentence-level comparisons, and demonstrates that its correlation
 is favorable to that of competitor measures BLEU and TER at both
 sentence and document levels, regardless of source-language or genre.
-Section~\ref{sec:hter2} uses the tuning components of the TERp tools
-to explore the combination of these syntactic measures with other TERp
+Section~\ref{sec:hter2} uses the tuning components of TERp
+to explore the combination of these syntactic measures with TERp's
 word-based measures. Finally, section~\ref{sec:conclusion} concludes
 with some remarks on challenges and future work.
 
@@ -232,8 +232,8 @@ included.
   }
   \label{fig:decompexample2}
 \end{figure}
-Figure~\ref{fig:decompexample2} demonstrates the $dl,lh$
-decomposition for the hypothesis tree in figure~\ref{fig:decompexample}.
+Figure~\ref{fig:decompexample2} demonstrates the $dl$ and $lh$
+decompositions for the hypothesis tree in figure~\ref{fig:decompexample}.
 
 It is worth noting here that the $dlh$ and $lh$ decompositions (but
 not the $dl$ decomposition) ``overweight'' the headwords, in that
@@ -606,7 +606,7 @@ In this section, we have presented experiments exploring a number of
 variants of the DPM metric against an average fluency/adequacy
 judgment. The experiments suggest a best-case variant, where we set:
 \begin{displaymath}
-  EDPM = F[1g,2g,dl,lh], n=50, \gamma=0.25
+  \mbox{EDPM} = F[1g,2g,dl,lh], n=50, \gamma=0.25
 \end{displaymath}
 in which we choose a $1g,2g,dl,lh$ sub-graph decomposition based on
 the improvements from better sub-graphs
@@ -769,9 +769,9 @@ synonymy, stemming, and automatically-derived paraphrases.
 The TERp optimizer performs a hill-climbing search, with randomized
 restarts, to maximize the correlation of a linear combination of the
 features with a set of human judgments.  Within the TERp framework the
-features are the count of the various edit types normalized for the
+features are the counts of the various edit types normalized for the
 length of the reference so that the dot product of the features with a
-vector of edit costs will give the TERp score for a given segment.  In
+vector of edit costs will give the TERp score for a given sentence.  In
 these experiments, we follow~\inlinecite{snover09terp} by first
 aligning the MT outputs with the reference, using TERp with a set of
 default edit costs, to find the counts of the various edit types.
@@ -783,7 +783,7 @@ framework and optimized in the same manner as the edit costs.
 
 In the experiments presented in this section, we extend this feature
 list by including the syntactic overlap features, and we use the TERp
-optimizer tools to tune the relative weight of each feature.
+optimizer to tune the relative weight of each feature.
 
 \subsection{Features}
 
@@ -804,14 +804,13 @@ sets:
   for each of matches, insertions, deletions, substitutions, shifts, and
   synonym matches and stem matches. The \textbf{T} set includes 7 features.
 \item[P]: features from the automatically-derived TERp paraphrase
-  table. These are four features which are a function of of the edit
+  table. These are four features which are a function of the edit
   distance between the two phrases in each paraphrase and the
   probability of the paraphrase.
-\item[B]: two ``length penalties'' one is assigned the count of
+\item[B]: two ``length penalties'': brevity and prolixity. One is assigned the count of
   hypothesis words beyond the count of reference words, and one
   assigned the count of reference words beyond the count of hypothesis
-  wordsbrevity/prolixity (2 features: one for longer-than-ref, one for
-  shorter-than-ref).
+  words.
   % MO: out of curiosity, why do you need 2 features?
   We assign two features here to let the system separately penalize
   ``too short'' translations and ``too long''.
