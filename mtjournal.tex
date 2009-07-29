@@ -511,7 +511,8 @@ measures case-sensitive BLEU (4-grams, with add-one smoothing) and
 TER.  For these first experiments, we consider only the 1-best parse
 ($n=1$).
 \begin{table}
-  \caption{Comparing $dl,lh$ to $dlh$ and baselines.}
+  \caption{Comparing $dl,lh$ to $dlh$ and baseline correlations with
+    human fluency and adequacy judgments.}
   \label{tab:facorr:subgraphs}
   \begin{tabular*}{2.5in}{lr}
     \hline
@@ -550,7 +551,7 @@ members of the DPM family.
     $\mu_{PR}[dl,lh]$      &  0.208 \\
     \hline
   \end{tabular*}
-  \caption{Comparing combination methods $F[\cdot]$ and
+  \caption{Correlation with human fluency/adequacy judgments. Comparing combination methods $F[\cdot]$ and
     $\mu_{PR}[\cdot]$, and comparing the $1g,2g,dl,lh$ decomposition
     with the $dl,lh$ decomposition and other decompositions.}
   \label{tab:facorr:combinations}
@@ -589,7 +590,7 @@ with $n=50$.
     $F[dl,lh]$            &  1 & 0.226 \\
     \hline
   \end{tabular*}
-  \caption{Comparing $n=1$ to $n=50$ for several variants of the DPM measure.}
+  \caption{Correlation with human fluency/adequacy judgments. Comparing $n=1$ to $n=50$ for several variants of the DPM measure.}
   \label{tab:facorr:multiparse}
 \end{table}
 For the $n=50$ cases, we set $\gamma=0$ to assign uniform

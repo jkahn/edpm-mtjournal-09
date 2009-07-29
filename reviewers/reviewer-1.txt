@@ -8,6 +8,4 @@ In section 4.1, while the corpus is referenced and the information can be looked
 
 The correlations reported in section 4 (tables I-III) are overall quite low (also compared to EDPM's r correlations for Chinese source data in NIST's MetricsMATR challenge).  Could you comment on this?
 
-For ease of lookup, please include in the table headings for tables I-III that the correlations are with human judgments of adequacy and fluency
-
 In section 5.1, "EDPM's strengths, relative to the other measures, are particularly clear in the unstructured domains (wb and bc)."  This statement does not seem to hold for EDPM vs. BLEU for the wb genre in table Va; the correlation reported is the same for the two metrics?
