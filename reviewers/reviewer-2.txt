@@ -32,8 +32,6 @@ Detail comments:
  issue where there will presumably be an overview article
  that discusses relevant previous work.
 
-- p.2, publically -> publicly?
-
 - p.3, "In section 2 etc." I'm not sure that a 12-page paper requires
  a table of contents.
 
