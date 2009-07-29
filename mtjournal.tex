@@ -309,10 +309,11 @@ rules \cite{magerman95headfinding} to generate a 50-best list of
 dependency trees for each hypothesis and reference translation.  We
 use the parser's default (English-language) Wall Street Journal
 training parameters.  Head-finding uses the Charniak parser's rules,
-with three modifications: prepositional and complementizer phrases
-choose nominal and verbal heads respectively (rather than functional
-heads) and auxiliary verbs are modifiers of main verbs (rather than
-the converse).
+with three modifications to make the semantic (rather than syntactic)
+relations more dominant in the dependency tree: prepositional and
+complementizer phrases choose nominal and verbal heads respectively
+(rather than functional heads) and auxiliary verbs are modifiers of
+main verbs (rather than the converse).
 
 Having constructed the dependency tree, we label the arcs as $d
 \stackrel{A/B}{\to} h$, where the arc label $A/B$ between dependent

@@ -4,8 +4,6 @@ Reviewer #1: This submission on Dependency Pair Match MT metrics is technically 
 
 As per the submission guidelines, submissions must be limited to 12 pages of content, with an additional page for references.  The current version has 16.5 pages plus one page of references, so significant shortening will be necessary.  I find the overall balance of sections adequate, so I would recommend shortening across the board rather than in one particular section.
 
-Can you expand on the reasoning behind the modifications to the Charniak parser rules described in section 3.1?
-
 In section 4.1, while the corpus is referenced and the information can be looked up, it would still be helpful to include directly in the paper a brief description of the adequacy and fluency measures.  In particular, what kind (granularity) of scale was used for the judgments needs to be known in order to be able to assess the reported correlations.  A brief description of the data genre(s) would be useful to have at hand as well.  Also, I assume you correlate at the *segment* level, but this is not explicitly stated.
 
 The correlations reported in section 4 (tables I-III) are overall quite low (also compared to EDPM's r correlations for Chinese source data in NIST's MetricsMATR challenge).  Could you comment on this?
