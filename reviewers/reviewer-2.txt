@@ -59,7 +59,6 @@ Detail comments:
  very much in the same boat.
 
 - p.7 "Score combination" - see comment above
-     "Tuned, like the ..." - ungrammatical sentence?
 
 - Evaluation (p. 8) In principle I like the idea of teasing apart
  sentence difficulty and translation quality. However, I have two
@@ -78,10 +77,6 @@ Detail comments:
  from it in some crucial respects (e.g. the definition of the
  dependent variable by mean subtraction). Can you provide a clearer
  description of why each experiment is set up in the way it is?
-
-- p.10 Am I right in reading Table II to say that F always outperforms
- BLEU, but \mu never does? Maybe it would be good to re-mention the
- BLEU results in Table II.
 
 - p.12 Can you elaborate on why you want to weight per-sentence
  correlations by sentence length? I don't feel that this

@@ -421,8 +421,9 @@ space of metrics outlined above along multiple dimensions:
     recall score from each decomposition, and then does an
     evenly-weighted harmonic mean of all the component precision and
     recall scores.
-  \item Tuned, like the previous combination, calculates precision and
-    recall separately for each decomposition, but performs a linear
+  \item Tuned weight combination, like the previous $\mu_{PR}$
+    combination, calculates precision and
+    recall separately for each decomposition but performs a linear
     weighted combination of the resulting precision and recall scores.
     For this tuning, we note that TERp \cite{snover09terp} provides a
     tuneable system over a small number of parameters (they include,
@@ -564,6 +565,9 @@ members of the DPM family.
 Here, we find that combining the decompositions naively in $F[\cdot]$
 (before computing precision and recall) has a better $r$ than the
 harmonic mean of precision and recall subscores in $\mu_{PR}[\cdot]$.
+In fact, $F[\cdot]$ measures always outperform the BLEU baseline (from
+table~\ref{tab:facorr:subgraphs}), and $\mu_{PR}[\cdot]$ measures are
+never better than BLEU.
 We also see that we can combine the benefits of string-local $n$-grams
 ($F[1g,2g]$) with the benefits of dependency information ($F[dl,lh]$)
 for a further improved correlation with human judgment, with the best
