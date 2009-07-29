@@ -52,12 +52,6 @@ Detail comments:
  and in Section 3.2 with a short explanation that \mu has been found to
  work worse than F.
 
-- p.6 "LFG...heavily knowledge-engineered parser". I think you're being
- overly harsh on the LFG-based work here. As the title of the paper you
- cite says, you're talking about an "automatically acquired PCFG-based
- LFG approximation" that's learned from a treebank, so you are really
- very much in the same boat.
-
 - p.7 "Score combination" - see comment above
 
 - Evaluation (p. 8) In principle I like the idea of teasing apart
