@@ -87,7 +87,7 @@ incorporate additional language knowledge sources.  METEOR
 \cite{banerjee05meteor}, for example, uses synonym tables and
 morphological stemming to do progressively more-forgiving matching.
 It can be tuned towards recall or precision, but is generally not
-tuned by users.  TERp \cite{snover09terp} is an extension of the
+tuned by users.  TER Plus (TERp) \cite{snover09terp} is an extension of the
 previously-mentioned TER that also incorporates synonym sets and stemming, along
 with automatically-derived paraphrase tables.  TERp is explicitly
 intended to be tuned to a development set by users.
@@ -105,7 +105,7 @@ dependency trees.  The dependency-based SParseval measure
 \cite{roark06:sparseval}, designed as a parse-quality metric for
 speech, is a similar approach, in that it is an F-measure over a
 decomposition of reference and hypothesis trees.
-\inlinecite{owczarzak07labelleddepseval} proposed \textbf{d} and
+\inlinecite{owczarzak07evaluatingmt} proposed \textbf{d} and
 \textbf{d\_var} measures that compare relational tuples derived from a
 lexical functional grammar (LFG)
 over reference and hypothesis translations and reported substantial
@@ -116,16 +116,16 @@ These syntactically-oriented measures require a system for proposing
 dependency structure over the reference and hypothesis
 translations. Some \cite{liu05syntaxformteval,roark06:sparseval} use
 PCFG parsers with deterministic head-finding, while others
-\cite{owczarzak07labelleddepseval} extract the semantic dependency
+\cite{owczarzak07evaluatingmt} extract the semantic dependency
 relations from an LFG parser \cite{cahill04lfg}.
 %
 This work extends the dependency-scoring strategies of
 \inlinecite{roark06:sparseval} and
-\inlinecite{owczarzak07labelleddepseval} using a widely-used and
+\inlinecite{owczarzak07evaluatingmt} using a widely-used and
 publicly-available probabilistic context-free grammar (PCFG) parser and deterministic head-finding rules.
  
 We may evaluate automatic MT measures in a variety of ways. Some
-\cite{banerjee05meteor,liu05syntaxformteval,owczarzak07labelleddepseval}
+\cite{banerjee05meteor,liu05syntaxformteval,owczarzak07evaluatingmt}
 have evaluated their success by comparing the measure to human
 judgments of fluency and adequacy.  In other work, e.g.\
 \inlinecite{snover06ter}, measures are evaluated by comparison to
@@ -161,7 +161,12 @@ that are composed of precision and recall combinations over various
 decompositions of a syntactic dependency tree. These measures are
 extensions of the dependency-pair F measures found in
 \inlinecite{roark06:sparseval} and
-\inlinecite{owczarzak07labelleddepseval}.  Rather than comparing
+\inlinecite{owczarzak07labelleddepseval}\endnote{
+  \inlinecite{owczarzak07evaluatingmt} extends their previous line of
+  research \cite{owczarzak07labelleddepseval} by variably-weighting
+  dependencies and by including synonym matching, two directions not
+  pursued here.
+}.  Rather than comparing
 string sequences, as BLEU does with its $n$-gram precision, this
 approach defers to a parser for an indication of the relevant word
 tuples associated with meaning --- in these implementations, the head
@@ -257,6 +262,9 @@ still valid, and using the expectations can help cope with both error
 in the parser and ambiguity in the translations (reference and
 hypothesis).
 
+% Reviewer 2 suggests reducing/removing the use of \mu here to a basic
+% explanation.
+
 When multiple decomposition types are used together, we may combine
 these subscores in a variety of ways.  We may compute precision and
 recall subscores for each decomposition separately, or, since the
@@ -275,7 +283,7 @@ decompositions described above and $\mu_h$ represents a harmonic mean:
     \recall{dl}, \precision{lh}, \recall{lh} \right)    
 \end{eqnarray}
 Dependency-based SParseval and the \textbf{d} approach from
-\inlinecite{owczarzak07labelleddepseval} may each be understood as
+\inlinecite{owczarzak07evaluatingmt} may each be understood as
 $F[dlh]$, while the latter's \textbf{d\_var} method may be understood
 as something close to $F[dl,lh]$.
 
@@ -299,7 +307,7 @@ explore in this article.
 In principle, the family of DPM measures may be implemented with
 any parser that generates a dependency graph (a single labelled arc
 for each word, pointing to its head-word). Prior work
-\cite{owczarzak07labelleddepseval} on related
+\cite{owczarzak07evaluatingmt} on related
 measures has used an LFG parser \cite{cahill04lfg} or
 an unlabelled dependency tree \cite{liu05syntaxformteval}. 
 
@@ -396,18 +404,12 @@ space of metrics outlined above along multiple dimensions:
   over-confident.  In all cases, the probabilities are normalized to
   sum to one over the the $n$-best list, where the maximum $n$ in this
   work is 50.  The uniform distribution ($\gamma = 0$) is intended to
-  be equivalent to the \cite{owczarzak07labelleddepseval}
-  \textbf{d\_50} and \textbf{d\_50\_var} measures.\endnote{
-    \inlinecite{owczarzak07labelleddepseval} report no use of parse
-    confidence weights, thus \textbf{d\_50} and \textbf{d\_50\_var}
-    may be using a sum of counts over the 50-best list rather than
-    expected-counts over a uniform distribution, as we suggest in
-    section~\ref{sec:metricdimensions}. These two approaches are
-    equivalent --- so long as the $n$-best list is always the same
-    length for hypothesis and reference.  In our implementation, the
-    $n$-best list does not always reach 50 candidate parses on short
-    sentences, so the expectation matches our intent better than a sum
-    of counts over the $n$-best.}
+  be equivalent to the \cite{owczarzak07evaluatingmt}
+  \textbf{d\_50} and \textbf{d\_50\_pm} measures.\endnote{
+    \inlinecite{owczarzak07evaluatingmt} report no use of parse
+    confidence weights, and \textbf{d\_50} and \textbf{d\_50\_pm}
+    return the best-matching pair of trees rather than an aggregate
+    over the tree sets.}
 \item[Score combination.] We consider three possible methods for
   combining scores across decompositions, as suggested in
   section~\ref{sec:approach}:
@@ -486,13 +488,14 @@ sentence, with each judgment using a different human judge and a
 different reference translation.  Both fluency and adequacy
 assessments are assigned on a five-point scale. For a rough\endnote{Our segment
   count reported in section~\ref{sec:facorpus} differs from
-  \inlinecite{owczarzak07labelleddepseval}, who report 16,800 segments
-  over the same corpus. We find baseline correlations (BLEU$_4$ and
-  TER) lower than those reported there as well, so the results
+  \inlinecite{owczarzak07evaluatingmt}, who report 16,807 segments
+  over the same corpus. We find baseline (BLEU and TER) per-segment correlations slightly
+  different (BLEU$_4$ is higher here, while TER here is lower) than
+  reported there as well, so the results
   presented here are not directly comparable with that paper, though
   we demonstrate similar gains over those baselines in essentially the
   same corpus.
-} comparison with \inlinecite{owczarzak07labelleddepseval}, we treat
+} comparison with \inlinecite{owczarzak07evaluatingmt}, we treat
 each judgment as a separate segment.
 %
 This treatment of this corpus yields 16,815 tuples of
@@ -531,7 +534,7 @@ TER.  For these first experiments, we consider only the 1-best parse
 In table~\ref{tab:facorr:subgraphs} we see that using the
 partial-label $dl,lh$ decomposition has a better per-segment correlation with the
 fluency/adequacy scores than TER or BLEU$_4$.  These results confirm,
-with a PCFG, what \inlinecite{owczarzak07labelleddepseval} found with
+with a PCFG, what \inlinecite{owczarzak07evaluatingmt} found with
 an LFG parser: that partial-dependency matches are better correlated
 with human judgments than full-dependency links.
 
@@ -597,7 +600,7 @@ with $n=50$.
 \end{table}
 For the $n=50$ cases, we set $\gamma=0$ to assign uniform
 probabilities to the parse forest, to compare as closely as possible
-to \inlinecite{owczarzak07labelleddepseval}, which includes a
+to \inlinecite{owczarzak07evaluatingmt}, which includes a
 \textbf{d\_var\_50} measure with 50-best parses, with ranks but no
 weights.  While not all of these differences are significant, the
 trend is universally that the correlation $r$ improves as the number
@@ -910,7 +913,7 @@ Another research area relates to the quality of the parser.  In
 this work, we demonstrated that the
 \inlinecite{charniak-johnson:2005:ACL} PCFG parser could serve in
 place of the LFG parser used in
-\inlinecite{owczarzak07labelleddepseval}. PCFG parsers, however, are
+\inlinecite{owczarzak07evaluatingmt}. PCFG parsers, however, are
 fairly easily adaptable to another domain. One research
 direction explores the intersection of genre (and genre-mismatch),
 parser quality, and prediction of human performance.

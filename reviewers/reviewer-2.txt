@@ -35,10 +35,9 @@ Detail comments:
 - p.3, "In section 2 etc." I'm not sure that a 12-page paper requires
  a table of contents.
 
-- p.3, reference to Owczarzak et al.'s work. In particular since their
- work has also appeared in the MT journal (please update the
- reference, btw!), it would be good to expand on the similarities and
- differences of your work and theirs.
+- p.3, reference to Owczarzak et al.'s work [...] , it would be good
+ to expand on the similarities and differences of your work and
+ theirs.
 
 -p.4 I'm not so sure that I believe in the benefit of overweighting.
  In standard dependency graphs, for example, modifications are usually
