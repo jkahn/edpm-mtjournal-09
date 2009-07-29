@@ -106,8 +106,9 @@ dependency trees.  The dependency-based SParseval measure
 speech, is a similar approach, in that it is an F-measure over a
 decomposition of reference and hypothesis trees.
 \inlinecite{owczarzak07labelleddepseval} proposed \textbf{d} and
-\textbf{d\_var} measures that compare LFG-derived relational tuples
-from reference and hypothesis translations and reported substantial
+\textbf{d\_var} measures that compare relational tuples derived from a
+lexical functional grammar (LFG)
+over reference and hypothesis translations and reported substantial
 improvement in correlation with human judgment relative to BLEU and
 TER.
 
@@ -121,7 +122,7 @@ relations from an LFG parser \cite{cahill04lfg}.
 This work extends the dependency-scoring strategies of
 \inlinecite{roark06:sparseval} and
 \inlinecite{owczarzak07labelleddepseval} using a widely-used and
-publicly-available PCFG parser and deterministic head-finding rules.
+publicly-available probabilistic context-free grammar (PCFG) parser and deterministic head-finding rules.
  
 We may evaluate automatic MT measures in a variety of ways. Some
 \cite{banerjee05meteor,liu05syntaxformteval,owczarzak07labelleddepseval}
@@ -203,7 +204,7 @@ illustrates the \emph{dependency-link-head} decomposition of a toy
 dependency tree into a list of $\langle d, l, h \rangle$ tuples.  Some
 members of the DPM family may apply more than one decomposition; other
 good examples are the $dl$ decomposition, which generates a bag of
-dependent word with outbound links, and the $lh$ decomposition, which
+dependent words with outbound links, and the $lh$ decomposition, which
 generates a bag of inbound link labels, with the head word for each
 included. 
 \begin{figure}
