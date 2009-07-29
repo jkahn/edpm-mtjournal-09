@@ -42,7 +42,7 @@ Predicting translation quality with expected syntactic structure}
   expected scores based on the N-best parses for the hypothesized
   sentence translation.  The new scoring metric, Expected Dependency
   Pair Match (EDPM), is shown to be superior to BLEU and TER in terms
-  of correlation to human judgements and as a per-document and
+  of correlation to human judgments and as a per-document and
   per-sentence predictor of HTER, using mean subtraction to account
   for document difficulty. Further, we explore the potential benefit
   of combining the n-gram and syntactic features of EDPM with the
@@ -479,10 +479,12 @@ judgments of fluency and adequacy.
 \subsection{Corpus}
 \label{sec:facorpus}
 For these experiments, we use LDC Multiple Translation Chinese corpus
-parts 2~\cite{LDC03MTC2} and 4~\cite{LDC06MTC4}.  These corpora
+parts 2~\cite{LDC03MTC2} and 4~\cite{LDC06MTC4}, which are composed of
+translations of written Chinese news stories.  These corpora
 include multiple human judgments of fluency and adequacy for each
 sentence, with each judgment using a different human judge and a
-different reference translation.  For a rough\endnote{Our segment
+different reference translation.  Both fluency and adequacy
+assessments are assigned on a five-point scale. For a rough\endnote{Our segment
   count reported in section~\ref{sec:facorpus} differs from
   \inlinecite{owczarzak07labelleddepseval}, who report 16,800 segments
   over the same corpus. We find baseline correlations (BLEU$_4$ and
@@ -496,7 +498,7 @@ each judgment as a separate segment.
 This treatment of this corpus yields 16,815 tuples of
 $\langle$hypothesis, reference, fluency, adequacy$\rangle$.  In these
 experiments, we extend this tuple with automatic scores derived from
-$\langle$hypothesis, reference$\rangle$ and examine the
+$\langle$hypothesis, reference$\rangle$ and examine the per-segment
 correlations\endnote{The independence of the translation segments in
   the Multiple Translation Corpus described in
   section~\ref{sec:facorpus} is questionable, since the same
@@ -511,7 +513,7 @@ measures case-sensitive BLEU (4-grams, with add-one smoothing) and
 TER.  For these first experiments, we consider only the 1-best parse
 ($n=1$).
 \begin{table}
-  \caption{Comparing $dl,lh$ to $dlh$ and baseline correlations with
+  \caption{Comparing $dl,lh$ to $dlh$ and baseline per-segment correlations with
     human fluency and adequacy judgments.}
   \label{tab:facorr:subgraphs}
   \begin{tabular*}{2.5in}{lr}
@@ -527,7 +529,7 @@ TER.  For these first experiments, we consider only the 1-best parse
   \end{tabular*}
 \end{table}
 In table~\ref{tab:facorr:subgraphs} we see that using the
-partial-label $dl,lh$ decomposition has a better correlation with the
+partial-label $dl,lh$ decomposition has a better per-segment correlation with the
 fluency/adequacy scores than TER or BLEU$_4$.  These results confirm,
 with a PCFG, what \inlinecite{owczarzak07labelleddepseval} found with
 an LFG parser: that partial-dependency matches are better correlated
