@@ -737,9 +737,7 @@ We see that the EDPM has the highest correlation in each of the
 subcorpora created by dividing by genre or by source language, as well
 as the corpus as a whole.  Not every difference is above 95\%
 confidence, but the trend is the same across all of the
-subcorpora. EDPM's strengths, relative to the other measures, are
-particularly clear in the unstructured domains (\texttt{wb} and
-\texttt{bc}).
+subcorpora. 
 
 %% MO: I still think this is a bit weird given that what you are
 %% adding is structure. If time, you might want to look at some
@@ -750,6 +748,13 @@ smaller magnitude in this correlation, EDPM again has the largest
 correlation in each category.  TER, however, does quite well with
 length-weighted sentence correlation, with $r$ values within 95\%
 confidence of EDPM scores on nearly every breakdown.
+%
+In all cases in tables~\ref{tab:hterperdoc} and~\ref{tab:hterpersent},
+EDPM is the most strongly correlated with HTER. In structured data
+(\texttt{bn} and \texttt{nw}), these differences are not always
+significant, but in the unstructured domains (\texttt{wb} and
+\texttt{bc}), EDPM is always significantly better than at least one of
+the comparison baselines.
 
 \section{Weight-tuning to combine syntax and other knowledge sources}
 \label{sec:hter2}
