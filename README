@@ -16,7 +16,7 @@ script:
 
   ./ship
 
-will construct a tarball named mtjournal-2009-05-12.tgz (assuming it's
+will construct a tarball named mtjournal-2009-05-11.tgz (assuming it's
 May 11, 2009!) with the following contents:
 
   # the Kluwer classes
