@@ -1,0 +1,31 @@
+Remaining issues:
+
+* shorten
+
+
+Reviewer #2 would also like to include:
+
+  * motivation of the intuitions
+
+  * examples
+
+  * more compare and contrast with Owczarzak et al.
+
+  * more motivation on mean-removal (why is sec 5 different from 4)
+
+  * more motivation on sentence weighting
+
+  * dropping section 6
+
+
+Minor suggestions:
+
+  * R1: explain more of why sec 4 correlations are low vs. MetricsMATR
+        correlations? 
+
+  * R2: drop the "table-of-contents"
+
+  * R2: discussion of benefit of overweighting
+
+  * R2: drastically reduce discussion of \mu type
+
