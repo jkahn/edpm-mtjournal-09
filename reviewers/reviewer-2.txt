@@ -61,9 +61,7 @@ Detail comments:
  always have access to a sufficient number of translations in order
  to estimate the mean score. In other words, in the limit of one
  system, you do not predict anything.  These issues should be
- mentioned and discussed.  (Note about presentation: you don't
- introduce the variable t in Equation 3 -- I guess this is the
- segment?)
+ mentioned and discussed. 
  
  More generally, I would like to see a motivation for the evaluation
  you perform. You seem to largely follow Owczarzak et al's
