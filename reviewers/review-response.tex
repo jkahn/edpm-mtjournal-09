@@ -55,7 +55,8 @@ useful to have at hand as well.  Also, I assume you correlate at the
 The correlations reported in section 4 (tables I-III) are overall
 quite low (also compared to EDPM's r correlations for Chinese source
 data in NIST's MetricsMATR challenge).  Could you comment on this?
-\begin{response} [TO DO]
+\begin{response}
+ [TO DO]
 \end{response}
 For ease of lookup, please include in the table headings for tables
 I-III that the correlations are with human judgments of adequacy and
@@ -77,108 +78,113 @@ The paper is well motivated, clearly written, and presents interesting
 results. On my opinion, it is suitable for publication with minor
 revisions. My main points of criticism are:
 
-- It is considerably too long. Papers are supposed to be 12 pages +
- references; this paper has more than 16 pages. I recommend
- (a) shortening the introduction; (b) shortening the discussion
- of the "model space" in Sections 2/3 somewhat; (c) removing the
- third experiment (Section 6), whose contribution is unclear to
- me, altogether. (see below for details)
+\begin{itemize}
+\item It is considerably too long. Papers are supposed to be 12 pages
+  + references; this paper has more than 16 pages. I recommend (a)
+  shortening the introduction; (b) shortening the discussion of the
+  ``model space'' in Sections 2/3 somewhat; (c) removing the third
+  experiment (Section 6), whose contribution is unclear to me,
+  altogether. (see below for details)
 
-- On the other hand, the paper does not motivate at all what the
- intuition behind the use of dependency triple match is. Why
- should we assume in the first place that dependency triples
- predict human judgments better than (e.g.) n-grams?
+\item On the other hand, the paper does not motivate at all what the
+  intuition behind the use of dependency triple match is. Why should
+  we assume in the first place that dependency triples predict human
+  judgments better than (e.g.) n-grams?
 
-- Finally, the paper does not give a single example. In a paper
- about a novel evaluation metric, I would like to get a feeling
- for what it is that the new metric does better than existing
- metrics. (This can be addressed together with the previous point.)
+\item Finally, the paper does not give a single example. In a paper
+  about a novel evaluation metric, I would like to get a feeling for
+  what it is that the new metric does better than existing
+  metrics. (This can be addressed together with the previous point.)
+\end{itemize}
 
 Detail comments:
 
-- The discussion on page 2 reads nicely, but is probably too
- extensive -- in particular for a paper aimed at a special
- issue where there will presumably be an overview article
- that discusses relevant previous work.
+\begin{itemize}
+\item The discussion on page 2 reads nicely, but is probably too
+  extensive -- in particular for a paper aimed at a special issue
+  where there will presumably be an overview article that discusses
+  relevant previous work.
 
-- p.2, publically -> publicly?
+\item  p.2, publically $\to$ publicly?
 
-- p.3, "In section 2 etc." I'm not sure that a 12-page paper requires
- a table of contents.
+\item  p.3, ``In section 2 etc.'' I'm not sure that a 12-page paper
+  requires a table of contents.
 
-- p.3, reference to Owczarzak et al.'s work. In particular since their
- work has also appeared in the MT journal (please update the
- reference, btw!), it would be good to expand on the similarities and
- differences of your work and theirs.
+\item  p.3, reference to Owczarzak et al.'s work. In particular since
+  their work has also appeared in the MT journal (please update the
+  reference, btw!), it would be good to expand on the similarities and
+  differences of your work and theirs.
 
--p.4 I'm not so sure that I believe in the benefit of overweighting.
- In standard dependency graphs, for example, modifications are usually
- dependendents of the head and are thus "underweighted" by your scheme,
- but modifiers like negations etc. can considerably change the meaning.
- (You write "we argue" but I don't see an argument, just a claim --
-  details of counts for an example might be helpful.)
+\item p.4 I'm not so sure that I believe in the benefit of overweighting.
+  In standard dependency graphs, for example, modifications are
+  usually dependendents of the head and are thus ``underweighted'' by
+  your scheme, but modifiers like negations etc. can considerably
+  change the meaning.  (You write ``we argue'' but I don't see an
+  argument, just a claim -- details of counts for an example might be
+  helpful.)
 
--p.5 "When multiple decompositions etc." As far as I can see, you
- get consistently better scores for F[] than for $\mu_{PR}[]$ throughout
- your experiments.  I'd suggest reducing the discussion of $\mu$ here
- and in Section 3.2 with a short explanation that $\mu$ has been found to
- work worse than F.
+\item p.5 ``When multiple decompositions etc.'' As far as I can see, you
+  get consistently better scores for F[] than for $\mu_{PR}[]$
+  throughout your experiments.  I'd suggest reducing the discussion of
+  $\mu$ here and in Section 3.2 with a short explanation that $\mu$
+  has been found to work worse than F.
 
-- p.6 "LFG...heavily knowledge-engineered parser". I think you're being
- overly harsh on the LFG-based work here. As the title of the paper you
- cite says, you're talking about an "automatically acquired PCFG-based
- LFG approximation" that's learned from a treebank, so you are really
- very much in the same boat.
+\item  p.6 ``LFG...heavily knowledge-engineered parser''. I think you're
+  being overly harsh on the LFG-based work here. As the title of the
+  paper you cite says, you're talking about an ``automatically acquired
+  PCFG-based LFG approximation'' that's learned from a treebank, so you
+  are really very much in the same boat.
 
-- p.7 "Score combination" - see comment above
-     "Tuned, like the ..." - ungrammatical sentence?
+\item p.7 ``Score combination'' --- see comment above 
 
-- Evaluation (p. 8) In principle I like the idea of teasing apart
- sentence difficulty and translation quality. However, I have two
- reservations: (1), you are losing comparability of scores across
- sentences; and (2), you are committing to a scenario where you
- always have access to a sufficient number of translations in order
- to estimate the mean score. In other words, in the limit of one
- system, you do not predict anything.  These issues should be
- mentioned and discussed.  (Note about presentation: you don't
- introduce the variable t in Equation 3 -- I guess this is the
- segment?)
+\item ``Tuned, like the ...''  --- ungrammatical sentence?
+
+\item  Evaluation (p. 8) In principle I like the idea of teasing apart
+  sentence difficulty and translation quality. However, I have two
+  reservations: (1), you are losing comparability of scores across
+  sentences; and (2), you are committing to a scenario where you
+  always have access to a sufficient number of translations in order
+  to estimate the mean score. In other words, in the limit of one
+  system, you do not predict anything.  These issues should be
+  mentioned and discussed.  (Note about presentation: you don't
+  introduce the variable t in Equation 3 -- I guess this is the
+  segment?)
  
- More generally, I would like to see a motivation for the evaluation
- you perform. You seem to largely follow Owczarzak et al's
- evaluation, e.g. in the choice of data (Section 4.1), but you depart
- from it in some crucial respects (e.g. the definition of the
- dependent variable by mean subtraction). Can you provide a clearer
- description of why each experiment is set up in the way it is?
+  More generally, I would like to see a motivation for the evaluation
+  you perform. You seem to largely follow Owczarzak et al's
+  evaluation, e.g. in the choice of data (Section 4.1), but you depart
+  from it in some crucial respects (e.g. the definition of the
+  dependent variable by mean subtraction). Can you provide a clearer
+  description of why each experiment is set up in the way it is?
 
-- p.10 Am I right in reading Table II to say that F always outperforms
- BLEU, but $\mu$ never does? Maybe it would be good to re-mention the
- BLEU results in Table II.
+\item  p.10 Am I right in reading Table II to say that F always
+  outperforms BLEU, but $\mu$ never does? Maybe it would be good to
+  re-mention the BLEU results in Table II.
 
-- p.12 Can you elaborate on why you want to weight per-sentence
- correlations by sentence length? I don't feel that this
- appropriate. After all, I'd think that you are not \emph{more} interested
- in longer sentences, but you want each sentence to have the same
- contribution to the analysis. I assume the problem is that there is
- considerably more variance for shorter sentence, which is alleviated
- by length-based weighting, but to me this reads like a cover-up. If
- you have good arguments for wanting long sentences to count more in
- the analysis, I'd be interested to hear them.
+\item  p.12 Can you elaborate on why you want to weight per-sentence
+  correlations by sentence length? I don't feel that this
+  appropriate. After all, I'd think that you are not \emph{more}
+  interested in longer sentences, but you want each sentence to have
+  the same contribution to the analysis. I assume the problem is that
+  there is considerably more variance for shorter sentence, which is
+  alleviated by length-based weighting, but to me this reads like a
+  cover-up. If you have good arguments for wanting long sentences to
+  count more in the analysis, I'd be interested to hear them.
 
-- Section 6. To my mind, this is the least convincing section of the
- paper. The experiments in Section 4 have already shown that a simple
- F-score-based combination of the different matches does better than
- considering individual components. While I agree that this might be
- a weighting problem, this experiment shows basically a null result.
- From what I can gather from Figure 4, TERp on its own does
- (significantly?) better than EDPM, and their combination doesn't
- really improve a lot. I acknowledge the positive result that there
- is no \emph{decrease} in performance either, but then you're using quite
- a lot of data (50\% = 2500 sentences) for tuning so that is to be
- expected. I would very much like to see how robust the tuning
- process is to smaller development sets, but that would require even
- more space.  
-
+\item  Section 6. To my mind, this is the least convincing section of the
+  paper. The experiments in Section 4 have already shown that a simple
+  F-score-based combination of the different matches does better than
+  considering individual components. While I agree that this might be
+  a weighting problem, this experiment shows basically a null result.
+  From what I can gather from Figure 4, TERp on its own does
+  (significantly?) better than EDPM, and their combination doesn't
+  really improve a lot. I acknowledge the positive result that there
+  is no \emph{decrease} in performance either, but then you're using
+  quite a lot of data (50\% = 2500 sentences) for tuning so that is to
+  be expected. I would very much like to see how robust the tuning
+  process is to smaller development sets, but that would require even
+  more space.
+\end{itemize}
  In sum, I'd suggest replacing Section 6 with some actual examples
  and more discussion of the methodical points I have suggested.
 \end{document}
