@@ -61,11 +61,17 @@ data in NIST's MetricsMATR challenge).  Could you comment on this?
 For ease of lookup, please include in the table headings for tables
 I-III that the correlations are with human judgments of adequacy and
 fluency
+\begin{response}
+  This suggestion has been included in the revised table headings.
+\end{response}
 
 In section 5.1, ``EDPM's strengths, relative to the other measures, are
 particularly clear in the unstructured domains (wb and bc).''  This
 statement does not seem to hold for EDPM vs. BLEU for the wb genre in
 table Va; the correlation reported is the same for the two metrics?
+\begin{response}
+  [TO DO]
+\end{response}
 
 \section{Comments for the Author: Reviewer \#2}
 \label{sec:reviewer2}
@@ -85,16 +91,27 @@ revisions. My main points of criticism are:
   ``model space'' in Sections 2/3 somewhat; (c) removing the third
   experiment (Section 6), whose contribution is unclear to me,
   altogether. (see below for details)
+  \begin{response}
+    Our revisions incorporate many of these suggestions. Rather than
+    eliminate section 6, we have chosen to compress it, but we have
+    adopted the rest of the suggestions above.
+  \end{response}
 
 \item On the other hand, the paper does not motivate at all what the
   intuition behind the use of dependency triple match is. Why should
   we assume in the first place that dependency triples predict human
   judgments better than (e.g.) n-grams?
+  \begin{response}
+    [TO DO -- using motivating examples?]
+  \end{response}
 
 \item Finally, the paper does not give a single example. In a paper
   about a novel evaluation metric, I would like to get a feeling for
   what it is that the new metric does better than existing
   metrics. (This can be addressed together with the previous point.)
+  \begin{response}
+    [TO DO -- again using motivating examples?]
+  \end{response}
 \end{itemize}
 
 Detail comments:
@@ -104,6 +121,10 @@ Detail comments:
   extensive -- in particular for a paper aimed at a special issue
   where there will presumably be an overview article that discusses
   relevant previous work.
+  \begin{response}
+    Thank you for pointing this out. We have squeezed this discussion
+    considerably.
+  \end{response}
 
 \item  p.2, publically $\to$ publicly?
   \begin{response}
@@ -112,11 +133,17 @@ Detail comments:
 
 \item  p.3, ``In section 2 etc.'' I'm not sure that a 12-page paper
   requires a table of contents.
+  \begin{response}
+    This section has also been compressed.
+  \end{response}
 
 \item  p.3, reference to Owczarzak et al.'s work. In particular since
   their work has also appeared in the MT journal (please update the
   reference, btw!), it would be good to expand on the similarities and
   differences of your work and theirs.
+  \begin{response}
+    [TO DO].  The reference has been updated.
+  \end{response}
 
 \item p.4 I'm not so sure that I believe in the benefit of overweighting.
   In standard dependency graphs, for example, modifications are
@@ -125,22 +152,40 @@ Detail comments:
   change the meaning.  (You write ``we argue'' but I don't see an
   argument, just a claim -- details of counts for an example might be
   helpful.)
+  \begin{response}
+    [TO DO: motivating examples?]
+  \end{response}
 
 \item p.5 ``When multiple decompositions etc.'' As far as I can see, you
   get consistently better scores for F[] than for $\mu_{PR}[]$
   throughout your experiments.  I'd suggest reducing the discussion of
   $\mu$ here and in Section 3.2 with a short explanation that $\mu$
   has been found to work worse than F.
+  \begin{response}
+    [TO DO] reduce the discussion of $\mu_{PR}$ further?
+  \end{response}
 
 \item  p.6 ``LFG...heavily knowledge-engineered parser''. I think you're
   being overly harsh on the LFG-based work here. As the title of the
   paper you cite says, you're talking about an ``automatically acquired
   PCFG-based LFG approximation'' that's learned from a treebank, so you
   are really very much in the same boat.
+  \begin{response}
+    Both are indeed built off treebanks, so the knowledge-engineering
+    is similar. The contrast is in fact between a more ``surface''
+    syntactic representation (the PCFG model) or a ``deeper'', more
+    semantic one, and the discussion has been changed to reflect this.
+  \end{response}
 
 \item p.7 ``Score combination'' --- see comment above 
+  \begin{response}
+    [TO DO]
+  \end{response}
 
 \item ``Tuned, like the ...''  --- ungrammatical sentence?
+  \begin{response}
+    This bullet's wording has been clarified.
+  \end{response}
 
 \item  Evaluation (p. 8) In principle I like the idea of teasing apart
   sentence difficulty and translation quality. However, I have two
@@ -149,9 +194,16 @@ Detail comments:
   always have access to a sufficient number of translations in order
   to estimate the mean score. In other words, in the limit of one
   system, you do not predict anything.  These issues should be
-  mentioned and discussed.  (Note about presentation: you don't
-  introduce the variable t in Equation 3 -- I guess this is the
+  mentioned and discussed.  
+  \begin{response}
+    [TO DO]
+  \end{response}
+  (Note about presentation: you don't
+  introduce the variable $t$ in Equation 3 -- I guess this is the
   segment?)
+  \begin{response}
+    Thank you! this oversight is now repaired and $t$ is explicit.
+  \end{response}
  
   More generally, I would like to see a motivation for the evaluation
   you perform. You seem to largely follow Owczarzak et al's
@@ -159,10 +211,22 @@ Detail comments:
   from it in some crucial respects (e.g. the definition of the
   dependent variable by mean subtraction). Can you provide a clearer
   description of why each experiment is set up in the way it is?
+  \begin{response}
+    Section 4 is intended to match the Owczarzak \textit{et al.} data
+    selection, but sections 5 and 6 do not; in sections 5 and 6 the
+    data available \emph{does} allow multiple translations of the same
+    segment and thus we can use mean-subtraction. Mean subtraction is
+    only used in sections 5 and 6, and the discussion of
+    mean-subtraction has been moved to the beginning of section 5 for
+    clarity.
+  \end{response}
 
 \item  p.10 Am I right in reading Table II to say that F always
   outperforms BLEU, but $\mu$ never does? Maybe it would be good to
   re-mention the BLEU results in Table II.
+  \begin{response}
+    [TO DO]
+  \end{response}
 
 \item  p.12 Can you elaborate on why you want to weight per-sentence
   correlations by sentence length? I don't feel that this
@@ -173,6 +237,9 @@ Detail comments:
   alleviated by length-based weighting, but to me this reads like a
   cover-up. If you have good arguments for wanting long sentences to
   count more in the analysis, I'd be interested to hear them.
+  \begin{response}
+    [TO DO]
+  \end{response}
 
 \item  Section 6. To my mind, this is the least convincing section of the
   paper. The experiments in Section 4 have already shown that a simple
@@ -188,6 +255,12 @@ Detail comments:
   process is to smaller development sets, but that would require even
   more space.
 \end{itemize}
- In sum, I'd suggest replacing Section 6 with some actual examples
- and more discussion of the methodical points I have suggested.
+In sum, I'd suggest replacing Section 6 with some actual examples and
+more discussion of the methodical points I have suggested.
+\begin{response}
+  [TO DO]: We have made a number of changes to section 6.  We have
+  revisited the two-fold validation and provided a new statistical
+  analysis that simplifies both the presentation (figure 4) and the
+  discussion (elsewhere in section 6).
+\end{response}
 \end{document}
