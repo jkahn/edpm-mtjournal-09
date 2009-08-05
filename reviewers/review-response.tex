@@ -193,12 +193,12 @@ Detail comments:
 
 \item p.7 ``Score combination'' --- see comment above 
   \begin{response}
-    [TO DO]
+    [TO DO -- revisit after compression]
   \end{response}
 
 \item ``Tuned, like the ...''  --- ungrammatical sentence?
   \begin{response}
-    This bullet's wording has been clarified.
+    Clarified.
   \end{response}
 
 \item  Evaluation (p. 8) In principle I like the idea of teasing apart
@@ -210,13 +210,16 @@ Detail comments:
   system, you do not predict anything.  These issues should be
   mentioned and discussed.  
   \begin{response}
-    [TO DO]
+    [TO DO] We agree that length normalization is not possible in all
+    scenarios and in fact did not use it in section four.  Hence, we
+    moved the length normalization description to section 5, since it
+    is only used whene we have multiple translations.  
   \end{response}
   (Note about presentation: you don't
   introduce the variable $t$ in Equation 3 -- I guess this is the
   segment?)
   \begin{response}
-    Thank you! this oversight is now repaired and $t$ is explicit.
+    fixed.
   \end{response}
  
   More generally, I would like to see a motivation for the evaluation
@@ -226,6 +229,8 @@ Detail comments:
   dependent variable by mean subtraction). Can you provide a clearer
   description of why each experiment is set up in the way it is?
   \begin{response}
+    [TO DO: consolidate with other responses?]
+
     Section 4 is intended to match the Owczarzak \textit{et al.} data
     selection, but sections 5 and 6 do not; in sections 5 and 6 the
     data available \emph{does} allow multiple translations of the same
@@ -239,7 +244,7 @@ Detail comments:
   outperforms BLEU, but $\mu$ never does? Maybe it would be good to
   re-mention the BLEU results in Table II.
   \begin{response}
-    [TO DO]
+    [TO DO revisit after compression]
   \end{response}
 
 \item  p.12 Can you elaborate on why you want to weight per-sentence
@@ -252,7 +257,7 @@ Detail comments:
   cover-up. If you have good arguments for wanting long sentences to
   count more in the analysis, I'd be interested to hear them.
   \begin{response}
-    [TO DO]
+    [TO DO --- include rebuttal.]
   \end{response}
 
 \item  Section 6. To my mind, this is the least convincing section of the
@@ -272,9 +277,18 @@ Detail comments:
 In sum, I'd suggest replacing Section 6 with some actual examples and
 more discussion of the methodical points I have suggested.
 \begin{response}
-  [TO DO]: We have made a number of changes to section 6.  We have
+  [TO DO -- list out other changes to section 6]: We have made a number of changes to section 6.  We have
   revisited the two-fold validation and provided a new statistical
   analysis that simplifies both the presentation (figure 4) and the
-  discussion (elsewhere in section 6).
+  discussion (elsewhere in section 6). In particular, the changes
+  include:
+  \begin{enumerate}
+  \item dropping the discussion of $B$ brevity penalties
+  \item collapsing the $T$ (edit and synonymy) and $P$ (paraphrasing)
+    categories together (now presented together as $T$)
+  \item folding together and normalizing the values produced for the
+    cross-tuned combination measures to provide a single value and
+    confidence interval rather than presenting both splits.
+  \end{enumerate}
 \end{response}
 \end{document}
