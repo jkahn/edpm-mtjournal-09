@@ -212,8 +212,9 @@ decompositions for the same hypothesis tree.
       stumbled & \arclabel{\texttt{root}} &  $<$root$>$ \\
     \end{tabular}\\
   \end{tabular}\\
-  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
-  $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
+%%MO: I don't think we need the P/R/F at this point in the narrative
+%  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
+%  $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
   \caption{Example hypothesis and reference dependency trees and the
     $dlh$ decomposition of each.}
   \label{fig:decompexample}
@@ -295,7 +296,9 @@ decompositions described above and $\mu_h$ represents a harmonic mean:
   \mu_{PR}[dl,lh]  & = & \mu_h \left( \precision{dl},
     \recall{dl}, \precision{lh}, \recall{lh} \right)    
 \end{eqnarray}
-Dependency-based SParseval and the \textbf{d} approach from
+where $\mu_h$ represents a harmonic mean.
+Dependency-based SParseval \inlinecite{roark06:sparseval} 
+and the \textbf{d} approach from
 \inlinecite{owczarzak07evaluatingmt} may each be understood as
 $F[dlh]$, while the latter's \textbf{d\_var} method may be understood
 as something close to $F[dl,lh]$.
@@ -316,8 +319,9 @@ explore in this article.
 % In this section, we describe the details of the implementation and
 % experimental variables explored in the experiments presented here.
 
-\subsection{Parse tree implementation}
-In principle, the family of DPM measures may be implemented with
+\subsection{Parsing and dependency extraction}
+
+The family of DPM measures may be implemented with
 any parser that generates a dependency graph (a single labelled arc
 for each word, pointing to its head-word). Prior work
 \cite{owczarzak07evaluatingmt} on related
@@ -326,9 +330,9 @@ an unlabelled dependency tree \cite{liu05syntaxformteval}.
 
 In this work, we use a state-of-the-art PCFG (the first stage of
 \inlinecite{charniak-johnson:2005:ACL}) and context-free head-finding
-rules \cite{magerman95headfinding} to generate a 50-best list of
+rules \cite{magerman95headfinding} to generate an N-best list of
 dependency trees for each hypothesis and reference translation.  We
-use the parser's default (English-language) Wall Street Journal
+use the parser's default (English) Wall Street Journal
 training parameters.  Head-finding uses the Charniak parser's rules,
 with three modifications to make the semantic (rather than syntactic)
 relations more dominant in the dependency tree: prepositional and
@@ -947,19 +951,17 @@ quality, genre adaptation, and predictive power as a translation metric.
 
 \acknowledgements
 
-{\small This material is based upon work supported by the National
+{\small This material is based on work supported by the National
   Science Foundation under Grant No. 0741585 and the Defense Advanced
   Research Projects Agency under Contract Nos. HR0011-06-C-0022 and
   HR0011-06-C-0023.
-
 % Re: DARPA contract numbers
 % -0022 is Matt's [Agile] grant.
 % -0023 is Mari & Jeremy's [Nightingale] grant
-
-  Any opinions, findings, and conclusions or recommendations expressed
-  in this material are those of the author(s) and do not necessarily
-  reflect the views of the National Science Foundation or the Defense
-  Advanced Research Projects Agency.  }
+%%MO: slight rewording to save lines
+  Any opinions, findings, conclusions or recommendations expressed
+  herein are those of the authors and do not necessarily
+  reflect the views of the funding agencies.  }
 
 % The endnotes section will be placed here.  But I don't think we have any
 
