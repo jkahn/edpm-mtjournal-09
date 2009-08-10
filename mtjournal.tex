@@ -59,101 +59,83 @@ Predicting translation quality with expected syntactic structure}
 \section{Introduction}
 \label{sec:intro}
 
-Machine translation (MT) evaluation is a challenge for research
-because the space of good translations is large, and two equally good
-translations may appear to be quite different at first glance. 
-%
-The challenges of choosing among translations are compounded when this
-evaluation is done automatically.
-%
-Human evaluation, however, is both time-consuming and difficult, so
-research has turned increasingly towards automatic measures of
-translation quality, usually by comparing the system (hypothesis) translation to
-one or more reference (human) translations.
-%
-Automatic measures of this kind not
-only provide a well-defined evaluation standard but are also required
-for training on error criteria, e.g.\ with minimum error rate training
-\cite{och03mert}.
-
+A challenge in automatic machine translation (MT) evaluation is accounting
+for allowable variability: two equally good
+translations may be quite different in surface form. 
 Currently, the most popular evaluation measures include a measure
 based on $n$-gram precision known as BLEU \cite{papineni02bleu} and
 the edit-distance measure Translation Edit Rate (TER)
-\cite{snover06ter}.  Recent research has found that these measures may
+\cite{snover06ter}.  These measures can only account for variability when 
+given multiple translations, and studies show that they may
 not accurately track translation quality both empirically
 \cite{charniak03syntaxlmmt} and theoretically
 \cite{callisonburch06bleuproblems}.
 
-These challenges have motivated a search for better measures that
-incorporate additional language knowledge sources.  METEOR
-\cite{banerjee05meteor}, for example, uses synonym tables and
-morphological stemming to do progressively more-forgiving matching.
-It can be tuned towards recall or precision, but is generally not
-tuned by users.  TER Plus (TERp) \cite{snover09terp} is an extension of the
+Alternative measures that 
+incorporate synonym knowledge sources include: METEOR
+\cite{banerjee05meteor}, which uses synonym tables and
+morphological stemming to do progressively more forgiving matching;
+%%MO: I am taking out the tuning stuff here since it isn't critical
+%It can be tuned towards recall or precision, but is generally not
+%tuned by users.  
+TER Plus (TERp) \cite{snover09terp}, which is an extension of the
 previously-mentioned TER that also incorporates synonym sets and stemming, along
-with automatically-derived paraphrase tables.  TERp is explicitly
-intended to be tuned to a development set by users.
+with automatically-derived paraphrase tables.  
+%TERp is explicitly
+%intended to be tuned to a development set by users.
 %
-Tuning has the advantage that the weight of different types of errors
-can be adjusted to match the needs of the task, though it makes it
-more difficult to compare results across tasks, particularly when
-there is little data for tuning.
-
-As an alternative to these synonym- and paraphrase-based approaches,
-other metrics model syntactically-local (rather than string-local)
-word-sequences. \inlinecite{liu05syntaxformteval} compared tree-local
+%Tuning has the advantage that the weight of different types of errors
+%can be adjusted to match the needs of the task, though it makes it
+%more difficult to compare results across tasks, particularly when
+%there is little data for tuning.
+Other metrics model syntactically-local (rather than string-local)
+word-sequences include: tree-local
 $n$-gram precision in various configurations of constituency and
-dependency trees.  The dependency-based SParseval measure
+dependency trees \cite{liu05syntaxformteval};\endnote{The dependency-based SParseval measure
 \cite{roark06:sparseval}, designed as a parse-quality metric for
 speech, is a similar approach, in that it is an F-measure over a
-decomposition of reference and hypothesis trees.
-\inlinecite{owczarzak07evaluatingmt} proposed \textbf{d} and
-\textbf{d\_var} measures that compare relational tuples derived from a
+decomposition of reference and hypothesis trees.} and the \textbf{d} and
+\textbf{d\_var} measures proposed by \inlinecite{owczarzak07evaluatingmt} that compare relational tuples derived from a
 lexical functional grammar (LFG)
-over reference and hypothesis translations and reported substantial
-improvement in correlation with human judgment relative to BLEU and
-TER.
-
+over reference and hypothesis translations.
+%
 These syntactically-oriented measures require a system for proposing
 dependency structure over the reference and hypothesis
-translations. Some \cite{liu05syntaxformteval,roark06:sparseval} use
-PCFG parsers with deterministic head-finding, while others
+translations. \inlinecite{liu05syntaxformteval} use a
+PCFG parser with deterministic head-finding, while 
 \cite{owczarzak07evaluatingmt} extract the semantic dependency
 relations from an LFG parser \cite{cahill04lfg}.
 %
 This work extends the dependency-scoring strategies of
-\inlinecite{roark06:sparseval} and
-\inlinecite{owczarzak07evaluatingmt} using a widely-used and
-publicly-available probabilistic context-free grammar (PCFG) parser and deterministic head-finding rules.
+\inlinecite{owczarzak07evaluatingmt}, which reported substantial
+improvement in correlation with human judgment relative to BLEU and
+TER, by using a 
+publicly-available probabilistic context-free grammar (PCFG) parser and deterministic head-finding rules. In addition, we consider more types of constituents and different score combinations, as well as combination with of synonym-type scores.
  
-We may evaluate automatic MT measures in a variety of ways. Some
+MT measures are evaluated in a variety of ways. Some
 \cite{banerjee05meteor,liu05syntaxformteval,owczarzak07evaluatingmt}
-have evaluated their success by comparing the measure to human
+comparing the measure to human
 judgments of fluency and adequacy.  In other work, e.g.\
-\inlinecite{snover06ter}, measures are evaluated by comparison to
+\cite{snover06ter}, measures are compared to
 human-targeted TER (HTER), a distance to a human-revised reference
 that uses wording closer to the MT system choices (keeping the
 original meaning) that is intended to measure the post-editing work
 required after translation.  In this paper, we explore both kinds of
 evaluation.
 
-In section~\ref{sec:approach}, we outline our approach to including
-syntactic information in MT evaluation, by describing a family of
-metrics. In section~\ref{sec:paradigm}, we describe the implementation
-details and make explicit which dimensions of this family of metrics
-we explore in this paper.  Section~\ref{sec:faexpts} examines the
+We describe our approach to including syntactic information in MT
+evaluation by outlining a family of metrics in
+section~\ref{sec:approach} and provide implementation details in
+section~\ref{sec:paradigm}.  Section~\ref{sec:faexpts} examines the
 correlation of several members of this family with human judgments of
-fluency and adequacy over a corpus of sentence translations and
-selects a favorable member of the family, Expected Dependency Pair
-Match (EDPM), based on this comparison. Section~\ref{sec:hter1}
-compares the correlation of EDPM with HTER over a corpus of document-
-and sentence-level comparisons, and demonstrates that its correlation
-is favorable to that of competitor measures BLEU and TER at both
-sentence and document levels, regardless of source-language or genre.
-Section~\ref{sec:hter2} uses the tuning components of TERp
-to explore the combination of these syntactic measures with TERp's
-word-based measures. Finally, section~\ref{sec:conclusion} concludes
-with some remarks on challenges and future work.
+fluency and adequacy, using the paradigm from
+\cite{owczarzak07evaluatingmt} to provide comparisons to that work and
+select a best case configuration, Expected Dependency Pair Match
+(EDPM). The EDPM measure is then compared to BLEU and TER in terms of
+correlation with HTER, exploring language/genre effects in
+section~\ref{sec:hter1} and combination with TERp's synonym/paraphrase
+features in section~\ref{sec:hter2}. Finally, findings and future work
+are summarized in section~\ref{sec:conclusion}.
 
 \section{Approach}
 \label{sec:approach}
