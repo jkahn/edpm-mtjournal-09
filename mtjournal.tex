@@ -140,14 +140,17 @@ are summarized in section~\ref{sec:conclusion}.
 \section{Approach}
 \label{sec:approach}
 
-This work explores a family of dependency pair match (DPM) measures
-that are composed of precision and recall combinations over various
+
+The specific family of dependency pair match (DPM) measures explored here
+combines precision and recall scores of various
 decompositions of a syntactic dependency tree. These measures are
 extensions of the dependency-pair F measures found in
-\inlinecite{roark06:sparseval} and
 \inlinecite{owczarzak07labelleddepseval}\endnote{
-  \inlinecite{owczarzak07evaluatingmt} extends their previous line of
+  \inlinecite{owczarzak07evaluatingmt} extend their previous line of
   research \cite{owczarzak07labelleddepseval} by variably-weighting
+%%MO: you actually do variable weighting using parse probabilities, so
+%% would be good to mention what they use.  If you can say this in a few
+%% words, then you won't add a line
   dependencies and by including synonym matching, two directions not
   pursued here.
 }.  Rather than comparing
@@ -158,11 +161,37 @@ on which that word depends.  Each sentence (both reference and
 hypothesis) is converted to a labeled syntactic dependency tree and
 then relations from each tree are extracted and compared.
 
-A member of this family is defined by several parameters.  The first
-of these parameters is the nature of the decomposition of the
-dependency tree structure.  A \emph{decomposition list} is the list of
-ways in which the tree is reduced to a bag of tree-local
-tuples. Figure~\ref{fig:decompexample}
+We motivate the use of dependencies with actual translations:\\[4pt]
+{\sl
+Ref: Authorities have also closed southern Basra's airport and seaport.\\
+S1: The authorities also closed the airport and seaport in the
+southern port of Basra.\\
+S2: Authorities closed the airport and the port of.\\[4pt]
+}
+A human judged the system 1 result (S1) as equivalent to the reference, but the system 2 (S2) result as
+having errors.  BLEU gives both a similar score (0.199
+vs.\ 0.203). TER scores S2 as better (errors
+of 0.9 vs.  0.7, respectively), since a simple deletion requires fewer
+edits that rephrasing.  By representing matches of dependencies, we
+obtain a score for S1 from the new EDPM measure that is higher than
+that for S2 (0.414 vs.\ 0.356).  The two phrases ``southern Basra's
+airport and seaport'' and ``the airport and seaport in the southern
+port of Basra'' have more in similarities in terms of dependencies
+than word order.
+
+The particular relations that are extracted from the dependency tree
+are referred to here as \emph{decompositions}.
+Figure~\ref{fig:decompexample}
+illustrates the \emph{dependency-link-head} decomposition of a toy
+dependency tree into a list of $\langle d, l, h \rangle$ tuples.  Some
+members of the DPM family may apply more than one decomposition; other
+good examples are the $dl$ decomposition, which generates a bag of
+dependent words with outbound links, and the $lh$ decomposition, which
+generates a bag of inbound link labels, with the head word for each
+included. Figure~\ref{fig:decompexample2} shows the $dl$ and $lh$
+decompositions for the same hypothesis tree.
+
+
 \begin{figure}
   \centering
   \begin{tabular}{rcc}
@@ -183,19 +212,14 @@ tuples. Figure~\ref{fig:decompexample}
       stumbled & \arclabel{\texttt{root}} &  $<$root$>$ \\
     \end{tabular}\\
   \end{tabular}\\
-  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
-  $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
+%%MO: I don't think we need the P/R/F at this point in the narrative
+%  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
+%  $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
   \caption{Example hypothesis and reference dependency trees and the
     $dlh$ decomposition of each.}
   \label{fig:decompexample}
 \end{figure}
-illustrates the \emph{dependency-link-head} decomposition of a toy
-dependency tree into a list of $\langle d, l, h \rangle$ tuples.  Some
-members of the DPM family may apply more than one decomposition; other
-good examples are the $dl$ decomposition, which generates a bag of
-dependent words with outbound links, and the $lh$ decomposition, which
-generates a bag of inbound link labels, with the head word for each
-included. 
+
 \begin{figure}
   \centering
     \begin{tabular}{cc}
