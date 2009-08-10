@@ -212,14 +212,19 @@ decompositions for the same hypothesis tree.
       stumbled & \arclabel{\texttt{root}} &  $<$root$>$ \\
     \end{tabular}\\
   \end{tabular}\\
-%%MO: I don't think we need the P/R/F at this point in the narrative
-%  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
-%  $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
+  Precision$_{dlh}$ is $\frac{1}{3}$ and Recall$_{dlh}$ is
+  $\frac{1}{4}$: thus $F[dlh] = \frac{2}{7}$
   \caption{Example hypothesis and reference dependency trees and the
     $dlh$ decomposition of each.}
   \label{fig:decompexample}
 \end{figure}
-
+illustrates the \emph{dependency-link-head} decomposition of a toy
+dependency tree into a list of $\langle d, l, h \rangle$ tuples.  Some
+members of the DPM family may apply more than one decomposition; other
+good examples are the $dl$ decomposition, which generates a bag of
+dependent words with outbound links, and the $lh$ decomposition, which
+generates a bag of inbound link labels, with the head word for each
+included. 
 \begin{figure}
   \centering
     \begin{tabular}{cc}
@@ -698,26 +703,26 @@ baselines: $\bar{\mu}$TER and $\bar{\mu}$BLEU$_4$.
   \begin{table}
     \begin{tabular}{r|rrrr|rr|r}
       \hline
-      $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
+      $r$ vs. $\overline{\textrm{HTER}}$ & \multicolumn{1}{c}{\texttt{bc}}
       & \multicolumn{1}{c}{\texttt{bn}} &
       \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
       & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
       & \multicolumn{1}{c}{all} \\
       \hline
-      $\bar{\mu}$TER
+      $\overline{\textrm{TER}}$
       &  0.59 &  \textbf{0.35} &  \textbf{0.47}&  \textit{0.17}
       & \textbf{0.54} & \textbf{0.32} &  0.44\\
-      $\bar{\mu}$BLEU
+      $\overline{\textrm{BLEU}}$
       & -0.42 & \textbf{-0.32} & \textbf{-0.46}&  \textbf{-0.27}
       & -0.42  &  \textbf{-0.33} & -0.37 \\
-      $\bar{\mu}$EDPM
+      $\overline{\textrm{EDPM}}$
       & \textbf{-0.69} & \textbf{-0.39} & \textbf{-0.47} &
       \textbf{-0.27}
       & \textbf{-0.60} & \textbf{-0.39} & \textbf{-0.50} \\
       \hline
     \end{tabular}
-    \caption{Per-document correlations of $\bar{\mu}$EDPM and others to
-      $\bar{\mu}$HTER, by genre and by source language. Bold numbers are
+    \caption{Per-document correlations of $\overline{\textrm{EDPM}}$ and others to
+      $\overline{\textrm{HTER}}$, by genre and by source language. Bold numbers are
       within 95\% significance of the best per column; italics indicate
       that the sign of the $r$ value has less than 95\% confidence.}
     \label{tab:hterperdoc}
@@ -725,27 +730,27 @@ baselines: $\bar{\mu}$TER and $\bar{\mu}$BLEU$_4$.
   \begin{table}
     \begin{tabular}{r|rrrr|rr|r}
       \hline
-      $r$ vs. $\bar{\mu}$HTER & \multicolumn{1}{c}{\texttt{bc}}
+      $r$ vs. $\overline{\textrm{HTER}}$ & \multicolumn{1}{c}{\texttt{bc}}
       & \multicolumn{1}{c}{\texttt{bn}} &
       \multicolumn{1}{c}{\texttt{nw}} & \multicolumn{1}{c}{\texttt{wb}}
       & \multicolumn{1}{|c}{all Arabic} & \multicolumn{1}{c|}{all Chinese}
       & \multicolumn{1}{c}{all} \\
       \hline
-      $\bar{\mu}$TER
+      $\overline{\textrm{TER}}$
       &  \textbf{0.44} &  \textbf{0.29} &  \textbf{0.33}&  0.25
       & \textbf{0.44} & 0.25  &  \textbf{0.36}\\
-      $\bar{\mu}$BLEU
+      $\overline{\textrm{BLEU}}$
       & -0.31 & -0.24  & -0.29 &  -0.25
       & -0.31  &  -0.24  & -0.28 \\
-      $\bar{\mu}$EDPM
+      $\overline{\textrm{EDPM}}$
       & \textbf{-0.46} & \textbf{-0.31} & \textbf{-0.34} &
       \textbf{-0.30}
       & \textbf{-0.44} & \textbf{-0.30} & \textbf{-0.37} \\
       \hline
     \end{tabular}
     \caption{Per-sentence, length-weighted correlations of
-      $\bar{\mu}$EDPM and others to $\bar{\mu}$HTER, by genre and by
-      source language.}
+      $\overline{\textrm{EDPM}}$ and others to $\overline{\textrm{HTER}}$, by genre and by
+      source language. Bold numbers indicate significance as above.}
     \label{tab:hterpersent}
   \end{table}
 \end{subtable}
