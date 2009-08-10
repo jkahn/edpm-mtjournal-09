@@ -25,7 +25,7 @@
 \begin{document}
 \begin{article}
 \begin{opening}         
-\title{Expected Dependency Pair Match:\\
+\title{Expected Dependency Pair Match:
 Predicting translation quality with expected syntactic structure} 
 \author{Jeremy G. \surname{Kahn}\email{jgk@u.washington.edu}}  
 \institute{University of Washington}
@@ -38,23 +38,19 @@ Predicting translation quality with expected syntactic structure}
 %s\date{May 10, 2009}
 
 \begin{abstract}
-  Recent efforts aimed at improving over standard machine translation
-  evaluation methods (BLEU, TER) have investigated mechanisms for
-  accounting for allowable wording differences either in terms of
-  syntactic structure or synonyms/paraphrases. This paper explores an
-  approach for combining scores from partial syntactic dependency
+  Recent efforts to develop new machine translation
+  evaluation methods have tried to 
+  account for allowable wording differences either in terms of
+  syntactic structure or synonyms/paraphrases. This paper primarily considers syntactic structure, combining scores from partial syntactic dependency
   matches with standard local n-gram matches using a statistical
-  parser, and taking advantage of parse probabilities in deriving
-  expected scores based on the N-best parses for the hypothesized
-  sentence translation.  The new scoring metric, Expected Dependency
+  parser, and taking advantage of N-best parse probabilities in deriving
+  scores for the hypothesized
+  translation.  The new scoring metric, Expected Dependency
   Pair Match (EDPM), is shown to be superior to BLEU and TER in terms
   of correlation to human judgments and as a per-document and
-  per-sentence predictor of HTER, using mean subtraction to account
-  for document difficulty. Further, we explore the potential benefit
-  of combining the n-gram and syntactic features of EDPM with the
-  alternative wording features of TERp, with experiments showing that
-  there is a benefit to accounting for syntactic structure on top of
-  the semantic equivalency features.
+  per-sentence predictor of HTER. Further, we combine the syntactic features of EDPM with the
+  alternative wording features of TERp, showing a benefit to accounting for syntactic structure on top of
+  semantic equivalency features.
 \end{abstract}
 \keywords{machine translation evaluation, syntax, dependency trees}
 
