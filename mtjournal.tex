@@ -120,7 +120,7 @@ These syntactically-oriented measures require a system for proposing
 dependency structure over the reference and hypothesis
 translations. \inlinecite{liu05syntaxformteval} use a
 PCFG parser with deterministic head-finding, while 
-\cite{owczarzak07evaluatingmt} extract the semantic dependency
+\inlinecite{owczarzak07evaluatingmt} extract the semantic dependency
 relations from an LFG parser \cite{cahill04lfg}.
 %
 This work extends the dependency-scoring strategies of
@@ -133,7 +133,7 @@ MT measures are evaluated in a variety of ways. Some
 \cite{banerjee05meteor,liu05syntaxformteval,owczarzak07evaluatingmt}
 comparing the measure to human
 judgments of fluency and adequacy.  In other work, e.g.\
-\cite{snover06ter}, measures are compared to
+\inlinecite{snover06ter}, measures are compared to
 human-targeted TER (HTER), a distance to a human-revised reference
 that uses wording closer to the MT system choices (keeping the
 original meaning) that is intended to measure the post-editing work
@@ -146,7 +146,7 @@ section~\ref{sec:approach} and implementation details in
 section~\ref{sec:paradigm}.  Section~\ref{sec:faexpts} examines the
 correlation of members of this family with human judgments of
 fluency and adequacy, using the 
-\cite{owczarzak07evaluatingmt} paradigm to provide comparisons and
+\inlinecite{owczarzak07evaluatingmt} paradigm to provide comparisons and
 select a best case configuration, Expected Dependency Pair Match
 (EDPM). The EDPM measure is then compared to BLEU and TER in terms of
 correlation with HTER, exploring language/genre effects in
@@ -631,7 +631,7 @@ that the reported correlations are among differences in the
 translations rather than among differences in the underlying segments.
 
 In table~\ref{tab:hterperdoc}, we show per-document Pearson's $r$
-between $\overline{\textrm{EDPM}}$ and $\overline{\textrm{HTER}}$, as well as the $\overline{\textrm{TER}}$ and $\overline{\textrm{BLEU}}$$_4$
+between $\overline{\textrm{EDPM}}$ and $\overline{\textrm{HTER}}$, as well as the $\overline{\textrm{TER}}$ and $\overline{\textrm{BLEU}_4}$
 baselines. EDPM has the highest correlation in each of the
 subcorpora created by dividing by genre or by source language, as well
 as the corpus as a whole.   In structured data
