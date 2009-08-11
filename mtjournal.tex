@@ -91,7 +91,7 @@ with automatically-derived paraphrase tables.
 %can be adjusted to match the needs of the task, though it makes it
 %more difficult to compare results across tasks, particularly when
 %there is little data for tuning.
-Other metrics model syntactically-local (rather than string-local)
+Other metrics modeling syntactically-local (rather than string-local)
 word-sequences include: tree-local
 $n$-gram precision in various configurations of constituency and
 dependency trees \cite{liu05syntaxformteval};
@@ -426,8 +426,8 @@ rough\endnote{Our segment count differs slightly from
   baselines are very similar.  } comparison with
 \inlinecite{owczarzak07evaluatingmt}, we treat each judgment as a
 separate segment, which yields 16,815 tuples of $\langle$hypothesis,
-reference, fluency, adequacy$\rangle$.  We compute the per-segment
-correlations\endnote{The use of the same hypothesis translations in
+reference, fluency, adequacy$\rangle$.  We compute per-segment
+correlations.\endnote{The use of the same hypothesis translations in
   multiple comparisons in the Multiple Translation Corpus means that
   scored segments are not strictly independent, but for methodological
   comparison with prior work, this strategy is preserved.}
@@ -587,7 +587,7 @@ The corpus includes one English reference translation
 translation for each of the three systems. Additionally,
 each of the system translations has a
 corresponding human-targeted reference aligned at the sentence level,
-and an associated so we have available the HTER score at
+so we have available the HTER score at
 both the sentence and document level.
 
 \begin{table}
